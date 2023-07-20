@@ -1,0 +1,929 @@
+# ===============================================================
+# It's recommended to use Alternate Theme Config to configure NexT
+# Modifying this file may result in merge conflict
+# See: https://theme-next.js.org/docs/getting-started/configuration
+# ===============================================================
+
+# ---------------------------------------------------------------
+# Theme Core Configuration Settings
+# See: https://theme-next.js.org/docs/theme-settings/
+# ---------------------------------------------------------------
+
+# Allow to cache content generation.
+cache:
+  enable: true
+
+# Remove unnecessary files after hexo generate.
+minify: false
+
+# Define custom file paths.
+# Create your custom files in site directory `source/_data` and uncomment needed files below.
+custom_file_path:
+  #head: source/_data/head.njk
+  #header: source/_data/header.njk
+  #sidebar: source/_data/sidebar.njk
+  #postMeta: source/_data/post-meta.njk
+  #postBodyStart: source/_data/post-body-start.njk
+  #postBodyEnd: source/_data/post-body-end.njk
+  footer: ./themes/next/source/_data/footer.njk
+  #bodyEnd: source/_data/body-end.njk
+  #variable: source/_data/variables.styl
+  #mixin: source/_data/mixins.styl
+  style: source/_data/styles.styl
+
+
+# ---------------------------------------------------------------
+# Scheme Settings
+# ---------------------------------------------------------------
+
+# Schemes
+#scheme: Muse
+#scheme: Mist
+#scheme: Pisces
+scheme: Gemini
+
+# Dark Mode
+darkmode: false
+
+
+# ---------------------------------------------------------------
+# Site Information Settings
+# ---------------------------------------------------------------
+
+favicon:
+  small: /images/Akari.svg
+  medium: /images/Akari.svg
+  apple_touch_icon: /images/Akari.svg
+  safari_pinned_tab: /images/Akari.svg
+  #android_manifest: /manifest.json
+
+# Custom Logo (Warning: Do not support scheme Mist)
+custom_logo: #/uploads/custom-logo.png
+
+# Creative Commons 4.0 International License.
+# See: https://creativecommons.org/about/cclicenses/
+creative_commons:
+  # Available values: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | cc-zero
+  license: by-nc-sa
+  # Available values: big | small
+  size: small
+  sidebar: false
+  post: true
+  # You can set a language value if you prefer a translated version of CC license, e.g. deed.zh
+  # CC licenses are available in 39 languages, you can find the specific and correct abbreviation you need on https://creativecommons.org
+  language: deed.zh
+
+# Open graph settings
+# See: https://hexo.io/docs/helpers#open-graph
+open_graph:
+  enable: true
+  options:
+    #twitter_card: <twitter:card>
+    #twitter_id: <twitter:creator>
+    #twitter_site: <twitter:site>
+    #twitter_image: <twitter:image>
+    #google_plus: <g+:profile_link>
+    #fb_admins: <fb:admin_id>
+    #fb_app_id: <fb:app_id>
+
+
+# ---------------------------------------------------------------
+# Menu Settings
+# ---------------------------------------------------------------
+
+# Usage: `Key: /link/ || icon`
+# Key is the name of menu item. If the translation for this item is available, the translated text will be loaded, otherwise the Key name will be used. Key is case-sensitive.
+# Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.
+# External url should start with http:// or https://
+menu:
+
+  home: / || fa fa-home
+  #tags: /tags/ || fa fa-tags
+  categories: /categories/ || fa fa-th
+  archives: /archives/ || fa fa-archive
+  #schedule: /schedule/ || fa fa-calendar
+  #sitemap: /sitemap.xml || fa fa-sitemap
+  #commonweal: /404/ || fa fa-heartbeat
+  about: /about/ || fa fa-user
+
+# Enable / Disable menu icons / item badges.
+menu_settings:
+  icons: true
+  badges: true
+
+
+# ---------------------------------------------------------------
+# Sidebar Settings
+# See: https://theme-next.js.org/docs/theme-settings/sidebar
+# ---------------------------------------------------------------
+
+sidebar:
+  # Sidebar Position.
+  position: left
+  #position: right
+
+  # Manual define the sidebar width. If commented, will be default for:
+  # Muse | Mist: 320
+  # Pisces | Gemini: 240
+  #width: 300
+
+  # Sidebar Display (only for Muse | Mist), available values:
+  #  - post    expand on posts automatically. Default.
+  #  - always  expand for all pages automatically.
+  #  - hide    expand only when click on the sidebar toggle icon.
+  #  - remove  totally remove sidebar including sidebar toggle.
+  display: post
+
+  # Sidebar padding in pixels.
+  padding: 18
+  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
+  offset: 12
+
+# Sidebar Avatar
+avatar:
+  # Replace the default image and set the url here.
+  url: data:image/webp;base64,UklGRgYjAABXRUJQVlA4IPoiAABwjwCdASqqAaoBPjEWiEMiISEVv3QoIAMEtLd+Pbf0y58AeL3gevlTdA69oPR738fT/xv/pfpn+K/Of078bv7D/4v9T0perPMv+M/UT6X/df1//uH7N/hj7XvCngC/hX8i/rX9t/Zv+2fuZxvGvf6L/P+oF6p/Qf8d/ef3I/yXp+/0/o39qP8L9w32A/xb+Xf2T8sf75///+P9x/9jwaPu3+p/an4Af5N/bP8F/Yv3e/yn//+2D+t/7f+i/Ir3Pfnf+E/2H+e/dn/Q////2/on/LP6r/lf73/of+P/kP///7hUnKLnOc5znOc5znOc5znOc6vgtTAPM4yYB5nGTAPLVRkwDzMdbPy72aYG6uq8FqYA8BpG+d0rACzf0oitBaQlVKt/6utxcZd4LUwDqrtRxhwk3gYmLINi1RCv9wHxOBXp/7GWhqKUtmSjsfvPC1ufh1RCSHcIBFmjvtg/s3Kw7ll0N/2YIs2v0AaYoat186gLou4zIxfk/hqGsvpvZRewOZPRHWjXbtoIcFsjfHXJJhX6EwZAexExuoaPqqyd08TFP02hK85R00CbEQI3R2VZKIY4FfyPEu8FqS16cnecu4oDHorkfr/cGVMHRl6CjtULHuTHGgGxiOq0fao9XKvRE68+4UZXXVeCqQpqBXjYRGvFFwXlGJMYrwRCZhnXsTaCiEZnyQaUvpvT3yqzZQGXwTjJgHYZTV0Wkg5dh1N3QUIsQcyPXHLe20UhJPI/wMh3ppi8J0FqYB1tGmCFAFVIlsABtdVwarSgXVQ1evkvmih6CMx5dQOAuhXpEU7+41waK8FqUqiKliGYaOdYq2bZo7Fgo2DQjJnGJiaJNcvuQMr83UzaL7YHG8FwuOK83TydswTA3V1XQBJGv9SFEeSoHfftngtJjsZHWFPn9CX+hkwDq1ZL+QnqdPu1njkefmG0TmalzsX0nUsuqhulK5i1xANXerSVR6H0zEcgEA7fB/KyFzDz7nmzzetEXJC7DvoncALPwSv2Sikgh43Vlx0lro1+Fhcng5P++mS9t3zPWtD3ecollRbW9E+YZqgPpCjJh4qfkxgLfGhg+jS53LQm82cXZoQNi6xyDz3UsTXrxnhNNoCtHTE7QfemuegNFMClQj12EpTjJOezNqgFAlH+Bs7dKncBFB0IPK6bhwxULvjWXVeAClhQZYmTIWWLDqeKqTwWpexN9Wsuq8FVr9f+HbyXO0czXnSvblIjS4FIF56VIPM4xMdYEpAP2r43zVtaTiech3PBaXocTsngjOq8FpMdYKuqS02qF7A0JU0UmCOV98HMaAISUdqYB1vW/V/d4NgnjdXVQ3VKzQS6xFt30GVfOiUB6Hr61yxE4yYB1t2rBHmcYmOsF0JwhnInAq9ahcGOySiax2jALqvBUpmqfdCwMQeZmOpfAz7y2bpYfeQwWVvblLFkQqbmaJZxkvj1eC1L2PHr4+C1MAWDeBJB5nDtfweZw2X8qEVO6KE7UwDrwGjPnu4PMzHUwDzMUevebRrLqvAYmh91coDELheZEpiAAP77QeAB+kjcn/PKuKTksZVKgZDCL+sr61detnjUe71AjsOnLfy81YVOEkuWXCVRR10KsmaRV/qnSSsJpjKcbX0d4M+FHKkBD8prn4esl8Vwqbi5DMOtXkNf1Zkm+C8P88++eZKFDobLraGVx+lLX6nA2Qg1ngoHvmcLr43ISFrMqdyyfM0R4ayFr9rijIJJ6ltiJE1ccxAs61ypPyKFM/B1F4TP7c1RWpbX+ThZO1fO4glelPQ7F/lNjm0cTRMbAx55kYWVcbQRnWjLdQIA4beEwGrZVmwa+bG7m9T5Kzckl5URRm0+NkyoewhmrMvsk+ZI+VxuNa4m7m41Agj7u/71K3RA4QNqE8IbPQsXsjgJwLL9ZreiZXS/9Dv53OaFg45YhhUppeAub1KtpzxtfGZK/jET3YLyJJfXyYJ7mwP+pSqo/TZOb2MJCh7VyiRD7rxxfixNR7deV2WrWAKT0RMENeBSn99HigtJHtcukxdxsBFs+O9SgnHXiq25SdE9HSxwc1fEa23lujYvWuuSLtrtyc97BM10sJYVsHkVXupa/Dk0Wq3bTUDSR+LCv7IepKq3GbfEYx5rpHt1EHV7BzsOhCfjKvdIBqjU8nofn0YchfK3xIGHUn4AS22ztc1EvIA9+rhn+2uq6ubJA3IHTwV3WBc0QVUaC4HZ37BI+lRTCQCHlDmO18re7Y/hKh7aR2ZPj5rjDGbOhmfxv8zL1+c4rXztAMVZbF54/QfpkVQdu32K4KJwLY9Pn1AizYC26U5YvO9sc4G3NyJ5KKof/4spZJwbtvnF7l/sQ6j43nzYsW2xGoT9yL+GxYdmwFcJ/XJFBDSevRbTnl4t1E28im4g+BzIC49OPBBnmeOWtLM2zrmgBDG5rIIirgM9T9Nx3/JzyfvMDui3IiRbLbQtWWNRxoeGgIZx8Wr1t3otpDcS1TPtRLFFNA7Cs6bX+28gd6yJywhYapR2zcZIOAEGb8oKo1HMKTsmlHTg8B/61Q9PbCKxxslvzcZc56NiYz1tBQasN9XK0/UQWsTyrISKHk/OZpfi46PnDFiByn3E57ai75hQRvZsR7DHzui+SDJPyPq4sPFisb5BvhRNN5HB8B7XOgBV2ONoP/+WVQvuRdwz2U/jfeLkzjCKzhumNNjQSuZ8+jI7uZ/NxtUJ1Rf9v/0foOJqFeAwRjmqif5YwV1VYgFFAcaFeGKBHqgL+TJQ526fHhmKv/chGUTbaOk9v9C1UYDHJObJToUfbWtco7JBxLqrY05XDOE2LslU+iCug9pKa5oNr3jA3JXU/zr5XX89j6wIOq4H/+di2HIVYeVvQy8405MkrWyJeYuUgvulBKVJFr+xbMKhbbh2hbOL22CN9N7SbN7rivHWQCloKKcc8FhCJfZsNcJsyPujACQxIodpmhC5sl/HaPwTgztGxU//7vmCKrJmtIC1FEjsibMmlqvHRBOAotqtOFFRaxAu5EVQsCdM8GUHLN7I6QGiWeEbcnQVuaD1u1QFXBGStCpM6xG78cPjacxI7rJpa0lBDgFW4OrsaBBCrk3akR0eI1Bd/Pfshju0xNtu8EJ/itRf77e/6RE6edPCQgX83UnEI+Fbl61YrMOgPUej+n8B/oKLCI/yiFy0WjhtgKUJ16605EXWQPIDvL+WvwyaxHqgKhz7ZI0LkQDBy6koKo9WuY8DCgyToE4mpP+hgfrKLjPF/pke1k+3d/rYA6bjUkXSZnmafEk/+OFZdm39O8L+RrJYM4SlozfLTJfn2xTYGT9Ssy0lHLOnU7Yk4y5ItXjYxWN7y/u/uaBq0ehzKKcYiBTGik+6NOxCwkuf2NHX3nN0/9ylK3SNn/oglUx/HbnD+cdL3GYcIPmbHVdU0K6Wf+WWyUnbjJRPMLPJaKo7ULivQpcwEJ3gAazr91VZ7/nHMwkA8eyRZZElCl2rd9gDTMAsAUDzuuBXaAgHWvew2wUXBOaITeWitCMiXhzr7wGt8GQb/kVByRXvbziSv+s4mhTRrLXML4aaTBldEl6PcEF0yZv3pc5LzI6BduhVeqBfjXK0lpEJCYTFOxK0sqbxvgghjPVQ/SRargRgQnehe9KGRaZrkgMPPP7FCMHLiZZmtF0cPmjva5SbTuEtrBTh30Jf6PEeSC3myTvA6Q8gaqUYl/DJZ8iWpwPkYJLjVIawY7kh00iW0sll0XELNJQieo/eMCp00RVjjbzenBD8QPNs1+sZlavjK+w9meJbnCM2Owyp0sYbQ2iI8X0qGzwKgVwXjb29QcMr6a26Z+UqIZk/QUmJEiFCJo2egjzrlrRySBnwx+dLGMNkE+AxfmE4WLjSl7MvQGvtU339OWLpgjFR/o6GEzydY3To0zIQXJ3O+LOi4TrHK588+CMyHcUPyLvWJyoco0b9JZzvXmVZ7Y46m0Ofk///u6AK9tEc0xX4P/OU4SNYyjgtqJZtQktq7PkubLBBg3j5MDSew3BjhFx2pjMXOtRuo8q854dq//40oWZMO/Jga3aXL78tPxG/ot2k+jy1UyK+WF+EPGjCb70QyNfsAJpFXyHsamFDGmQ5c/cKZP6rV66KkRiCmt/2htByA/BV5F9P2HNdZ0M/ttsJXjTsdb68dtwCdTQSNCeHLe9jkzXSSo2DHaHYTByC3Sze7HFqPpAiZ4R0rJ97ru6iF0xx6QANYPkX5zm9EDfGiW8yo29aSvSpzrHdFHDX4Bt2H5vdx0XKJSVsrAThZYEqeg9vL+hsVD0Pwez/mKBO6Al3sJXjv9+QSmMI13jAVqukWXfaTfsToG7/cxITa7SHIQZQ19a3BubQT1lNURyDyh+6KdpG7gv1Kt1JUnB1KcdDCsJyuIBFIfvHCGq51+vN1OkL5w0+cKoT54+G085msy60qiR58gLOoTEwM38Q5EHok6FyG/ZoQHYx53DPYaNA3UhGFAgJcUwhj1D7H9He4MShBWMZiAvBKlwbbapKu3yrzkAaG/7ClqrnUfAF3yIOxnw/sJx7bTTP+r7qnp58AlWRGndDh1NwJY92eTF14bAtyfwGr/Ok7/91f7xCpR5N55xCYK6/RzbUi4D7Orux6eRGprU7PIkSD8KcOj2uU6omMgB58RAp4RcRUXL9UOpYj/9XDApicSxp5XR3RdjFev/lit4bi35KXnW7DwP/6bX2q9b3eADjZYY50i4/akdt0t/mwiwrSFfHFT8kFtaJ4YhMMoseZZlFrs66fgBX1B8fSany9jpafQcFKlU9rYXRaDzZPI9gVYcMGh4xJHwDEU+2kNJkdgz0JTofOAhsjNG9+PwLhZ37gab5JfcR9tSeyHUZrkfabVqVpt+gSBGuNsC3f3Pf2qMVNNkuykK+dyFuMR8dGPQ7N92MoxJDTDkxBIrWaMATI9wkOq5mR60bcr/6goPxIRVZyuch9VywRaTeHTv/TZW3JAkvlxCkvkCTO+x8uLfPWxoKggIILuAOTWAc0Avmqci4+IwoXiqGcQFha9xPhJXv3jtEM5JQGUm0128MBKVrGUoeuqbuJJpX7uIQGOPs903Hchv33y1qbgiUW2up+/VPe/mFtMS9kKhSGpnQDwcoRgk0i7u2ZhTC5dl/JU6zp5IzMoBhKWYM4uykjOw7IeyLNwNfA9aDAoGsqUosBsGRhAg1Hnvdl7b1rxHr+fzQuVvwAa+MDL/pgd50snnEscicSk3mfUVlvCt//mfUNKdILvoUAuOzr/lVQCFY0pJTLK3aFP/S30VfqzP0Pzu/G4cl9pcGCnOL63UVf/6PL59C73k1GLsRF+o5jS8pI4vGEXqGfXpgIRhDMmUqH3EnQsXHbVyzZ+Y8zJeJkE0Z1RX4mhCMtT4m9ZG5poS/7YDkvlzMnvtr2nDwjCUUlHDxEW0out8L2ve9B8yrqe34NhF9TYLwluE1qqRFaUWMYBFw3xsLrvVG79upjCIA1GYRYsSfyIs1dypsdH+CiNNGafWbMFBsGCNOTsESr4PgTgS+SVT8NUPW8yP6j27/XRbibg2Pj89Q/RNK55RRqsGKj3EKmzskZ8tfMXGPqafuaCayW/TrSfX/IgTntHFLBC0YwEBG9iJ7fCV7ZRWEHwAfM55sWLBpGgBGCycaj54AQe+3lszud048yWRXkt7tYwmBpqCwl/DbMxGfA34G41yT8B8lkgEwBhgDIp7w+B280qVe5rMYfgg2Nct71Fchp2fP/qZgAjGI/x+FT5azyH1ptbTEnAjFPAWCCB0a1tgbf5RRbQRue/4Ge4q18xEmz8z6224r5eRhaa/FNs04Isy05xm4Jwm+ODzpoOU34qMbD9fZYEmchoW6s9P1bJk/fguC72+Hnwgg6azCbUFCQgmqwO1HN7wi7E8Ve0QN1+269RjMCIzgSa9wZaXi4sRYlCHu9f2E9MU0e7hLxdgPCECQD2ii4x/Z9S2nSg2flwXFavEfVNIdcs0DnQ5+mpP+68ixrRwBmMUBbnnqRF55X83tQlVM0XXKy69WdW9ZuBNLLhypwRFj+T2acVu4ApfhCO7PubqGpufoxogTPFrlCiLj2d6zlU7jpDTsNAiPzERqV4guUm0FKDhKy5c9YG2TlP9e7vZiuh6LuOK+iq9ALuGlUmPOAuK7jEie0fPv9/WwAVDV8cxB542g3f7uDEGn2VqWndQ6ED686NDjsfMoP5pgbFJ0YHHCJrFsmh3WLRSrXZkAyOSwrjyBx7/i0YF1dR3ROa3KIhZILBI5kRlRu5oewG18kmUvfvEv8eu0LgjmqtaaNTWJD1559C9Mr1X9rXqtH7bNUgTvZSWn/KerTZ2MT1iV7NkB1lqp2LTtGybzfDsrBE4NHZpuHDJhqfkT1qDL911XODh6SEgO5ljaS/UO3oQICKIO2ocQ1ehiSo/S249jhLd0glv8SFdNpHcZuxAyHtlPpMNoPKoMr3GRUNufIttWRZWz0+tEXdJWoNMxXM6jH6FFP8mGbWvCczo+0wWkeJCKftTEX/yN68f9DCGRZJ5BnqoHh/pcof8krFo2wwxsL+cmqoF9qBJkEjt4n6RThVXC4CvM85ZcAfEYnGj39rX08noBTnEkNbrtMtTqYVleWF5eLWGOW2KgaM+ewhkRROQEsHtKv5HKVTge46bRfXgod2EOQNmYAE7iNaYcCfouIz7HNTk0vbkM9cHj0Nnba905Vzial0pNIez/VfElPLzUFJiHEtnMgI/zdxxZSmw8KhhVeDRumuwVbjlSDxdSoP0OUrBCxFpPbp6sMLhdJQKAr0CCoFgjORpGFxdPgiTgryBErbHykGkdemuSSb3zAc2jXUKRikMhVq7aWPjgib8qVZm2S69CVpYHCENe2p+LY4Q7X7qb0wOm1lPm+eU4wDhMN0yRL80TMJjAF4YBmED/S8aGXaRoNJ6Lpq0iMH5vgRCU/og2XVAHOPx/dA/D2QBTbaSbkTyWH410uc38BjIjpvqKy3SlvFQ93vF12Q5whf6vzeEf2RQZTj4thSq7DnNgGrjzQVEJkZqS9fpXwigxB8fiukTProH7xLGheU26jIR5RVNGSCQLRdLqV04ufOrUQf1S6WJGIezCJJPm/anNh6XJEHCXyHSfyYUW+w+czMG5gBUKQg96guRiGLj8BsA/AGyNG0+jus2ZZ/9ozuBImU5e5ClDV/LUj8o6Iq7I+Xnjnr/ZLMbOx7RWWh8HZEDDapMKFqd9V1Ak2HdmXwppqd1LECmXBtk5Ii5WBgIk/4cSvZ7yGl8bwcuOTOr1PeeR6lcWrNZ/U56U4QoJZa2lXr9tkugKSwlCbikplIUqsTgJfvrW/+mcJqzJWkbo5+93W2vuW0uoRZMoTsx+p6AFzg3xfrgryYlEssTy/P/yStvMigQnHbfc8SbnSYviHHNmQ2eQpBiKqsSOlV4Qf6kdAPDP6vcg8jF94njy0fUiQamw4UtqoJQVUI5VfZbljNQOq8lvly5vP8/7Oflt9F6QOBANtZa9nTB403SzgdQGyXF5knHXiidPM93BPPMj6IDnXtiM1065uPKrmIoCGdJyNRGcFvEebIM7JKkTnSC2GqpgPyUlTMzgn39tDCNqPArgBVYhaPJEiiyKaJKwbTdOXTodsa6xEIsdx/x6I0YyFaVhTWtvxRFmk2SIjfGQQPifPFlCYcaSCe/mV+DuAl8m0bnn+fJU8cWOGKDttS+Q6y+xPnB3Xe7P7qIE8M6ZLBAJntktg0K5Dc1rzGZdyAeZM2x/c2CSSIN2ps49uTUOy5RzxPIScBepV4NH9zNaQreRB+kP9a5zx5imFBr+dw2ANGNKRYsP0TKyTDhVuJZprRoR+hhRCeC8Yy/o3c0pxxvdg+iaSyOQZM+kvHNVLAYvkMEBa1smd0O62P+5f1AJVC7kGthd3IJfbuMt/EwETI9NawmHrZtFruiHK+jMw1pX0ibenBjbb8AKh9Kxt+GKvc7pFsVlBQx0ph+zBafwyqyWkjvY1AmglZUJCJ+SEq2IYtlICWEUJuq33De+RmqriPpmjH8DCE/9vzWH2kKw0dGxSSWXJmBm6gugEqTuOXInGfronSrWOxXMB/tvlFstZ0C5SLhO0I8Ie9kcmvVQJyywgRfaYNXYCwqO/Bt7cP/0nLhvIs0ZOHaXizRWWZB0HiK/1+sL81qKLfHEEivykZDsHDWlgHB/+CmRectesfhZw6sQyl86cW4SI2Apzz9NnlNmMdeThviZvoxVyJ+3uD9kqexBob6TBm/n9biAZ+KSbpV0LF4S8p4zQWl0WHXoA60Dfp1XVmngYNxbV3N9PMEy2O7MVV6A0RHNCXPSeVHk6F+4KOMUaYyqF/8+E729wOi0b8eDKXBYS5X94gCN0O900LV80jFEib6cLB1AWF07f5DhjXtZekbVQl8/v+MVLbeQ59DGDL6T/DNX1+cP1zNTXjC+HFG76n41Rf7zSgpOUgSaBUtkIwVCGqVSrIS2ysQTNiLgLYzEEg/JjOIxkW0Qg66egj4scMQgvZFdv92j3sJHYZGnD8jFUAv3pwHcnZd+RI/76RnNY4aNOAYxiFgR3ju/WNipMG+DvkbTPEeijCf8x+PvKtVF3qpg+jyv6Vn2N+nnd6uM9RLvuyABC8ITFRWh2rEogAKB56mRnNispIPlUzr6GVDtJ/GnBBvkj9KppvJxORlxk5vK5yiPc7t/p0L1vT+MRCVvyfKqtlscPa8XwaxMvdN72CioxXlO4Gy7K4GRV1rQYnyhiK5V8Pj3FDvfqOUJXGAo9YYtEkvzVLejovrpHbEGFSmdIubl/zxNc8QJI4XO8nXAX+iO+aU3R6DCEZ3cDgHVT0R5Qn3kNTjRB1xWAo9jIJrExPx3hqfEleQyQlTJ/lIu95ELWS0LMcFlDkKcm/T8/DXDHeMq1pxjCuVzuJyLMF5VVFA3qCpbkTGGTSihIN/YXb+9/WtsEPoZrk99V5IxHV7CC4lpncML+woWcuQStBYdKM5V0tlnGvKosmHldehAQXRkSS2K5GcaslNW1YmwE0FMBXgjQtzvwM92X6BML+pvxQdSNKmnIC1eO4Zx8ap6xwzqk2yqEAmSTY6QR3SuyX4MfiW09OENXkUzeOyGLAwhVQ14CMbafRRFVM7zu2dKiR7M7BF4n8+HEW0xZi47sdUXUGcRWqVPbJiNZQANy0AArJCjQPps/k0FKmfe8ncQW3sjIASehL3ARRe4eh3+omAIAj5VaSXQwZFJBd0T05J26H/lIAnCLLGl/CnEEWIoHw8HmJYwvP+sUbcHnsdruWmb6ZS9JwClSWUSqKHSralzM2yuqDzcMnlkpQQI8coeFuxE7H5g3gIh/9ViL0AoziPVfTlgSI19I0JlIhTmHgU5GyP706W23fWzKtg3Nj2n3UNCIYdP4e9A/gjGidApPFkfDxa2GK74kkdYmV8KAJPuNO68WToB+WeQhACcUs2euh4OFQYMMI1+vuo5BkqYPNiaEDquTrdp518P/TJFYKfQyY/8aS3N+o3q/kILWgv5sL7xLREahlPgqv5buFoY7jJCPxSOgvD+3P5BDJzX51jCioNH7SFmw5ra3isij7TA+Tw0KCHbX4b3l6RveAh1vmagPz95io9xxn6nJbKc3W6+SnXgwxC2wpJmFiHKC6ycdPZ2oFf8sEdLE2heRbcmjAwMEY1FnURjgWRD7mUymmHFDuqAzv8O7+1l5N0MghVy97ccdVfSLH666u7rKOJkT/V/unzSb9HRM4L5Qmm7LEgfqGafXX7fFXAkwsIfrLNGWdf/eIaLQyuFoej+oRk5M36sW3pKH+APeSGkSccH5IS5Xfcc5ZS8TB1CaCaNGuMB+N6JGfRRDluo6kOQNV48ffJ4XlZnrA5EVyTfgNK06mPiYadYjTTgMqEnqpe/fV3O7l1TJGqVpbns+mVxDiYq3CUtnIaYt7B0DiSWA304m1ftKSxUgP2mQnfuAMd/uGj42ah43ruh1euzHBcEeE2e3WiCfQEJ41r8rcJBR3za/mF+ydfqKKG50gGfxoannOHsA7F/4iE1KnES80dxCDO5jocjO0vCmZDjIyvxUwvvttgA4vhndkFccXr38DKSZwhYd15mAKcquKtIrOf61fua2q+K2SdUYrHylERcuQgdc44HzbaA4oGvWMGjcUEWmc5fjqOyUhoR0eyLj1VLJ4GLbk7dE3KJuoa5L6UjNgQr9q0Bk7wcdAToQ9rrlUziSlx8j6SI/Nq3UtfwkqtBDD9Bm84GuuVg0Vbc9JxQPNCBS0EgalKdyaJKmE1SG7eMGFuk1reNA/es3F9xCrdyQt2JWBODFRuAceLr9IulZ3sUu/PlLddhX9UtiLD7Vbvs9EtS7yuXtD0XYdbtUJzG0fGqXkXshyfmLFJUhgz6oymzlgK+dX0fV0opwk/4R2GT1h/ulLSB7ceNcO1PlZ54G1s+Vujw679RIE95cWRDO8Qu8ASFDFJLNFa007CsMP6V3x1ClimoydMsqSzNBdBUOm8eHJdBZVtO0a1pVfMlk6qxJYgUisKQeteygqCg97Cn3th+y2e1XbE5gfEV0sqEIGHxGo2Xu38X1NDvd8Uxo+/g7O7SgEEbkzPUgFS9J459CZ0WZuw/cehfcNKyl6AGyUp5cG6bm9mOt35Ksh49mTT7AYeXaIb7frET1EbwWFvqOm5hZ1piy5lCzYuuPrqjGMXYpKOv3/TuE5O+vpZnx4edOIpa04EJ7T4nay0M2ZDkuzl+ZTPOyU00UNpzyhPcUGn76s31eJ8EisSdGeVg5QdzzHKLI5MJYtusy9jZVvKYyOzBaiIu5AJ+3zVJVePi8IJLBhzgyRPaQfU3Kp/8PuxwTtZhkB+bNpO3JZli0z8Ap8RZfr6ZZNLbEE9or7pO+cNKTBDlQbFtlUyXxyo9XMfWjHX0vaPXVPVqPfEVGW5uZeDhXDhWlru8t2HTsF4BunxjjcV0xAAVdmfDxJAMjerWcye7cOzRElUXG2Ku1W3Okb8l+r5PBXu67aF3op8czyAD/7iuefr4wK5kE90o9NwiS0C+hVyts+U83KTIIXlmkkRxBr2a9xaB9InWUoaGX/MOcY+L+crcxzv+j5KuRRxPyAeCuyifqM9oeAUAb2wDeEvV0NhNNyZDBBz+wYSSzyUn59J+N2tQB6iNYP35FABOtrqiKZSt4wP69EhOLF4Up+CUW1mqHumh9Et0BSq143NHXALz8MS/PJ6buk4LzVa0VuaLx/UT0HHWgvgyApiCYMTrq2jnvvXYTBlh5L3FfB+4bymtrEhjnY1liiQjUF+tNDOCV7adBn9RoDFHIE9G12wPtW4daS65QL4JkDcwqR1Kd7h3hMW2o5WBdqJI+BvlcyJbLipeAGjihCZium5vyzKQRMjFeN7Ke/UsLE/1BtICtDYsGjmGWswktoBdoBM6D66cu1DBtR/CKrSJJr4S4Fp7mLh1Gp3DilnI1q1se0bwL4wrve/l3FhvAA8VE1rNbGpxCYA/XLz6cpBlEDGJcQLOEwPacGPPtxkoMe+HD9CSGBxcJGZTxlXgdILOdTREjFvyLS+eimpuYXoKNrvU5B0ZYo744653vuTLoZ6HegAThz0//EjW8s3H1HKfW4w4QlLlrdZX5kFanWFaT97b+w7G0CDbdL2CQULZT595sQU0ufIhmT1sLraUFDLLqy0usnLno7CvfM7NK8ePVAwc2tEIGFnRk7dbmYHKKgvGAo6M9kxmkLVFbdEnhe5jyoUj5cKlha9Pgx52UU6FoFSgYDSik2d2bhCbxi+W+vMuzIx2Cxxycw/hF3crGVq6mbFdntisiPP07wJim2hHXd1Hg9LgXXa2mfKqMyCr/DLvhLBq43VhUv5IRYkodxQ9aQvfjqmfUvdhIgAAELOCCQP0qLF0YquJFSlNdMUfwbl3NlepJN6UOUCAD08+KUwEUPoIaLnaWwSw6BpRtPPc40fmxr7YSAAAAA==
+  # If true, the avatar will be displayed in circle.
+  rounded: false
+  # If true, the avatar will be rotated with the cursor.
+  rotated: false
+
+# Posts / Categories / Tags in sidebar.
+site_state: true
+
+# Social Links
+# Usage: `Key: permalink || icon`
+# Key is the link label showing to end users.
+# Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
+social:
+  GitHub: https://github.com/ruofancooh || fab fa-github
+  #E-Mail: mailto:yourname@gmail.com || fa fa-envelope
+  #Weibo: https://weibo.com/yourname || fab fa-weibo
+  #Twitter: https://twitter.com/yourname || fab fa-twitter
+  #FB Page: https://www.facebook.com/yourname || fab fa-facebook
+  #StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow
+  #YouTube: https://youtube.com/yourname || fab fa-youtube
+  #Instagram: https://instagram.com/yourname || fab fa-instagram
+  #Skype: skype:yourname?call|chat || fab fa-skype
+
+social_icons:
+  enable: true
+  icons_only: false
+  transition: false
+
+# Blog rolls
+links_settings:
+  icon: fa fa-globe
+  # Available values: block | inline
+  layout: block
+
+links:
+  #Title: https://example.com
+
+# Table of Contents in the Sidebar
+# Front-matter variable (nonsupport wrap expand_all).
+toc:
+  enable: true
+  # Automatically add list number to toc.
+  number: true
+  # If true, all words will placed on next lines if header width longer then sidebar width.
+  wrap: false
+  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.
+  expand_all: false
+  # Maximum heading depth of generated toc.
+  max_depth: 6
+
+
+# ---------------------------------------------------------------
+# Footer Settings
+# See: https://theme-next.js.org/docs/theme-settings/footer
+# ---------------------------------------------------------------
+
+# Show multilingual switcher in footer.
+language_switcher: false
+
+footer:
+  # Specify the year when the site was setup. If not defined, current year will be used.
+  #since: 2021
+
+  # Icon between year and copyright info.
+  icon:
+    # Icon name in Font Awesome. See: https://fontawesome.com/icons
+    name: fa fa-heart
+    # If you want to animate the icon, set it to true.
+    animated: false
+    # Change the color of icon, using Hex Code.
+    color: "#ff0000"
+
+  # If not defined, `author` from Hexo `_config.yml` will be used.
+  copyright:
+
+  # Powered by Hexo & NexT
+  powered: false
+
+  # Beian ICP and gongan information for Chinese users. See: https://beian.miit.gov.cn, http://www.beian.gov.cn
+  beian:
+    enable: false
+    icp:
+    # The digit in the num of gongan beian.
+    gongan_id:
+    # The full num of gongan beian.
+    gongan_num:
+    # The icon for gongan beian. See: http://www.beian.gov.cn/portal/download
+    gongan_icon_url:
+
+
+# ---------------------------------------------------------------
+# Post Settings
+# See: https://theme-next.js.org/docs/theme-settings/posts
+# ---------------------------------------------------------------
+
+# Use `description` in front-matter to specify post excerpt.
+excerpt_description: true
+
+# Read more button
+# If true, the read more button will be displayed in excerpt section.
+read_more_btn: true
+
+# Post meta display settings
+post_meta:
+  item_text: true
+  created_at: true
+  updated_at:
+    enable: true
+    another_day: true
+  categories: true
+
+# Post wordcount display settings
+# Dependencies: https://github.com/next-theme/hexo-word-counter
+symbols_count_time:
+  separated_meta: true
+  item_text_total: false
+
+# Use icon instead of the symbol # to indicate the tag at the bottom of the post
+tag_icon: false
+
+# Donate (Sponsor) settings
+# Front-matter variable (nonsupport animation).
+reward_settings:
+  # If true, a donate button will be displayed in every article by default.
+  enable: false
+  animation: false
+
+reward:
+  #wechatpay: /images/wechatpay.png
+  #alipay: /images/alipay.png
+  #paypal: /images/paypal.png
+  #bitcoin: /images/bitcoin.png
+
+# Subscribe through Telegram Channel, Twitter, etc.
+# Usage: `Key: permalink || icon` (Font Awesome)
+follow_me:
+  #Twitter: https://twitter.com/username || fab fa-twitter
+  #Telegram: https://t.me/channel_name || fab fa-telegram
+  #WeChat: /images/wechat_channel.png || fab fa-weixin
+  #RSS: /atom.xml || fa fa-rss
+
+# Related popular posts
+# Dependencies: https://github.com/sergeyzwezdin/hexo-related-posts
+related_posts:
+  enable: false
+  icon: fa fa-signs-post
+
+# Post edit
+# Easily browse and edit blog source code online.
+post_edit:
+  enable: false
+  url: https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/ # Link for view source
+  #url: https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name/ # Link for fork & edit
+
+# Show previous post and next post in post footer if exists
+# Available values: left | right | false
+post_navigation: left
+
+
+# ---------------------------------------------------------------
+# Custom Page Settings
+# See: https://theme-next.js.org/docs/theme-settings/custom-pages
+# ---------------------------------------------------------------
+
+# TagCloud settings for tags page.
+tagcloud:
+  min: 12 # Minimum font size in px
+  max: 30 # Maximum font size in px
+  amount: 200 # Total amount of tags
+  orderby: name # Order of tags
+  order: 1 # Sort order
+
+# Google Calendar
+# Share your recent schedule to others via calendar page.
+calendar:
+  calendar_id: <required> # Your Google account E-Mail
+  api_key: <required>
+  orderBy: startTime
+  showLocation: false
+  offsetMax: 72 # Time Range
+  offsetMin: 4 # Time Range
+  showDeleted: false
+  singleEvents: true
+  maxResults: 250
+
+
+# ---------------------------------------------------------------
+# Misc Theme Settings
+# See: https://theme-next.js.org/docs/theme-settings/miscellaneous
+# ---------------------------------------------------------------
+
+# Preload styles and preconnect CDN for fonts and plugins.
+# For more information: https://www.w3.org/TR/resource-hints/#preconnect
+preconnect: false
+
+# Set the text alignment in posts / pages.
+text_align:
+  # Available values: start | end | left | right | center | justify | justify-all | match-parent
+  desktop: justify
+  mobile: justify
+
+# Reduce padding / margin indents on devices with narrow width.
+mobile_layout_economy: false
+
+# Browser header panel color.
+theme_color:
+  light: "#222"
+  dark: "#222"
+
+# Override browsers' default behavior.
+body_scrollbar:
+  # Place the scrollbar over the content.
+  overlay: false
+  # Present the scrollbar even if the content is not overflowing.
+  stable: false
+
+codeblock:
+  # Code Highlight theme
+  # All available themes: https://theme-next.js.org/highlight/
+  theme:
+    light: default
+    dark: stackoverflow-dark
+  prism:
+    light: prism
+    dark: prism-dark
+  # Add copy button on codeblock
+  copy_button:
+    enable: false
+    # Available values: default | flat | mac
+    style:
+
+back2top:
+  enable: true
+  # Back to top in sidebar.
+  sidebar: false
+  # Scroll percent label in b2t button.
+  scrollpercent: false
+
+# Reading progress bar
+reading_progress:
+  enable: false
+  # Available values: left | right
+  start_at: left
+  # Available values: top | bottom
+  position: top
+  reversed: false
+  color: "#37c6c0"
+  height: 3px
+
+# Bookmark Support
+bookmark:
+  enable: false
+  # Customize the color of the bookmark.
+  color: "#222"
+  # If auto, save the reading progress when closing the page or clicking the bookmark-icon.
+  # If manual, only save it by clicking the bookmark-icon.
+  save: auto
+
+# `Follow me on GitHub` banner in the top-right corner.
+github_banner:
+  enable: false
+  permalink: https://github.com/yourname
+
+
+# ---------------------------------------------------------------
+# Font Settings
+# ---------------------------------------------------------------
+# Find fonts on Google Fonts (https://fonts.google.com)
+# All fonts set here will have the following styles:
+#   light | light italic | normal | normal italic | bold | bold italic
+# Be aware that setting too much fonts will cause site running slowly
+# ---------------------------------------------------------------
+# Web Safe fonts are recommended for `global` (and `title`):
+# Arial | Tahoma | Helvetica | Times New Roman | Courier New | Verdana | Georgia | Palatino | Garamond | Comic Sans MS | Trebuchet MS
+# ---------------------------------------------------------------
+
+font:
+  enable: false
+
+  # Uri of fonts host, e.g. https://fonts.googleapis.com (Default).
+  host:
+
+  # Font options:
+  # `external: true` will load this font family from `host` above.
+  # `family: Times New Roman`. Without any quotes.
+  # `size: x.x`. Use `em` as unit. Default: 1 (16px)
+
+  # Global font settings used for all elements inside <body>.
+  global:
+    external: true
+    family: Lato
+    size:
+
+  # Font settings for site title (.site-title).
+  title:
+    external: true
+    family:
+    size:
+
+  # Font settings for headlines (<h1> to <h6>).
+  headings:
+    external: true
+    family:
+    size:
+
+  # Font settings for posts (.post-body).
+  posts:
+    external: true
+    family:
+
+  # Font settings for <code> and code blocks.
+  codes:
+    external: true
+    family:
+
+
+# ---------------------------------------------------------------
+# SEO Settings
+# See: https://theme-next.js.org/docs/theme-settings/seo
+# ---------------------------------------------------------------
+
+# If true, site-subtitle will be added to the title of index page.
+# Remember to set up your site-subtitle in Hexo `_config.yml` (e.g. subtitle: Subtitle)
+index_with_subtitle: false
+
+# Automatically add external URL with Base64 encrypt & decrypt.
+exturl: false
+# If true, an icon will be attached to each external URL
+exturl_icon: true
+
+# Google Webmaster tools verification.
+# See: https://developers.google.com/search
+google_site_verification:
+
+# Bing Webmaster tools verification.
+# See: https://www.bing.com/webmasters
+bing_site_verification:
+
+# Yandex Webmaster tools verification.
+# See: https://webmaster.yandex.ru
+yandex_site_verification:
+
+# Baidu Webmaster tools verification.
+# See: https://ziyuan.baidu.com/site
+baidu_site_verification:
+
+
+# ---------------------------------------------------------------
+# Tags Settings
+# See: https://theme-next.js.org/docs/tag-plugins/
+# ---------------------------------------------------------------
+
+# Note tag (bootstrap callout)
+note:
+  # Note tag style values:
+  #  - simple    bootstrap callout old alert style. Default.
+  #  - modern    bootstrap callout new (v2-v3) alert style.
+  #  - flat      flat callout style with background, like on Mozilla or StackOverflow.
+  #  - disabled  disable all CSS styles import of note tag.
+  style: simple
+  icons: false
+  # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
+  # Offset also applied to label tag variables. This option can work with disabled note tag.
+  light_bg_offset: 0
+
+# Tabs tag
+tabs:
+  # Make the nav bar of tabs with long content stick to the top.
+  sticky: false
+  transition:
+    tabs: false
+    labels: true
+
+# PDF tag
+# NexT will try to load pdf files natively, if failed, pdf.js will be used.
+# So, you have to install the dependency of pdf.js if you want to use pdf tag and make it available to all browsers.
+# Dependencies: https://github.com/next-theme/theme-next-pdf
+pdf:
+  enable: false
+  # Default height
+  height: 500px
+
+# Mermaid tag
+mermaid:
+  enable: false
+  # Available themes: default | dark | forest | neutral
+  theme:
+    light: default
+    dark: dark
+
+# WaveDrom tag
+wavedrom:
+  enable: false
+
+# ---------------------------------------------------------------
+# Third Party Plugins & Services Settings
+# See: https://theme-next.js.org/docs/third-party-services/
+# More plugins: https://github.com/next-theme/awesome-next
+# ---------------------------------------------------------------
+
+# ---------------------------------------------------------------
+# Math Formulas Render Support
+# See: https://theme-next.js.org/docs/third-party-services/math-equations
+# Warning: Please install / uninstall the relevant renderer according to the documentation.
+# Server-side plugin: https://github.com/next-theme/hexo-filter-mathjax
+# ---------------------------------------------------------------
+
+math:
+  # Default (false) will load mathjax / katex script on demand.
+  # That is it only render those page which has `mathjax: true` in front-matter.
+  # If you set it to true, it will load mathjax / katex script EVERY PAGE.
+  every_page: false
+
+  mathjax:
+    enable: true
+    # Available values: none | ams | all
+    tags: none
+
+  katex:
+    enable: false
+    # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex
+    copy_tex: false
+
+
+# ---------------------------------------------------------------
+# External Libraries
+# See: https://theme-next.js.org/docs/third-party-services/external-libraries
+# ---------------------------------------------------------------
+
+# Easily enable fast Ajax navigation on your website.
+# For more information: https://github.com/next-theme/pjax
+pjax: false
+
+# FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
+# For more information: https://fancyapps.com/fancybox/
+fancybox: false
+
+# Medium Zoom is a JavaScript library for zooming images like Medium.
+# Warning: Do not enable both `fancybox` and `mediumzoom`.
+# For more information: https://medium-zoom.francoischalifour.com
+mediumzoom: false
+
+# Vanilla JavaScript plugin for lazyloading images.
+# For more information: https://apoorv.pro/lozad.js/demo/
+lazyload: false
+
+# Automatically insert whitespace between CJK and half-width characters.
+# For more information: https://github.com/vinta/pangu.js
+# Server-side plugin: https://github.com/next-theme/hexo-pangu
+pangu: true
+
+# Prefetch links based on what is in the user's viewport.
+# For more information: https://getquick.link
+# Front-matter variable (nonsupport home archive).
+quicklink:
+  enable: true
+
+  # Home page and archive page can be controlled through home and archive options below.
+  # This configuration item is independent of `enable`.
+  home: true
+  archive: true
+
+  # Default (true) will initialize quicklink after the load event fires.
+  delay: true
+  # Custom a time in milliseconds by which the browser must execute prefetching.
+  timeout: 3000
+  # Default (true) will attempt to use the fetch() API if supported (rather than link[rel=prefetch]).
+  priority: true
+
+
+# ---------------------------------------------------------------
+# Animation Settings
+# ---------------------------------------------------------------
+
+# Use Animate.css to animate everything.
+# For more information: https://animate.style
+motion:
+  enable: true
+  async: true
+  transition:
+    # All available transition variants: https://theme-next.js.org/animate/
+    # menu_item: fadeInDown
+    post_block: fadeIn
+    post_header: fadeInDown
+    post_body: fadeInDown
+    # coll_header: fadeInLeft
+    # Only for Pisces | Gemini.
+    sidebar: fadeInLeft
+
+# Progress bar in the top during page loading.
+# For more information: https://github.com/CodeByZach/pace
+pace:
+  enable: false
+  # All available colors:
+  # black | blue | green | orange | pink | purple | red | silver | white | yellow
+  color: black
+  # All available themes:
+  # big-counter | bounce | barber-shop | center-atom | center-circle | center-radar | center-simple
+  # corner-indicator | fill-left | flat-top | flash | loading-bar | mac-osx | material | minimal
+  theme: minimal
+
+# Generate a ribbon in your website with HTML5 canvas.
+# For more information: https://github.com/hustcc/ribbon.js
+canvas_ribbon:
+  enable: false
+  size: 300 # The width of the ribbon
+  alpha: 0.6 # The transparency of the ribbon
+  zIndex: -1 # The display level of the ribbon
+
+
+
+# ---------------------------------------------------------------
+# Comments Settings
+# See: https://theme-next.js.org/docs/third-party-services/comments
+# ---------------------------------------------------------------
+
+# Multiple Comment System Support
+comments:
+  # Available values: tabs | buttons
+  style: tabs
+  # Choose a comment system to be displayed by default.
+  # Available values: disqus | disqusjs | changyan | livere | gitalk | utterances
+  active:
+  # Setting `true` means remembering the comment system selected by the visitor.
+  storage: true
+  # Lazyload all comment systems.
+  lazyload: false
+  # Modify texts or order for any naves, here are some examples.
+  nav:
+    #disqus:
+    #  text: Load Disqus
+    #  order: -1
+    #gitalk:
+    #  order: -2
+
+# Disqus
+# For more information: https://disqus.com
+disqus:
+  enable: false
+  shortname:
+  count: true
+
+# DisqusJS
+# For more information: https://disqusjs.skk.moe
+disqusjs:
+  enable: false
+  # API Endpoint of Disqus API (https://disqus.com/api/docs/).
+  # Leave api empty if you are able to connect to Disqus API. Otherwise you need a reverse proxy for it.
+  # For example:
+  # api: https://disqus.skk.moe/disqus/
+  api:
+  apikey: # Register new application from https://disqus.com/api/applications/
+  shortname: # See: https://disqus.com/admin/settings/general/
+
+# Changyan
+# For more information: https://changyan.kuaizhan.com
+changyan:
+  enable: false
+  appid:
+  appkey:
+  # Show comments count
+  count: true
+
+# LiveRe comments system
+# You can get your uid from https://livere.com/insight/myCode (General web site)
+livere_uid: # <your_uid>
+
+# Gitalk
+# For more information: https://gitalk.github.io
+gitalk:
+  enable: false
+  github_id: # GitHub repo owner
+  repo: # Repository name to store issues
+  client_id: # GitHub Application Client ID
+  client_secret: # GitHub Application Client Secret
+  admin_user: # GitHub repo owner and collaborators, only these guys can initialize gitHub issues
+  distraction_free_mode: true # Facebook-like distraction free mode
+  # When the official proxy is not available, you can change it to your own proxy address
+  proxy: https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token # This is official proxy address
+  # Gitalk's display language depends on user's browser or system environment
+  # If you want everyone visiting your site to see a uniform language, you can set a force language value
+  # Available values: en | es-ES | fr | ru | zh-CN | zh-TW
+  language:
+
+# Utterances
+# For more information: https://utteranc.es
+utterances:
+  enable: false
+  repo: user-name/repo-name # Github repository owner and name
+  # Available values: pathname | url | title | og:title
+  issue_term: pathname
+  # Available values: github-light | github-dark | preferred-color-scheme | github-dark-orange | icy-dark | dark-blue | photon-dark | boxy-light
+  theme: github-light
+
+# Isso
+# For more information: https://isso-comments.de
+isso: # <data_isso>
+
+
+# ---------------------------------------------------------------
+# Post Widgets & Content Sharing Services
+# See: https://theme-next.js.org/docs/third-party-services/post-widgets
+# ---------------------------------------------------------------
+
+# AddToAny Share. See: https://www.addtoany.com
+addtoany:
+  enable: false
+  buttons:
+    - facebook
+    - twitter
+
+
+# ---------------------------------------------------------------
+# Statistics and Analytics
+# See: https://theme-next.js.org/docs/third-party-services/statistics-and-analytics
+# ---------------------------------------------------------------
+
+# Google Analytics
+# See: https://analytics.google.com
+# google_analytics:
+#   tracking_id: # <app_id>
+#   # By default, NexT will load an external gtag.js script on your site.
+#   # If you only need the pageview feature, set the following option to true to get a better performance.
+#   only_pageview: false
+
+# Baidu Analytics
+# See: https://tongji.baidu.com
+# baidu_analytics: # <app_id>
+
+# Growingio Analytics
+# See: https://www.growingio.com
+# growingio_analytics: # <project_id>
+
+# Cloudflare Web Analytics
+# See: https://www.cloudflare.com/web-analytics/
+# cloudflare_analytics:
+
+# Microsoft Clarity Analytics
+# See: https://clarity.microsoft.com/
+# clarity_analytics: # <project_id>
+
+# Matomo Analytics
+# See: https://matomo.org/
+# matomo:
+#   enable: false
+#   server_url: # https://www.example.com/
+#   site_id: # <your site id>
+
+# Umami Analytics
+# See: https://umami.is/
+# umami:
+#   enable: false
+#   script_url: # https://umami.example.com/script.js
+#   website_id: # <your website id>
+#   host_url: # <your umami site url>
+
+# Plausible Analytics
+# See: https://plausible.io/
+# plausible:
+#   enable: false
+#   script_url: # https://plausible.io/js/script.js
+#   site_domain: # www.example.com
+
+# Show number of visitors of each article.
+# You can visit https://www.leancloud.cn to get AppID and AppKey.
+# leancloud_visitors:
+#   enable: false
+#   app_id: # <your app id>
+#   app_key: # <your app key>
+#   # Required for apps from CN region
+#   server_url: # <your server url>
+#   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
+#   # If you don't care about security in leancloud counter and just want to use it directly
+#   # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
+#   security: true
+
+# Another tool to show number of visitors to each article.
+# Visit https://console.firebase.google.com/u/0/ to get apiKey and projectId.
+# Visit https://firebase.google.com/docs/firestore/ to get more information about firestore.
+# firestore:
+#   enable: false
+#   collection: articles # Required, a string collection name to access firestore database
+#   apiKey: # Required
+#   projectId: # Required
+
+# Show Views / Visitors of the website / page with busuanzi.
+# For more information: http://ibruce.info/2015/04/04/busuanzi/
+# busuanzi_count:
+#   enable: false
+#   total_visitors: true
+#   total_visitors_icon: fa fa-user
+#   total_views: true
+#   total_views_icon: fa fa-eye
+#   post_views: true
+#   post_views_icon: far fa-eye
+
+
+# ---------------------------------------------------------------
+# Search Services
+# See: https://theme-next.js.org/docs/third-party-services/search-services
+# ---------------------------------------------------------------
+
+# Algolia Search
+# For more information: https://www.algolia.com
+# algolia_search:
+#   enable: false
+#   hits:
+#     per_page: 10
+
+# Local Search
+# Dependencies: https://github.com/next-theme/hexo-generator-searchdb
+local_search:
+  enable: true
+  # If auto, trigger search by changing input.
+  # If manual, trigger search by pressing enter key or search button.
+  trigger: auto
+  # Show top n results per article, show all results by setting to -1
+  top_n_per_article: 1
+  # Unescape html strings to the readable one.
+  unescape: false
+  # Preload the search data when the page loads.
+  preload: false
+
+
+# ---------------------------------------------------------------
+# Chat Services
+# See: https://theme-next.js.org/docs/third-party-services/chat-services
+# ---------------------------------------------------------------
+
+# A button to open designated chat widget in sidebar.
+# Firstly, you need to enable and configure the chat service.
+# chat:
+#   enable: false
+#   icon: fa fa-comment # Icon name in Font Awesome, set false to disable icon.
+
+# Chatra is a functional, easy to use piece of chat software for websites.
+# For more information: https://chatra.com
+# Dashboard: https://app.chatra.io/settings/general
+# chatra:
+#   enable: false
+#   async: true
+#   id: # Visit Dashboard to get your ChatraID
+#   #embed: # Unfinished experimental feature for developers. See: https://chatra.com/help/api/#injectto
+
+# Tidio is a powerful, all-in-one customer service tool.
+# For more information: https://www.tidio.com
+# Dashboard: https://www.tidio.com/panel/dashboard
+# tidio:
+#   enable: false
+#   key: # Public Key, get it from dashboard. See: https://www.tidio.com/panel/settings/developer
+
+# Gitter is a chat and networking platform.
+# For more information: https://gitter.im
+# gitter:
+#   enable: false
+#   room:
+
+
+# ---------------------------------------------------------------
+# CDN Settings
+# See: https://theme-next.js.org/docs/advanced-settings/vendors
+# ---------------------------------------------------------------
+
+vendors:
+  # The CDN provider of NexT internal scripts.
+  # Available values: local | jsdelivr | unpkg | cdnjs | custom
+  # Warning: If you are using the latest master branch of NexT, please set `internal: local`
+  internal: local
+  # The default CDN provider of third-party plugins.
+  # Available values: local | jsdelivr | unpkg | cdnjs | custom
+  # Dependencies for `plugins: local`: https://github.com/next-theme/plugins
+  plugins: cdnjs
+  # Custom CDN URL
+  # For example:
+  # custom_cdn_url: https://cdn.jsdelivr.net/npm/${npm_name}@${version}/${minified}
+  # custom_cdn_url: https://cdnjs.cloudflare.com/ajax/libs/${cdnjs_name}/${version}/${cdnjs_file}
+  custom_cdn_url:
+
+# Assets
+# Accelerate delivery of static files using a CDN
+# The js option is only valid when vendors.internal is local.
+css: css
+js: js
+images: images
