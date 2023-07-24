@@ -26,12 +26,14 @@ date: 2023-05-27 14:48:35
 
 ## 博文
 
-我没有动力学习，所以用写文章的形式激励自己。
+我没有学习动力，所以用写文章的形式激励自己。
 
 由于是边学边写的，难免有不准确的地方。
 
 ## 博客
 
 Powered by [Hexo](https://hexo.io/zh-cn/) & [NexT.Gemini](https://theme-next.js.org/).
+
+参考[Hexo 文档](https://hexo.io/zh-cn/docs/)、[Hexo-NexT 文档](https://hexo-next.readthedocs.io/zh_CN/latest/)和[这篇文章](http://home.ustc.edu.cn/~liujunyan/blog/hexo-next-theme-config/)。
 
 在 [Github](https://github.com/ruofancooh/blog) 上查看这个站点。

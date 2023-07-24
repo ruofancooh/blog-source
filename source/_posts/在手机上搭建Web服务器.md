@@ -200,7 +200,7 @@ Ngrok 是用 Go 语言写的，
 
 #### 解决方法：
 
-在手机`/etc/`目录下新建`resolv.conf`就行了。
+把 Termux 的`resolv.conf`文件复制到手机`/etc/`目录下就行了。
 
 - 这需要 root 权限。
 
