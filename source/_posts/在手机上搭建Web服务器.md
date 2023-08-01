@@ -17,9 +17,7 @@ categories: 教程
 
 <!--more-->
 
-**这个教程需要手机有 root 权限**，仅用于解决[这个问题](#在开始之前解决-dns-问题)。
-
-如果没有更好的，不使用 root 权限的方法的话。
+在模拟的 Linux 环境下运行 Ngrok **需要手机有 root 权限，仅用于解决[这个问题](#在开始之前解决-dns-问题)**。如果没有更好的，不使用 root 权限的方法的话，可以尝试[在 Termux 上安装 Linux 发行版](#另外)。
 
 [root 手机教程（使用 Magisk）](/blog/2023/root%E6%89%8B%E6%9C%BA%E6%95%99%E7%A8%8B%EF%BC%88%E4%BD%BF%E7%94%A8Magisk%EF%BC%89/)
 
@@ -47,6 +45,10 @@ Termux 模拟 Linux 环境的根目录在手机的`/data/data/com.termux/files/`
 ### 如果手机已 root：
 
 可以直接使用[MT 管理器](https://mt2.cn/)访问各个目录。这样转移文件比较方便。
+
+### 另外
+
+上面针对的是 Termux 模拟的 Linux 环境。**你可以使用 [PRoot](https://wiki.termux.com/wiki/PRoot) 或者 [TMOE](https://github.com/2moe/tmoe) 安装 Linux 发行版。**
 
 ## Flask——后端框架
 
@@ -206,7 +208,7 @@ Ngrok 是用 Go 语言写的，
 
 - **这会修改`system`分区**。如果手机升级，卸载面具前还要刷回原来的`system`；如果空间不够，可以删一些没用的系统预装软件数据，通常在`/system/app/`。
 
-- 暂时没找到不使用 root 权限的解决方法。
+- 如果没有 root 权限，可以尝试[在 Termux 上安装 Linux 发行版](#另外)。
 
 ### 使用 Ngrok
 

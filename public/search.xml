@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>在手机上搭建Web服务器</title>
+    <url>/blog/2023/%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E6%90%AD%E5%BB%BAWeb%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <content><![CDATA[<p>使用的主要工具：</p>
+<ul>
+<li>Termux——模拟 Linux 环境</li>
+<li>Flask——作为后端框架</li>
+<li>Ngrok——内网穿透</li>
+</ul>
+<p>你需要：</p>
+<ul>
+<li>能够正常运行以上软件的安卓手机</li>
+<li>最好有一台电脑</li>
+</ul>
+<span id="more"></span>
+<p>在模拟的 Linux 环境下运行 Ngrok <strong>需要手机有 root
+权限，仅用于解决<a
+href="#在开始之前解决-dns-问题">这个问题</a></strong>。如果没有更好的，不使用
+root 权限的方法的话，可以尝试<a href="#另外">在 Termux 上安装 Linux
+发行版</a>。</p>
+<p><a
+href="/blog/2023/root%E6%89%8B%E6%9C%BA%E6%95%99%E7%A8%8B%EF%BC%88%E4%BD%BF%E7%94%A8Magisk%EF%BC%89/">root
+手机教程（使用 Magisk）</a></p>
+<h2 id="termux模拟-linux-环境">Termux——模拟 Linux 环境</h2>
+<p><a href="https://termux.dev/cn/index.html">Termux</a>
+是一个在安卓手机上模拟 Linux 环境的 app。</p>
+<p>适用于 Android &gt;= 7，无需手机 root。可以在 github 上<a
+href="https://github.com/termux/termux-app/releases/">下载</a>。</p>
+<p>Termux 模拟 Linux
+环境的根目录在手机的<code>/data/data/com.termux/files/</code>。</p>
+<h3 id="如果手机没有-root">如果手机没有 root：</h3>
+<ul>
+<li><p>在 termux 内，最多访问到上一级目录
+<code>com.termux/</code>，无法访问<code>/data/</code>。</p></li>
+<li><p>在 termux
+外，使用文件管理器无法访问<code>/data/</code>。</p></li>
+<li><p>在 termux 内访问手机 SD 卡，需使用命令</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">termux-setup-storage</span><br></pre></td></tr></table></figure>
+<p>这会把 SD 卡目录<code>/storage/emulated/0/</code>链接到
+<code>/data/data/com.termux/files/home/storage/shared/</code>。</p></li>
+</ul>
+<h3 id="如果手机已-root">如果手机已 root：</h3>
+<p>可以直接使用<a href="https://mt2.cn/">MT
+管理器</a>访问各个目录。这样转移文件比较方便。</p>
+<h3 id="另外">另外</h3>
+<p>上面针对的是 Termux 模拟的 Linux 环境。<strong>你可以使用 <a
+href="https://wiki.termux.com/wiki/PRoot">PRoot</a> 或者 <a
+href="https://github.com/2moe/tmoe">TMOE</a> 安装 Linux
+发行版。</strong></p>
+<h2 id="flask后端框架">Flask——后端框架</h2>
+<p>Flask 是一个用 Python 编写的 Web 框架。<a
+href="https://flask.palletsprojects.com/">官网</a> | <a
+href="https://dormousehole.readthedocs.io/">中文文档</a></p>
+<h3 id="安装-flask">安装 Flask</h3>
+<p>首先在 Termux 上安装 Python：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pkg install python</span><br></pre></td></tr></table></figure>
+<p>然后用 Python 的包管理工具 pip 安装 Flask：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pip install flask</span><br></pre></td></tr></table></figure>
+<h3 id="在本地使用-flask">在本地使用 Flask</h3>
+<ol type="1">
+<li>在家目录下新建一个文件夹。名字随便取，用于存放代码：</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/flask-app</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li><p>在文件夹里新建<code>app.py</code>文件——你可以在电脑上写好了传到手机，也可以用
+MT 管理器写，还可以用 Vim 写。</p></li>
+<li><p>编写代码：</p></li>
+</ol>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, make_response</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="comment">#处理根路由的视图函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line"></span><br><span class="line">    <span class="comment">#创建 html 字符串</span></span><br><span class="line">    html_content = <span class="string">&quot;&lt;h1&gt;Hello, Flask!&lt;/h1&gt;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#创建响应对象</span></span><br><span class="line">    response = make_response(html_content)</span><br><span class="line">    response.headers[<span class="string">&#x27;Content-Type&#x27;</span>] = <span class="string">&#x27;text/html&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#返回响应</span></span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+<ol start="4" type="1">
+<li>在<code>flask-app</code>目录下运行：</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">python app.py &amp;</span><br></pre></td></tr></table></figure>
+<p><code>&amp;</code>表示把程序放在后台运行。</p>
+<p>你会看到：</p>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line"> * Serving Flask app &#x27;app&#x27;</span><br><span class="line"> * Debug mode: off</span><br><span class="line">WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.</span><br><span class="line"> * Running on http://127.0.0.1:5000</span><br><span class="line">Press CTRL+C to quit</span><br></pre></td></tr></table></figure>
+<p>用浏览器访问<code>http://127.0.0.1:5000</code>，看到<code>Hello, Flask!</code>即为成功。</p>
+<h3 id="在局域网内使用-flask">在局域网内使用 Flask</h3>
+<p>指定<code>app.run()</code>里面的<code>host</code>和<code>port</code>参数，即可在
+Wi-Fi 局域网内访问手机。</p>
+<ol type="1">
+<li><p>在手机设置里搜索（或者使用<code>ifconfig</code>命令），找到你手机的
+ip 地址。比如是<code>192.168.1.2</code>。</p></li>
+<li><p>把代码里的<code>app.run()</code>改为</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">app.run(host=<span class="string">&#x27;192.168.1.2&#x27;</span>, port=<span class="number">5000</span>)</span><br></pre></td></tr></table></figure>
+<p>端口号任意填不冲突就行，默认是<code>5000</code>。</p></li>
+<li><p>如上文，运行。</p></li>
+</ol>
+<p>你可以在本机，或在局域网内任意设备的浏览器上访问<code>http://192.168.1.2:5000</code>。</p>
+<h2 id="ngrok内网穿透">Ngrok——内网穿透</h2>
+<p>我们搭建了“服务器”。但是没有公网 ip，无法接受来自局域网外的访问。</p>
+<p>Ngrok
+是一个用于创建安全隧道的工具，它可以将本地的服务器或应用程序暴露到公共互联网。</p>
+<h3 id="安装-ngrok">安装 Ngrok</h3>
+<ol type="1">
+<li><p>查看 Termux 模拟 Linux 环境的 CPU 架构（跟随你手机的架构）</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">uname</span> -m</span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line">getprop ro.product.cpu.abi</span><br></pre></td></tr></table></figure></li>
+<li><p><a href="https://ngrok.com/download">下载</a>对应架构的 Ngrok
+到手机。（最新版 Ngrok
+没有开源，使用<code>pkg install ngrok</code>找不到包，因此在官网上下载）</p></li>
+<li><p>解压文件，并移动到<code>~/../usr/bin</code>目录。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">tar xvzf ~/storage/shared/[你下载的.tgz文件路径] -C ~/../usr/bin</span><br></pre></td></tr></table></figure>
+<p>这里用家目录的上一级<code>~/../</code>表示 linux
+环境根目录，也可以使用<code>$PREFIX</code>。如果直接使用<code>/</code>，Termux
+会认为是手机的根目录。</p></li>
+</ol>
+<h3 id="在开始之前解决-dns-问题">在开始之前，解决 DNS 问题</h3>
+<p>官网上的包，没有适配<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>
+Termux。因此在我首次连接时，发生了连接错误。</p>
+<p>在运行的同时打印日志：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ngrok http 5000 --log-level debug --<span class="built_in">log</span> stdout</span><br></pre></td></tr></table></figure>
+<p>大部分内容略。关键在这里：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">read udp [::1]:43938-&gt;[::1]:53: read: connection refused</span><br></pre></td></tr></table></figure>
+<p>在本地主机<code>[::1]</code>的<code>43938</code>端口和<code>53</code>端口之间，建立连接失败。<code>53</code>是
+DNS 服务的端口，说明 DNS 查询出了问题。</p>
+<p>Ngrok 是用 Go 语言写的，</p>
+<blockquote>
+<p>根据 src/net/dnsclient_unix.go，如果 /etc/resolv.conf 不存在，则选择
+localhost:53 作为名称服务器。<a href="#fn2" class="footnote-ref"
+id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+</blockquote>
+<p>它想找<code>/etc/resolv.conf</code>查询
+DNS，而在手机里找不到这个文件。进而向<code>localhost:53</code>发送 udp
+数据包。手机的<code>53</code>端口没有开放，开启<code>1024</code>以下的端口需要
+root 权限。</p>
+<p>在 Termux
+里有<code>resolv.conf</code>文件，在<code>$PREFIX/usr/etc/resolv.conf</code>。但是官方的包没有改路径，源码也没有开放。</p>
+<p>我尝试修改 Ngrok 配置文件里的
+<code>dns_resolver_ips</code>，但是没有用。</p>
+<h4 id="解决方法">解决方法：</h4>
+<p>把 Termux
+的<code>resolv.conf</code>文件复制到手机<code>/etc/</code>目录下就行了。</p>
+<ul>
+<li><p>这需要 root 权限。</p></li>
+<li><p><strong>这会修改<code>system</code>分区</strong>。如果手机升级，卸载面具前还要刷回原来的<code>system</code>；如果空间不够，可以删一些没用的系统预装软件数据，通常在<code>/system/app/</code>。</p></li>
+<li><p>如果没有 root 权限，可以尝试<a href="#另外">在 Termux 上安装
+Linux 发行版</a>。</p></li>
+</ul>
+<h3 id="使用-ngrok">使用 Ngrok</h3>
+<p>先<a href="https://dashboard.ngrok.com/signup">注册账号</a>，然后<a
+href="https://dashboard.ngrok.com">进入仪表板</a>。</p>
+<h4 id="添加-authtoken-到配置文件">添加 Authtoken 到配置文件</h4>
+<p>在本地服务器连接 Ngrok 服务器时，Authtoken 用于认证你的身份。</p>
+<p>点击 <em>Your Authtoken</em>，你会看到你的 Authtoken。使用命令：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ngrok config add-authtoken [你的authtoken]</span><br></pre></td></tr></table></figure>
+<p>这会向配置文件<code>~/.config/ngrok/ngrok.yml</code>里写入：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">authtoken:</span> [<span class="string">你的authtoken</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="添加-domain-和-edge">添加 Domain 和 Edge</h4>
+<p>点击 <em>Domains</em>。Ngrok
+应该会提醒你领取一个域名，像<code>[几个英文单词].ngrok-free.app</code>。这是在前端发送请求时的目标域名。</p>
+<p>点击 <em>Edges</em>。点击 <em>+ New Edge</em> 按钮创建一个 Edge。</p>
+<p>点击新建的
+Edge，找到<code>edge=edghts_[一串字符]</code>，复制到手机备用。</p>
+<h4 id="允许跨域请求">允许跨域请求</h4>
+<p>Flask
+可以根据用户的请求，动态生成前端代码。而如果前端代码单独放在另一台服务器上，比如
+Github Pages——</p>
+<p>从<code>github.io</code>向<code>ngrok-free.app</code>发送 HTTP
+请求。由于两者不在同一域名下，浏览器为了用户安全，会拦截跨源请求。</p>
+<p>解决方法是，在后端的响应里加上<a
+href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS">跨域资源共享（CORS）</a>头。</p>
+<p>flask-cors 库可以给 Flask 的响应自动加上 CORS 头。<a
+href="https://flask-cors.readthedocs.io/">flask-cors 文档</a></p>
+<p>安装 flask-cors：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pip install flask-cors</span><br></pre></td></tr></table></figure>
+<p>然后在<code>app.py</code>里加两行：</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, make_response</span><br><span class="line"><span class="keyword">from</span> flask_cors <span class="keyword">import</span> CORS    <span class="comment">#&lt;----------</span></span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line">CORS(app)                      <span class="comment">#&lt;----------</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="comment">#处理根路由的视图函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line"></span><br><span class="line">    <span class="comment">#创建 html 字符串</span></span><br><span class="line">    html_content = <span class="string">&quot;&lt;h1&gt;Hello, Flask!&lt;/h1&gt;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#创建响应对象</span></span><br><span class="line">    response = make_response(html_content)</span><br><span class="line">    response.headers[<span class="string">&#x27;Content-Type&#x27;</span>] = <span class="string">&#x27;text/html&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#返回响应</span></span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+<h4 id="运行-ngrok">运行 Ngrok</h4>
+<p>找到前面复制到手机上的<code>edge=edghts_[一串字符]</code>。</p>
+<p>先启动 Flask 到后台，再运行：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ngrok tunnel --label edge=[一串字符] http://localhost:5000</span><br></pre></td></tr></table></figure>
+<h4 id="测试发送-http-请求">测试发送 HTTP 请求</h4>
+<ul>
+<li><p>用 <a
+href="https://www.ruanyifeng.com/blog/2019/09/curl-reference.html">curl</a>
+发送<code>GET</code>请求</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl -v [你的Ngrok域名]</span><br></pre></td></tr></table></figure></li>
+<li><p>在本地<code>file://</code>协议或其他域名下，用 <a
+href="https://www.axios-http.cn/">axios</a> 发送跨域请求</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      axios</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">get</span>(<span class="string">&quot;https://你的Ngrok域名&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">console</span>.<span class="title function_">log</span>(response);</span></span><br><span class="line"><span class="language-javascript">        &#125;)</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="后续处理">后续处理</h2>
+<h3 id="保活">保活</h3>
+<p>如果你想让服务器一直运行，在保持手机开机之外，还要：</p>
+<ul>
+<li><p>始终把 Termux 挂在后台，锁定，并忽略电池优化</p></li>
+<li><p>使用<code>nohup</code>命令让程序不挂起（往下看）↓</p></li>
+</ul>
+<h3 id="启动服务器">启动服务器</h3>
+<p>先启动 Termux，再依次启动 Flask 和 Ngrok。</p>
+<p>可以向<code>$PREFIX/usr/etc/profile</code>文件中添加以下几行命令， 让
+Termux 启动的同时自执行：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/flask-app</span><br><span class="line"><span class="built_in">nohup</span> python app.py &amp;</span><br><span class="line"><span class="built_in">nohup</span> ngrok tunnel --label edge=[一串字符] http://localhost:5000 &amp;</span><br></pre></td></tr></table></figure>
+<h3 id="关闭服务器">关闭服务器</h3>
+<p>使用<code>jobs</code>查看进程列表，<code>kill %[进程序号]</code>杀死进程。</p>
+<p>当然，你也可以直接杀掉 Termux 的后台。</p>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a
+href="https://wiki.termux.com/wiki/Differences_from_Linux">Termux 与
+Linux 的区别：https://wiki.termux.com/wiki/Differences_from_Linux</a><a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://stackoverflow.com/a/49315513">woohaha
+的回答：https://stackoverflow.com/a/49315513</a><a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>JSON</title>
+    <url>/blog/2023/JSON/</url>
+    <content><![CDATA[<p>JSON(JavaScript Object
+Notation，JavaScript对象表示法)是一种轻量级的数据交换格式。
+<span id="more"></span></p>
+<h2 id="json与js对象互转">json与js对象互转</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> json = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="attr">c</span>: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// js对象转json字符串</span></span><br><span class="line">json = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj)</span><br><span class="line"></span><br><span class="line"><span class="comment">// json字符串转js对象</span></span><br><span class="line">obj = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(json)</span><br></pre></td></tr></table></figure>
+<h2 id="使用python编解码json">使用Python编解码json</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">dic = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编码</span></span><br><span class="line">string = json.dumps(dic)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解码</span></span><br><span class="line">dic = json.loads(string)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>暂无分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>root手机教程（使用Magisk）</title>
+    <url>/blog/2023/root%E6%89%8B%E6%9C%BA%E6%95%99%E7%A8%8B%EF%BC%88%E4%BD%BF%E7%94%A8Magisk%EF%BC%89/</url>
+    <content><![CDATA[<p>你需要：</p>
+<ul>
+<li>一台系统为 Android 6.0 以上的手机</li>
+<li>一台能够正常使用 <a
+href="https://developer.android.google.cn/studio/releases/platform-tools?hl=zh-cn">Android
+SDK Platform-Tools</a> 的电脑</li>
+</ul>
+<span id="more"></span>
+<p>另外，如果你手机的Android kernel版本在5.10以上，你也可以使用<a
+href="https://kernelsu.org/zh_CN/">KernelSU</a>——这不属于此教程的范围。</p>
+<h2 id="背景知识">背景知识</h2>
+<h3 id="linux-与-android">Linux 与 Android</h3>
+<p>Linux是一种操作系统内核，由Linus
+Torvalds开发。<strong>基于Linux内核</strong>，Android
+Inc.公司开发出了Android操作系统。</p>
+<p>2005年，Google收购Android
+Inc.。2007年，Google将Android的源代码公开，并创建了<a
+href="https://source.android.google.cn/?hl=zh-cn">AOSP</a>（Android Open
+Source Project）项目。</p>
+<p>许多手机厂商的定制系统，如MIUI、Flyme、HarmonyOS等都是<strong>基于AOSP源码</strong>开发的。和AOSP对标的<a
+href="https://gitee.com/openharmony">OpenHarmony</a>也有用到Linux内核。所以，如果你的手机不是苹果，它里面大概率就会有一个修改过的Linux内核。</p>
+<h3 id="linux-与-android-中的用户权限">Linux 与 Android
+中的用户权限</h3>
+<p>Linux操作系统是多用户操作系统，用户<code>root</code>拥有最高权限——对系统的完全控制权。拥有root权限的用户可以把其他用户添加到root用户组。在root用户组里，每个用户都有root权限。</p>
+<p>在Android操作系统中，<strong>每个应用（APP）都是一个独立的用户</strong>。如果没有<code>root</code>用户把APP添加到root用户组，就没有APP能够获得root权限。</p>
+<p>而在正常情况下，你在手机上见到的所有画面都是APP的进程（比如系统界面是<code>com.android.systemui</code>）。这时想要获得root权限，就需要修改更底层的东西。</p>
+<h3 id="bootloader锁">Bootloader锁</h3>
+<p>Bootloader，即启动引导加载程序。它负责在计算机启动时，引导操作系统加载。</p>
+<p>在bootloader执行的过程中，如果签名验证未通过，说明系统底层文件被修改。这时bootloader会停止执行，<strong>无法进入系统</strong>。这被称为bootloader（BL）锁。</p>
+<h3 id="magisk">Magisk</h3>
+<p>The <strong>Magic Mask</strong> for
+Android，是一套用于定制Android的开源软件。它可以为应用程序提供 root
+访问权限。后文简称<strong>面具</strong>。</p>
+<p>面具获取root权限的原理是通过修改boot分区，代理linux内核的第一个进程init。<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a></p>
+<p>面具修改了系统分区。因此，使用面具的前提是解除BL锁。</p>
+<h2 id="准备工作">准备工作</h2>
+<h3 id="解除bl锁">解除BL锁</h3>
+<blockquote>
+<p>解锁 BootLoader 实际上就是让 BootLoader
+启动链上某些阶段的签名验证不生效。<a href="#fn2" class="footnote-ref"
+id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+</blockquote>
+<p>你需要在你手机厂商的网站上申请解锁码，然后用他们提供的工具解锁。有一些厂商（华为等）已经不提供解锁码。</p>
+<p>注意：解锁BL后会<strong>清除所有用户数据，恢复出厂设置</strong>。请提前做好你重要文件的备份。</p>
+<h3 id="提取boot.img">提取boot.img</h3>
+<p>在网上搜索，找到你手机的安装包。</p>
+<p>通常是一个<code>.zip</code>或.<code>tgz</code>格式的压缩包。确保手机型号一致、操作系统版本一致。</p>
+<p>解压后找到<code>boot.img</code>或者<code>init_boot.img（如果有）</code>。复制两份，分别保存到手机和电脑，备用。</p>
+<ul>
+<li>如果你找不到<code>boot.img</code>，而找到了<code>payload.bin</code>：参考<a
+href="https://magiskcn.com/payload-dumper-go-boot">这篇教程</a>。或者使用<a
+href="https://mt2.cn/">MT管理器</a>提取。</li>
+<li>如果你的手机<em><strong>已经root了</strong></em>：可以在<code>adb shell</code>下使用<code>ls -l /dev/block/by-name/</code>查看分区表。找到boot分区，比如<code>/dev/block/sdc41</code>。使用<code>dd if=/dev/block/sdc41 of=/sdcard/boot.img</code>提取boot分区。</li>
+</ul>
+<h3 id="通过usb调试手机">通过USB调试手机</h3>
+<p>在手机设置里找到系统版本（比如MIUI，是在“全部参数”里的“MIUI版本”）。连续点击，直到手机出现提示框“您现在处于开发者模式”。</p>
+<p>在手机设置里找到开发者选项，进入。找到<strong>USB调试</strong>选项并开启。</p>
+<p>下载<a
+href="https://developer.android.google.cn/studio/releases/platform-tools?hl=zh-cn">Android
+SDK
+Platform-Tools</a>，解压到你喜欢的目录。比如<code>D:\platform-tools</code>。你会看到目录里有<code>adb.exe</code>和<code>fastboot.exe</code>等一些文件。</p>
+<p>打开命令行（Windows下win+R输入cmd，回车），你会看到：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">C:\Users\你的用户名\&gt;</span><br></pre></td></tr></table></figure>
+<p>这是你当前所在的目录。当你要执行一个<code>.exe</code>文件时，系统先从当前目录里寻找。如果找不到，就从环境变量里寻找。再找不到就打印错误信息。</p>
+<p>你刚才解压出来的<code>.exe</code>文件只能在它们所在的目录下运行。如果不想切换目录，想让它们在任意目录下都可以运行，需要把它们<strong>所在的目录</strong>添加到<strong>环境变量</strong>。</p>
+<p>Windows
+10下，<code>Win + I</code>打开设置。系统-&gt;关于-&gt;高级系统设置-&gt;环境变量，双击系统变量<code>Path</code>，新建，把<code>D:\platform-tools</code>复制到列表，确定确定确定。这样环境变量就设置好了。</p>
+<p>用数据线连接手机和电脑。你可以尝试在<code>cmd</code>里使用命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb devices</span><br></pre></td></tr></table></figure>
+<p>这时手机会弹出授权窗口。点击确定，你会在电脑上看到：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">List of devices attached</span><br><span class="line">你手机的序列号        device</span><br></pre></td></tr></table></figure>
+<p>说明adb连接成功。</p>
+<h2 id="戴上面具">戴上面具</h2>
+<p><a
+href="https://github.com/topjohnwu/Magisk/releases">下载面具</a>并安装打开，你将看到：</p>
+<img src="/blog/2023/root%E6%89%8B%E6%9C%BA%E6%95%99%E7%A8%8B%EF%BC%88%E4%BD%BF%E7%94%A8Magisk%EF%BC%89/1.png" class="">
+<p>如果Ramdisk为<strong>否</strong>，或者你的手机品牌是<strong>华为</strong>或<strong>三星</strong>：参考
+<a
+href="https://jesse205.github.io/MagiskChineseDocument/install.html">Magisk
+中文文档</a>。</p>
+<p>点击“安装”按钮。如果你手机的安装包中有<code>vbmeta.img</code>，选中“修补
+boot 映像中的 vbmeta”选项。否则不选中。</p>
+<p>在方式中选择“选择并修补一个文件”。然后选择你提取出来的<code>boot.img</code>或<code>init_boot.img</code>。点击“安装”。</p>
+<p>面具会把修补后的文件<code>magisk_patched-[版本号_随机字符].img</code>存放到SD卡的<code>Download</code>目录下。</p>
+<p>把修补后的文件复制到电脑：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb pull /sdcard/Download/magisk_patched-[版本号_随机字符].img 电脑上的一个文件夹路径</span><br></pre></td></tr></table></figure>
+<p>重启手机到<code>fastboot</code>模式：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb reboot bootloader</span><br></pre></td></tr></table></figure>
+<p>刷写新的<code>boot</code>分区：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fastboot flash boot（或者init_boot） 电脑上的一个文件夹路径\magisk_patched-[版本号_随机字符].img</span><br></pre></td></tr></table></figure>
+<p>重启手机：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fastboot reboot</span><br></pre></td></tr></table></figure>
+<p>打开面具。如果看到了Magisk-&gt;当前的版本号，说明成功。</p>
+<ul>
+<li><p>如果你的手机打不开了：说明面具不适合你的手机，或者你有地方做错了。
+你需要长按【电源】键重启，然后马上同时按住【电源】键和【音量+】键（也有手机是【电源】键和【音量-】键）。这会把手机重启到<code>fastboot</code>模式。
+然后使用以下命令恢复boot分区： <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fastboot flash boot（或者init_boot） 电脑上的一个文件夹路径\你修补前的boot.img</span><br></pre></td></tr></table></figure></p></li>
+<li><p>在安装面具后：需要禁用系统自动更新。<a
+href="#后续处理更新系统时">后续处理——更新系统时</a></p></li>
+</ul>
+<h2 id="隐藏面具">隐藏面具</h2>
+<p>为了用户安全，一些银行类的app在检测到root后会禁止用户使用。需要对这一类app隐藏root。</p>
+<h3 id="使用shamiko隐藏root">使用Shamiko隐藏root</h3>
+<p>Shamiko是一个面具模块，用于隐藏root。</p>
+<ul>
+<li>如果使用的是<a
+href="https://github.com/magojohnji/Magisk-delta/blob/main/intro.md">Magisk
+Delta</a>，则不能安装此模块。可用其内置的MagiskHide。</li>
+</ul>
+<p>在面具设置里：</p>
+<ul>
+<li><p>找到“Zygisk”，<strong>开启</strong>。</p></li>
+<li><p>找到“遵守排除列表”，<strong>关闭</strong>。</p></li>
+<li><p>找到“配置排除列表”，选择要对其隐藏root的应用。点击，在展开的列表里全部打上勾，直到上方进度条满。</p></li>
+</ul>
+<p><a
+href="https://github.com/LSPosed/LSPosed.github.io/releases/">下载Shamiko</a>
+。打开面具-&gt;模块-&gt;从本地安装-&gt;选择下载的<code>shamiko-[版本号]-release.zip</code>-&gt;确定-&gt;重启手机。</p>
+<p>如果看到模块-&gt;Shamiko的简介里露出了😋，说明Shamiko正常运行。</p>
+<h3 id="使用随机包名隐藏面具应用">使用随机包名隐藏面具应用</h3>
+<p>面具设置-&gt;隐藏Magisk应用</p>
+<h2 id="后续处理更新系统时">后续处理——更新系统时</h2>
+<p>系统更新前：先打开面具，选择“卸载Magisk”-&gt;<strong>还原原厂映像</strong>。然后更新系统。</p>
+<p>系统更新后：仍然使用提取boot-&gt;修补boot-&gt;刷入boot的方式安装面具。</p>
+<ul>
+<li>如果希望在更新系统时保留面具：参考<a
+href="https://jesse205.github.io/MagiskChineseDocument/ota.html">这篇文档</a>。</li>
+</ul>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a
+href="https://mp.weixin.qq.com/s/eF9izvazeSZ1bVxOcxamQg">何为root？维术：https://mp.weixin.qq.com/s/eF9izvazeSZ1bVxOcxamQg</a><a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a
+href="https://mp.weixin.qq.com/s/-9VKyraHq5Qt2PTzqVqZOg">当我们谈论解锁
+BootLoader
+时，我们在谈论什么？维术：https://mp.weixin.qq.com/s/-9VKyraHq5Qt2PTzqVqZOg</a><a
+href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>概率统计中几个容易混淆的概念</title>
+    <url>/blog/2023/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1%E4%B8%AD%E5%87%A0%E4%B8%AA%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E6%A6%82%E5%BF%B5/</url>
+    <content><![CDATA[<p><span class="math inline">\(\alpha\)</span>分位点、置信度<span
+class="math inline">\(1-\alpha\)</span>、显著性水平<span
+class="math inline">\(\alpha\)</span>、区间估计的准确度与精确度、置信区间与假设检验的关系。</p>
+<span id="more"></span>
+<h2 id="alpha分位点"><span
+class="math inline">\(\alpha\)</span>分位点</h2>
+<p>简单地说，上<span class="math inline">\(\alpha\)</span>分位点<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>把随机变量的取值区间分成了两部分，随机变量取值落在右边的概率为<span
+class="math inline">\(\alpha\)</span>。</p>
+<p>即<span
+class="math inline">\(P\{X&gt;上\alpha分位点\}=\alpha\)</span></p>
+<p>从图像上看，比如：</p>
+<img src="/blog/2023/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1%E4%B8%AD%E5%87%A0%E4%B8%AA%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E6%A6%82%E5%BF%B5/1.png" class="">
+<p>标准正态分布<span class="math inline">\(Z\sim
+N(0,1)\)</span>的概率密度函数，它的函数图像上<span
+class="math inline">\(\alpha\)</span>分位点(记作<span
+class="math inline">\(z_\alpha\)</span>)以右与<span
+class="math inline">\(x\)</span>轴围成的面积为<span
+class="math inline">\(\alpha\)</span>。</p>
+<p>相应地，下<span
+class="math inline">\(\alpha\)</span>分位点把随机变量的取值区间分成了两部分，随机变量取值落在左边的概率为<span
+class="math inline">\(\alpha\)</span>。</p>
+<h2 id="置信度1-alpha">置信度<span
+class="math inline">\(1-\alpha\)</span></h2>
+<p><strong>参数估计</strong></p>
+<p>总体的分布函数中有参数<span
+class="math inline">\(\theta\)</span>未知。抽样，用样本估计参数<span
+class="math inline">\(\theta\)</span>。</p>
+<p>例如总体<span class="math inline">\(X\)</span>服从参数为<span
+class="math inline">\(\theta\)</span>的指数分布，要估计<span
+class="math inline">\(\theta\)</span></p>
+<p><span
+class="math inline">\(\theta\)</span>正好是总体均值，可以用样本均值估计总体均值。</p>
+<p>抽三个样本<span
+class="math inline">\(X_1,X_2,X_3\)</span>，样本均值<span
+class="math inline">\(\bar{X}=\dfrac{X_1+X_2+X_3}{3}\)</span></p>
+<p><span class="math inline">\(\theta\)</span>的估计量<span
+class="math inline">\(\hat\theta=\dfrac{X_1+X_2+X_3}{3}\)</span></p>
+<p><strong>区间估计</strong></p>
+<p>总体的分布函数中有参数<span
+class="math inline">\(\theta\)</span>未知。抽样，用样本估计参数<span
+class="math inline">\(\theta\)</span>的<em>一个范围</em>。</p>
+<p>这个范围<em>是一个随机区间</em>。</p>
+<p>当这个随机区间包含<span
+class="math inline">\(\theta\)</span>真值的概率大于等于<span
+class="math inline">\(1-\alpha\)</span>时，这个区间是<span
+class="math inline">\(\theta\)</span>的置信度为<span
+class="math inline">\(1-\alpha\)</span>的置信区间。</p>
+<blockquote>
+<p>样本数目不变的情况下，做一百次试验，有95个置信区间包含了总体真值。置信度为95%<a
+href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a></p>
+</blockquote>
+<h2
+id="区间估计的准确度可靠性与精确度">区间估计的准确度（可靠性）与精确度</h2>
+<p>置信度越大，置信区间越可靠，估计准确度越高。<a href="#fn3"
+class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>置信区间越短，估计精确度越高。</p>
+<h2 id="显著性水平alpha">显著性水平<span
+class="math inline">\(\alpha\)</span></h2>
+<p><strong>假设检验</strong></p>
+<p>总体的分布函数未知或有参数未知。做假设、抽样，用样本判断是否接收假设。</p>
+<p>例如正态总体<span
+class="math inline">\(N(\mu,\sigma^2)\)</span>，<span
+class="math inline">\(\mu\)</span>未知。做假设：</p>
+<p><span class="math inline">\(H_0:\mu=\mu_0\)</span> <span
+class="math inline">\(H_1:\mu\not=\mu_0\)</span></p>
+<p><span
+class="math inline">\(P\{拒绝H_0|H_0为真\}\le\alpha\)</span></p>
+<p><span class="math inline">\(\alpha\)</span>即为显著性水平。</p>
+<h2 id="置信区间与假设检验的关系">置信区间与假设检验的关系</h2>
+<p>（显著性水平为<span
+class="math inline">\(\alpha\)</span>的双边/单边假设检验问题的）<strong>接受域</strong></p>
+<p>就是（参数的置信度为<span
+class="math inline">\(1-\alpha\)</span>的双侧/单侧）<strong>置信区间</strong>。</p>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a
+href="https://www.zhihu.com/question/22420473/answer/1601002988">概率论分位点的含义？
+- 知乎用户的回答 - 知乎</a><a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a
+href="https://www.zhihu.com/question/20183513/answer/15023786">如何理解置信度？
+- 邹日佳的回答 - 知乎</a><a href="#fnref2" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a
+href="https://www.zhihu.com/question/42770047/answer/149729398">置信区间的准确度和精确度如何确定以及它们之间的联系？
+- 知乎</a><a href="#fnref3" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+]]></content>
+      <categories>
+        <category>暂无分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>第一篇文章</title>
+    <url>/blog/2023/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[<p>这是第一篇文章</p>
+]]></content>
+      <categories>
+        <category>暂无分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>踩坑记录（1）</title>
+    <url>/blog/2023/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95%EF%BC%881%EF%BC%89/</url>
+    <content><![CDATA[<p>做数据库课设时，我试图修改一个外键的删除规则和更新规则为<code>CASCADE</code>。</p>
+<p>SQL语句执行成功了，然而刷新后它的规则又都变回了<code>RESTRICT</code>。
+<span id="more"></span></p>
+<p>我使用的是 MySQL + DBeaver。</p>
+<p>建立外键时，选择的删除规则和更新规则是无动作（默认）。</p>
+<p>建立后，MySQL把它们设为了<code>RESTRICT</code>。</p>
+<p>由于一些麻烦的原因，我想把它们改成<code>CASCADE</code>，于是出现了上面的情况。</p>
+<p>DBeaver给出的SQL语句是把外键删了重建： <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> dbkeshe.student <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> KEY student_FK;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> dbkeshe.student <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> student_FK <span class="keyword">FOREIGN</span> KEY (CLASS_NO) <span class="keyword">REFERENCES</span> dbkeshe.class(CLASS_NO) <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE <span class="keyword">ON</span> <span class="keyword">UPDATE</span> CASCADE;</span><br></pre></td></tr></table></figure>
+准确说不是刷新后变回，在当前的外键窗口刷新是不变的，关闭窗口后重新打开就变了。我以为是DBeaver的问题，又在命令行里执行了一遍，还是会变回<code>RESTRICT</code>。关键是MySQL还没报错。</p>
+<p>网上搜了一下，没有找到类似的情况发生过。</p>
+<p>我又尝试把所有的外键约束删了，然后再重建，还是不行。把所有的外键约束和索引删了，然后再重建，还是不行。到最后还是没有找到原因。</p>
+<p>我把旧数据库dump出来的sql文件外键约束后面全部加上<code>ON DELETE CASCADE ON UPDATE CASCADE</code>，再用sql文件重建一个数据库，这回成功了。然后...我数天后打开它又变回去了？？？并且重建后还是会变回去。</p>
+<p>除了手动重建数据库，最后有一个不得已而为之的方法：要想实现级联更新，暂时关闭外键约束</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span> foreign_key_checks <span class="operator">=</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>然后把要级联更新的所有表都手动更新一遍，再打开约束...</p>
+]]></content>
+      <categories>
+        <category>暂无分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>踩坑记录（2）</title>
+    <url>/blog/2023/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95%EF%BC%882%EF%BC%89/</url>
+    <content><![CDATA[<p>Web大作业要求提交网站代码，而博客的html在本地打开会加载不出来css和js。这是文件路径的问题。
+<span id="more"></span></p>
+<p>hexo生成的html文件，里面引用文件的路径是这样的：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;/blog/css/<span class="selector-tag">main</span><span class="selector-class">.css</span>&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>在线打开一切正常，因为这里的根目录是网站根目录。而用浏览器直接打开本地html文件时，浏览器会认为它是文件根目录：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">href=&quot;file:///blog/css/main.css<span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
+<p>正确的预览方法是使用命令<code>hexo s</code>并在<code>http://localhost:4000/blog/</code>预览。</p>
+<p>不过作业是要提交的，为了能直接预览只能手动改路径了。把所有html里引用的文件地址都替换成相应的相对地址就行了。</p>
+<p>但是还有一个问题。这样引用的css和js正常了，页面跳转链接不正常：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&#x27;./2023/05/30/文章标题/&#x27;</span>&gt;</span>文章标题<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在线打开，浏览器会从<code>/</code>自动跳转到<code>index.html</code>。而本地则不会，浏览器会打开<code>index.html</code>所在的文件夹。</p>
+<p><a
+href="https://chz613.github.io/post/hexo-next-url-html-suffix.html">这篇文章</a>给出了解决方法，就是修改配置文件里的<code>permalink:</code>使生成文章的链接带<code>.html</code>后缀。但是这样只有文章的结尾带后缀，其他页面还是不带。修改其他页面需要修改hexo和next组件里的脚本。而脚本已经更新过，不是当时的了。考虑到未来有可能还会更新，和页面路径的统一性，还是不改配置了。手动改html吧。</p>
+]]></content>
+      <categories>
+        <category>暂无分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>踩坑记录（3）</title>
+    <url>/blog/2023/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95%EF%BC%883%EF%BC%89/</url>
+    <content><![CDATA[<p>这里记录的是我用hexo部署博客时踩的一些坑的正确解决方法。同类型的有<a
+href="https://ruofancooh.github.io/blog/2023/05/27/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95%EF%BC%882%EF%BC%89/">踩坑记录（2）</a>。
+<span id="more"></span></p>
+<h2 id="node模块安装路径问题">node模块安装路径问题</h2>
+<p>npm安装模块有两种安装方式：本地安装和全局安装。</p>
+<p>本地安装：<code>npm install &lt;pageName&gt;</code>，安装在当前文件夹下的node_modules目录。</p>
+<p>全局安装：<code>npm install &lt;pageName&gt; -g</code>，默认安装在<code>C:\Users\用户名\AppData\Roaming\npm</code>下。这好吗，这不好。</p>
+<p>可使用<code>npm config get prefix</code>查看当前全局安装路径。</p>
+<p>使用<code>npm config set prefix "路径"</code>更改全局安装路径。</p>
+<p>设置完后不要忘了改环境变量。</p>
+<h2 id="把博客放在子文件夹blog下">把博客放在子文件夹/blog下：</h2>
+<ul>
+<li><p>github新建一个名为blog的仓库，branch为gh-pages</p></li>
+<li><p>更改hexo的_config.yml文件以下项：</p></li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">url:</span> <span class="string">https://ruofancooh.github.io/blog</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/blog/</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/ruofancooh/blog</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">gh-pages</span></span><br></pre></td></tr></table></figure>
+<h2 id="hexo更换next主题">hexo更换next主题</h2>
+<p>在博客目录下运行：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<p>更改站点配置文件中<code>theme</code>字段的值为<code>next</code></p>
+<h2 id="next主题设置背景图片">next主题设置背景图片</h2>
+<p>把主题配置文件中的<code>custom_file_path:</code>下的<code>style</code>取消注释</p>
+<p>在<code>next/source/</code>下新建<code>_data</code>目录，目录里新建<code>styles.styl</code>文件。</p>
+<p>在<code>styles.styl</code>文件中设置：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="comment">/*注意用相对路径，然后在相应的路径下放图片*/</span></span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">../images/background.png</span>); </span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;    <span class="comment">/*不重复*/</span></span><br><span class="line">    <span class="attribute">background-attachment</span>: fixed;    <span class="comment">/*不滚动*/</span></span><br><span class="line">    <span class="attribute">background-size</span>: cover;    <span class="comment">/*图片尺寸不拉伸*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="在博客中插入图片">在博客中插入图片</h2>
+<p>hexo配置文件中修改：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p><code>_posts</code>文件夹下新建与md文档同名的文件夹，放入图片。在md文档中用</p>
+<p><code>&#123;% asset_img filename.png %&#125;</code>引入图片。</p>
+<h2 id="更换markdown渲染器">更换markdown渲染器</h2>
+<p>为使博客支持latex，卸载自带渲染器并更换渲染器：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm un hexo-renderer-marked</span><br><span class="line">npm i hexo-renderer-pandoc</span><br></pre></td></tr></table></figure>
+<p>需要额外<a
+href="https://github.com/jgm/pandoc/releases/latest">安装pandoc</a></p>
+<p>更改next配置文件：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">math:</span></span><br><span class="line">  <span class="attr">every_page:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">mathjax:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>暂无分类</category>
+      </categories>
+  </entry>
+</search>
