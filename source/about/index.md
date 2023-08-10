@@ -9,27 +9,30 @@ mathjax: true
 <p id="myAge"></p>
 
 <script>
-  const pLabel = document.getElementById("myAge");
+  const pLabel_myAge = document.getElementById("myAge");
   const ms_astronomy_julian_year = 31557600000;
   const timestamp_my_birth = 990773520000;
   const decimal_places = 3;
 
-  function updateAge() {
+  function getMyAge() {
     let timestamp_UTC = new Date().getTime();
-    let age = (timestamp_UTC - timestamp_my_birth) / ms_astronomy_julian_year
-    pLabel.innerText = `24 - ${(24 - age).toFixed(decimal_places)} 岁，是学生。`;
+    let age = (timestamp_UTC - timestamp_my_birth) / ms_astronomy_julian_year;
+    return age;
   }
 
-  updateAge();
-  const ms_interval = ms_astronomy_julian_year / 10 ** (decimal_places + 1);
-  setInterval(updateAge, ms_interval);
+  function updateMyAge() {
+    let age = getMyAge();
+    pLabel_myAge.innerText = `24 - ${(24 - age).toFixed(decimal_places)} 岁，是学生。`;
+  }
+
+  updateMyAge();
 </script>
 
 我认为，目前我很难用文字描述纯粹的“感性”，而是在尝试用一种理性的方式理解感性。
 
 理由是：在我打这段文字时，我是“心如止水”的，并且比一天中的任何时间都平静、有活力。在想写的写完之后关掉手机，回想之前写的，心跳相比之前会越来越乱。
 
-在大学之前，作文对我来说非常难——记叙文没有经历；议论文没有经历+没有素材+太较真。最后靠着一篇有着正好我能接受的题干，极端情况为 0.6 的议论文混过了高考。
+在大学之前，作文对我来说非常难——记叙文没有经历；议论文没有经历+没有素材+太“较真”。最后用一篇有着正好我能接受的题干，“较真”程度为 0.6 的议论文献给了高考。
 
 ~~好在现在有 GPT 了。~~
 
@@ -45,11 +48,21 @@ mathjax: true
 
 - 经过一番斗争后，【自我】的想法：
 
-  - 为了好玩。顺便练练书面表达能力。
+  为了有趣/好玩/娱乐。为了满足表达欲。
 
-  - 你所热爱的﹐就是你的生活﹒
+<p id="deadline" style="color:rgba(85,85,85,1)">你所热爱的，就是你的生活。</p>
 
-  
+<script>
+const pLabel_deadline = document.getElementById("deadline");
+const school_year = 2;
+
+function updateColor() {
+  let percentage = (24 - getMyAge()) / school_year;
+  pLabel_deadline.style=`color:rgba(85,85,85,${percentage*0.5});`;
+}
+
+updateColor();
+</script>
 
 ## 博客内容
 
@@ -85,6 +98,6 @@ mathjax: true
 
 ## 网络一线牵
 
-QQ号：$863^3-88811$
+QQ 号：$863^3-88811$
 
 这只是为了防机器人。你可能有在点开“新朋友”后发现是机器人加好友的经历。
