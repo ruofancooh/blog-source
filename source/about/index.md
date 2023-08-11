@@ -48,9 +48,9 @@ mathjax: true
 
 - 经过一番斗争后，【自我】的想法：
 
-  为了有趣/好玩/娱乐。为了满足表达欲。
-
-<p id="deadline" style="color:rgba(85,85,85,1)">你所热爱的，就是你的生活。</p>
+  1. 为了有趣/好玩/娱乐。为了满足表达欲。
+  2. 为了验证、演绎和传递知识。
+  3. <p id="deadline" style="color:rgba(85,85,85,1)">（右键检查元素）你所热爱的，就是你的生活。</p>
 
 <script>
 const pLabel_deadline = document.getElementById("deadline");
