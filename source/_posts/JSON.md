@@ -1,7 +1,7 @@
 ---
 title: JSON
 date: 2023-05-26 18:21:43
-categories: 暂无分类
+categories: 概念
 ---
 JSON(JavaScript Object Notation，JavaScript对象表示法)是一种轻量级的数据交换格式。
 <!--more-->

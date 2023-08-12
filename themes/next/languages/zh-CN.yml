@@ -54,7 +54,7 @@ counter:
   categories:
     zero: 暂无分类
     one: 目前共计 1 个分类
-    other: "目前共计 %d 个分类"
+    other: "目前共计 %d 个分类<br/><a href='/blog/about/#博客内容及分类'>分类详解</a>"
   archive_posts:
     zero: 暂无日志。
     one: 目前共计 1 篇日志。
