@@ -125,9 +125,9 @@ symbols_count_time:
   wpm: 275
   suffix: "mins."
 
-sitemap: 
-  path: sitemap.xml
+# sitemap: 
+  # path: sitemap.xml
 # baidusitemap:
   # path: baidusitemap.xml
 
-  url: https://hrfis.me/blog
+  # url: https://hrfis.me/blog
