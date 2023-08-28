@@ -41,7 +41,7 @@ categories: 教程
 
 你会看到：
 
-{% asset_img 1.png %}
+<img src="/blog/images/vm.png">
 
 按回车开始安装 Ubuntu。
 

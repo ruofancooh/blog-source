@@ -110,7 +110,7 @@ List of devices attached
 
 [下载面具](https://github.com/topjohnwu/Magisk/releases)并安装打开，你将看到：
 
-{% asset_img 1.png %}
+<img src="/blog/images/magisk.webp">
 
 如果Ramdisk为**否**，或者你的手机品牌是**华为**或**三星**：参考 [Magisk 中文文档](https://jesse205.github.io/MagiskChineseDocument/install.html)。
 

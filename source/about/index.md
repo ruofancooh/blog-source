@@ -52,7 +52,7 @@ updateColor();
 
 替身使者是会[相互吸引](#网络一线牵)的，如果你是从 B 站过来的话：
 
-<img src="/blog/about/about-1.png">
+<img src="/blog/images/about-1.webp">
 
 简单地说，为了克服社恐的一面，我会变得自负；而为了收敛自负的一面，我又会变回社恐。
 
