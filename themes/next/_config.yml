@@ -204,7 +204,7 @@ language_switcher: false
 
 footer:
   # Specify the year when the site was setup. If not defined, current year will be used.
-  #since: 2021
+  since: 2023
 
   # Icon between year and copyright info.
   icon:
@@ -370,9 +370,9 @@ codeblock:
     dark: prism-dark
   # Add copy button on codeblock
   copy_button:
-    enable: false
+    enable: true
     # Available values: default | flat | mac
-    style:
+    style: flat
 
 back2top:
   enable: true
@@ -383,14 +383,14 @@ back2top:
 
 # Reading progress bar
 reading_progress:
-  enable: false
+  enable: true
   # Available values: left | right
   start_at: left
   # Available values: top | bottom
   position: top
-  reversed: false
-  color: "#37c6c0"
-  height: 3px
+  reversed: true
+  color: "#222"
+  height: 1px
 
 # Bookmark Support
 bookmark:
