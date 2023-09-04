@@ -1,0 +1,52 @@
+---
+title: Java - 00 - 准备
+date: 2023-09-04 21:31:47
+categories: 探索
+---
+
+- Windows 10 环境配置
+- `Hello.java`
+
+<!--more-->
+
+## Windows 10 环境配置
+
+1. VSCode 里安装 `Extension Pack for Java` 扩展。
+   它会提示你下载安装 JDK。安。
+2. 设置环境变量
+   - `JAVA_HOME`：JDK 安装路径
+   - `PATH`：`%JAVA_HOME%\bin`
+3. 终端输入：
+   ```sh
+   java -version
+   ```
+   输出：
+   ```txt
+   openjdk version "17.0.8.1" 2023-08-24
+   OpenJDK Runtime Environment Temurin-17.0.8.1+1 (build 17.0.8.1+1)
+   OpenJDK 64-Bit Server VM Temurin-17.0.8.1+1 (build 17.0.8.1+1, mixed mode, sharing)
+   ```
+4. VSCode 设置搜`java.jdt.ls.java.home`，在`settings.json`里改成 JDK 安装路径。
+
+## Hello.java
+
+```java
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println("Hello");
+    }
+}
+```
+
+按钮运行，或者终端：
+
+```sh
+java Hello.java
+```
+
+或者终端：
+
+```sh
+javac Hello.java
+java Hello
+```
