@@ -4,12 +4,12 @@ date: 2023-09-04 21:31:47
 categories: 探索
 ---
 
-- Windows 10 环境配置
+- Windows 10 + VSCode 环境配置
 - `Hello.java`
 
 <!--more-->
 
-## Windows 10 环境配置
+## Windows 10 + VSCode 环境配置
 
 1. VSCode 里安装 `Extension Pack for Java` 扩展。
    它会提示你下载安装 JDK。安。

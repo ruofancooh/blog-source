@@ -30,9 +30,7 @@ mathjax: true
 
 ## 为什么写博客
 
-<p id="deadline" style="color:rgba(85,85,85,1)">因为现实的引力。</p>
-
-（牛顿直呼内行）
+<span id="deadline" style="color:rgba(85,85,85,1)">因为现实的引力。</span>（牛顿直呼内行）
 
 因为我没有学习动力。
 
@@ -50,13 +48,7 @@ updateColor();
 
 ## 为什么转移阵地
 
-替身使者是会[相互吸引](#网络一线牵)的，如果你是从 B 站过来的话：
-
 <img src="/blog/images/about-1.webp">
-
-简单地说，为了克服社恐的一面，我会变得自负；而为了收敛自负的一面，我又会变回社恐。
-
-等于一会儿是你儿子，一会儿是你爹。
 
 ## 博客内容及分类
 
@@ -73,7 +65,7 @@ updateColor();
 
 可以查看博客的[历史修改记录](https://github.com/ruofancooh/blog-source/commits/main)。
 
-实际上由于我认知的局限性，分类之间的界限会非常模糊。第一分类和第四分类里的内容可以出现在任一分类里，第二分类也可能属于第四分类，而第四分类里的内容还可能比第二分类更实用，第三个分类是自我批评用的，但是看起来很不严肃。
+实际上由于我认知的局限性，分类之间的界限会非常模糊。第一分类和第四分类里的内容可以出现在任一分类里，第二分类也可能属于第四分类，而第四分类里的内容还可能比第二分类更实用，第三个分类是自我批评用的。
 
 ## 怎么建站的
 
@@ -93,24 +85,20 @@ updateColor();
 
 - [Hexo 博客 NexT 主题的安装使用](http://home.ustc.edu.cn/~liujunyan/blog/hexo-next-theme-config/)
 
-可以[查看这个站点的 Github 仓库](https://github.com/ruofancooh/blog)。
-
 ## 网络一线牵
 
 如果你发现博客内容有误，或者想和我成为朋友：
 
 QQ 号：$863^3-88811$
 
-**86 上山，见三爸而邀。** 我觉得这比纯数字好记，虽然需要在计算器上按一遍......
-
-如果在聊天过程中，你感到有一股审问的语气，我可能无意识地把你当成搜索引擎用了，对不起。
+86 上山，见三爸而邀。
 
 ## 真·网络一线牵
 
 可以说是单向友情链接：
 
-- [阮一峰的博客](https://www.ruanyifeng.com/blog/)：科技爱好者周刊
+- [阮一峰的博客](https://www.ruanyifeng.com/blog/)
 
-- [老生常谈](https://laosheng.top/)：新时代的互联网知识图谱
+- [老生常谈](https://laosheng.top/)
 
-- [涟波词集](https://kevinz.cn/lyricbook/?a=Kevinz)：学习用字
+- [涟波词集](https://kevinz.cn/lyricbook/?a=Kevinz)
