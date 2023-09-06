@@ -1,7 +1,7 @@
 ---
 title: Java - 00 - 准备
 date: 2023-09-04 21:31:47
-categories: 探索
+categories: Java
 ---
 
 - Windows 10 + VSCode 环境配置

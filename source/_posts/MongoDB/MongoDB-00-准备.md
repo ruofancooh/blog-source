@@ -1,7 +1,7 @@
 ---
 title: MongoDB - 00 - 准备
 date: 2023-09-05 17:51:00
-categories: 探索
+categories: MongoDB
 ---
 
 - Windows 10 环境配置

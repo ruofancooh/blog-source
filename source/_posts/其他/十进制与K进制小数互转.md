@@ -1,7 +1,6 @@
 ---
 title: 十进制与K进制小数互转
 date: 2023-8-19 20:56:00
-categories: 探索
 mathjax: true
 ---
 

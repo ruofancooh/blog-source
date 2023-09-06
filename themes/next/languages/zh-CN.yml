@@ -52,15 +52,15 @@ counter:
     one: 目前共计 1 个标签
     other: "目前共计 %d 个标签"
   categories:
-    zero: 暂无分类
-    one: 目前共计 1 个分类
-    other: "目前共计 %d 个分类<br/><a href='/blog/about/#博客内容及分类'>分类详解</a>"
+    zero: ​
+    one: ​
+    other: ​
   archive_posts:
-    zero: 暂无日志。
-    one: 目前共计 1 篇日志。
-    other: "目前共计 %d 篇日志。"
+    zero: ​
+    one: ​
+    other: ​
 state:
-  posts: 日志
+  posts: 笔记
   tags: 标签
   categories: 分类
 search:

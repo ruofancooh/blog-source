@@ -1,7 +1,7 @@
 ---
 title: Java - 01 - 一些问题与回答
 date: 2023-09-06 16:31:00
-categories: 探索
+categories: Java
 ---
 
 一些问题与回答

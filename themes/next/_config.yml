@@ -25,7 +25,7 @@ custom_file_path:
   #postMeta: source/_data/post-meta.njk
   #postBodyStart: source/_data/post-body-start.njk
   #postBodyEnd: source/_data/post-body-end.njk
-  footer: ./themes/next/source/_data/footer.njk
+  #footer: ./themes/next/source/_data/footer.njk
   #bodyEnd: source/_data/body-end.njk
   #variable: source/_data/variables.styl
   #mixin: source/_data/mixins.styl
@@ -51,10 +51,10 @@ darkmode: false
 # ---------------------------------------------------------------
 
 favicon:
-  small: /images/Akari.svg
-  medium: /images/Akari.svg
-  apple_touch_icon: /images/Akari.svg
-  safari_pinned_tab: /images/Akari.svg
+  small: 
+  medium: 
+  apple_touch_icon: 
+  safari_pinned_tab: 
   #android_manifest: /manifest.json
 
 # Custom Logo (Warning: Do not support scheme Mist)
@@ -64,7 +64,7 @@ custom_logo: #/uploads/custom-logo.png
 # See: https://creativecommons.org/about/cclicenses/
 creative_commons:
   # Available values: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | cc-zero
-  license: by-nc-sa
+  license: by-sa
   # Available values: big | small
   size: small
   sidebar: false
@@ -99,8 +99,8 @@ menu:
 
   home: / || fa fa-home
   #tags: /tags/ || fa fa-tags
-  categories: /categories/ || fa fa-th
-  archives: /archives/ || fa fa-archive
+  #categories: /categories/ || fa fa-th
+  #archives: /archives/ || fa fa-archive
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
@@ -142,7 +142,7 @@ sidebar:
 # Sidebar Avatar
 avatar:
   # Replace the default image and set the url here.
-  url: images/Akari.webp
+  url: 
   # If true, the avatar will be displayed in circle.
   rounded: false
   # If true, the avatar will be rotated with the cursor.
@@ -156,7 +156,7 @@ site_state: true
 # Key is the link label showing to end users.
 # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
 social:
-  GitHub: https://github.com/ruofancooh || fab fa-github
+  #GitHub: https://github.com/ruofancooh || fab fa-github
   #E-Mail: mailto:yourname@gmail.com || fa fa-envelope
   #Weibo: https://weibo.com/yourname || fab fa-weibo
   #Twitter: https://twitter.com/yourname || fab fa-twitter
@@ -247,18 +247,12 @@ read_more_btn: true
 
 # Post meta display settings
 post_meta:
-  item_text: true
-  created_at: true
+  item_text: false
+  created_at: false
   updated_at:
-    enable: true
+    enable: false
     another_day: true
   categories: true
-
-# Post wordcount display settings
-# Dependencies: https://github.com/next-theme/hexo-word-counter
-symbols_count_time:
-  separated_meta: true
-  item_text_total: false
 
 # Use icon instead of the symbol # to indicate the tag at the bottom of the post
 tag_icon: false
@@ -603,7 +597,7 @@ quicklink:
   # Home page and archive page can be controlled through home and archive options below.
   # This configuration item is independent of `enable`.
   home: true
-  archive: true
+  archive: false
 
   # Default (true) will initialize quicklink after the load event fires.
   delay: true
@@ -927,3 +921,9 @@ vendors:
 css: css
 js: js
 images: images
+
+
+
+symbols_count_time:
+  separated_meta: false
+  item_text_total: false

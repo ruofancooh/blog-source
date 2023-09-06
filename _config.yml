@@ -115,19 +115,19 @@ search:
   limit: 10
 
 
-symbols_count_time:
-  symbols: true
-  time: true
-  total_symbols: true
-  total_time: true
-  exclude_codeblock: false
-  awl: 2    
-  wpm: 275
-  suffix: "mins."
-
 # sitemap: 
   # path: sitemap.xml
 # baidusitemap:
   # path: baidusitemap.xml
 
   # url: https://hrfis.me/blog
+
+symbols_count_time:
+  symbols: false
+  time: false
+  total_symbols: false
+  total_time: false
+  exclude_codeblock: false
+  awl: 4
+  wpm: 275
+  suffix: "mins."

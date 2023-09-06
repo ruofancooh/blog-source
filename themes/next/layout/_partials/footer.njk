@@ -14,14 +14,10 @@
   {%- set copyright_year = date(null, 'YYYY') %}
   {% if theme.footer.since and theme.footer.since != copyright_year %}{{ theme.footer.since }} – {% endif %}
   <span itemprop="copyrightYear">{{ copyright_year }}</span>
-  
-  <span class="author" itemprop="copyrightHolder">{{ theme.footer.copyright or author }}</span>
   <span class="with-love">
     <i class="{{ theme.footer.icon.name }}"></i>
   </span>
-  <span>
-    <a id="cc" style="border-bottom:none;color:inherit;" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a><br/>
-  </span>
+  <span class="author" itemprop="copyrightHolder">{{ theme.footer.copyright or author }}</span>
 </div>
 
 {%- if config.symbols_count_time.total_symbols or config.symbols_count_time.total_time %}
