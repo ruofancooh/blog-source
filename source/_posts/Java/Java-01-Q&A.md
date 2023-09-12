@@ -1,5 +1,5 @@
 ---
-title: Java - 01 - 一些问题与回答
+title: Java - 01 - Q&A
 date: 2023-09-06 16:31:00
 categories: Java
 ---
@@ -60,5 +60,3 @@ public class Echo {
     }
 }
 ```
-
-## 怎么获取文件输入？
