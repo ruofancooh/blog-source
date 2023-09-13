@@ -21,8 +21,10 @@ date: 2023-05-27 14:48:35
 
 - [老生常谈](https://laosheng.top/)
 
+- [小时百科](https://wuli.wiki/online/index.html)
+
 - [涟波词集](https://kevinz.cn/lyricbook/?a=Kevinz)
 
 <div>
-<a style="float:right;" href="https://github.com/ruofancooh/blog-source/commits/main">站点修改历史</a>
+<a style="float:right;" href="https://github.com/ruofancooh/blog-source/commits/main">此站点修改历史</a>
 </div>
