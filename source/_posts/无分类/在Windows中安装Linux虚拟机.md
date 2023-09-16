@@ -79,6 +79,8 @@ categories: 无分类
 
 VM 的虚拟磁盘文件不好直接打开。有时候需要在虚拟机和真机之间互传文件，可以通过共享文件夹。
 
+（还可以通过[SSH](https://wangdoc.com/ssh/)和[Xftp](https://www.xshell.com/zh/free-for-home-school/)）
+
 在 VM Player 里打开虚拟机设置->选项->共享文件夹。
 
 我这里设置在`D:\VMachines\Shared`。

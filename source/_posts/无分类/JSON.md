@@ -4,36 +4,38 @@ date: 2023-05-26 18:21:43
 categories: 无分类
 ---
 
-JSON(JavaScript Object Notation，JavaScript 对象表示法)是一种轻量级的数据交换格式。
+JSON（JavaScript Object Notation，JavaScript 对象表示法）是一种轻量级的数据交换格式，可以看成是字符串。
+
+和 JavaScript 没什么关系，就像 JavaScript 和 Java 没什么关系一样。
 
 <!--more-->
 
-## json 与 js 对象互转
+## JSON 字符串 与 JS 对象互转
 
 ```js
-var json = "";
-var obj = {
+let jsonStr = "";
+let jsObj = {
   a: 1,
   b: 2,
   c: 3,
 };
-// js对象转json字符串
-json = JSON.stringify(obj);
+// JS 对象转 JSON 字符串
+jsonStr = JSON.stringify(jsObj);
 
-// json字符串转js对象
-obj = JSON.parse(json);
+// JSON 字符串转 JS 对象
+jsObj = JSON.parse(jsonStr);
 ```
 
-## 使用 Python 编解码 json
+## JSON 字符串与 Python 字典互转
 
 ```python
 import json
 
-dic = {'a': 1, 'b': 2, 'c': 3}
+py_dic = {'a': 1, 'b': 2, 'c': 3}
 
-# 编码
-string = json.dumps(dic)
+# Python 字典转 JSON 字符串
+json_str = json.dumps(py_dic)
 
-# 解码
-dic = json.loads(string)
+# JSON 字符串转 Python 字典
+py_dic = json.loads(json_str)
 ```
