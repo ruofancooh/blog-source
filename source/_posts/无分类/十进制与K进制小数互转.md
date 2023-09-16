@@ -2,6 +2,7 @@
 title: 十进制与K进制小数互转
 date: 2023-8-19 20:56:00
 mathjax: true
+categories: 无分类
 ---
 
 - K 转 10：和整数进制转换的方法一样
