@@ -30,3 +30,5 @@ MongoDBCompass
 cd /d D:\ProgramData\mongodb-win32-x86_64-windows-7.0.0\bin
 call mongod --dbpath D:\ProgramData\mongodb-win32-x86_64-windows-7.0.0\db --logpath D:\ProgramData\mongodb-win32-x86_64-windows-7.0.0\test.log --logappend
 ```
+
+脚本会 `call mongod`，停止则断开连接。
