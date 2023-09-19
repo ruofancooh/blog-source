@@ -66,4 +66,3 @@ System.arraycopy(arr1, 0, arr2, 0, arr1.length);
 
 `System.arraycopy()` 五个参数分别为：源数组、源数组的起始位置、目标数组、目标数组的起始位置、要复制的元素数量。
 
-（VSCode 扩展商店 的 `intellsmi.comment-translate` 可以把函数文档翻成中文）
