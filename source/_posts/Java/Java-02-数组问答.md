@@ -1,5 +1,5 @@
 ---
-title: Java - 02 - 数组Q&A
+title: Java - 02 - 数组问答
 date: 2023-09-13 19:55:00
 categories: Java
 ---
@@ -66,3 +66,26 @@ System.arraycopy(arr1, 0, arr2, 0, arr1.length);
 
 `System.arraycopy()` 五个参数分别为：源数组、源数组的起始位置、目标数组、目标数组的起始位置、要复制的元素数量。
 
+## 怎么根据值查找数组中某元素的索引？
+
+二分查找（返回的不一定是第一个）：
+
+```java
+int[] arr = { 1, 3, 2, 1, 2, 3 };
+int index = Arrays.binarySearch(arr, 3);
+System.out.println(index);// 5
+```
+
+如果用于 String 数组，是有风险的。因为
+
+```java
+int java.util.Arrays.binarySearch(Object[] a, Object key)
+```
+
+这个方法调用了
+
+```java
+int java.util.Arrays.binarySearch0(Object[] a, int fromIndex, int toIndex, Object key)
+```
+
+这个方法中使用的不是 `java.lang.String.equals()`，而是 `java.util.Calendar.compareTo()`。后者不能用于判断字符串的内容是否相等。
