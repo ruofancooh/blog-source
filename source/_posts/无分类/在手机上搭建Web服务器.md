@@ -205,9 +205,7 @@ Ngrok 是用 Go 语言写的，
 把 Termux 的`resolv.conf`文件复制到手机`/etc/`目录下就行了。
 
 - 这需要 root 权限。
-
 - **这会修改`system`分区**。如果手机升级，卸载面具前还要刷回原来的`system`；如果空间不够，可以删一些没用的系统预装软件数据，通常在`/system/app/`。
-
 - 如果没有 root 权限，可以尝试[在 Termux 上安装 Linux 发行版](#另外)。
 
 ### 使用 Ngrok

@@ -5,7 +5,6 @@ categories: MongoDB
 ---
 
 - 在 MongoDBCompass 里内嵌的 `_MONGOSH` 里不能运行 js 文件。
-
 - 可使用 MongoDB for VS Code 扩展。[文档](https://www.mongodb.com/docs/mongodb-vscode/)
 
 前者适合执行简短的命令，后者适合批处理。
@@ -26,13 +25,11 @@ categories: MongoDB
 
 1. 🍃 -> `Create New Playground`。
 2. 右上角 ▶️，会出现一个 `Playground Result` 窗口。
-
 3. 🍃 -> `CONNECTIONS` -> 主机名上右击 `REFRESH` 刷新。会多一个 `mongodbVSCodePlaygroundDB` 数据库。
 
    这是由刚才那个脚本 `playground-1.mongodb.js` 创建的。
 
 4. 写一个后缀为 **`.mongodb.js`** 的文件。
-
 5. 打开文件后即可 ▶️。
 
 ## 示例
