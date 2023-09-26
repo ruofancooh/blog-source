@@ -1,0 +1,56 @@
+---
+title: MongoDB - 04 - 聚合管道操作
+date: 2023-09-26 17:50:00
+categories: MongoDB
+---
+
+就是把多个操作组合到一起。
+
+<!--more-->
+
+`aggregate([])` 列表里可加多个 `{$操作符}`。
+
+## 按某个键的值排序输出
+
+- `$sort:{}`
+
+按 "\_id" 升序输出（-1 就是降序）：
+
+```js
+db.bookorder.aggregate([{ $sort: { _id: 1 } }]);
+```
+
+只是输出，并不会在原集合里排序。
+
+对于汉字之类的是按 Unicode，而不是拼音。[这个网站](https://symbl.cc/cn/)可以查 Unicode。
+
+## 输出文档个数限制
+
+- `$limit:`
+
+```js
+db.bookorder.aggregate([{ $sort: { _id: 1 } }, { $limit: 2 }]);
+```
+
+## 跳过对前 x 个文档的操作
+
+- `$skip:`
+
+```js
+db.bookorder.aggregate([{ $sort: { _id: 1 } }, { $skip: 3 }, { $limit: 2 }]);
+```
+
+## 按某个键分组，对某一分组的某一字段求和
+
+```js
+db.bookorder.aggregate([
+  {
+    $group: {
+      _id: "$publishingtime",
+      price: { $sum: "$price" },
+    },
+  },
+]);
+```
+
+对非数值类的求和为 0。
