@@ -9,6 +9,8 @@ categories: Java
 
 <!--more-->
 
+_这不是长久之计，建议查看[Java - 05 - Maven 环境配置](/blog/2023/Java-05-Maven环境配置/)。_
+
 ## 如何在 VSCode 里调 jar 包
 
 1. `Ctrl + Shift + P`
