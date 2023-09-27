@@ -111,14 +111,14 @@ package: com.example
 ## demo 目录的结构
 
 - src
-  - main\java\com\example\App.java
-  - test\java\com\example\AppTest.java
+  - main\\java\\com\\example\\App.java
+  - test\\java\\com\\example\\AppTest.java
 - target
-  - classes\com\example\App.class
-  - test-classes\com\example\AppTest.class
+  - classes\\com\\example\\App.class
+  - test-classes\\com\\example\\AppTest.class
 - pom.xml
 
-在 `ApTest.java` 里导入了 `junit`：
+在 `AppTest.java` 里导入了 `junit`：
 
 ```java
 package com.example;

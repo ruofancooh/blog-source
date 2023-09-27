@@ -1,12 +1,16 @@
 ---
-title: Hadoop - 04 - start-all.sh 注解
+title: Hadoop - 04 - 启动脚本注解
 date: 2023-09-26 17:45:00
 categories: Hadoop
 ---
 
-`$HADOOP_HOME/sbin/start-all.sh`
+`$HADOOP_HOME/sbin/`
 
 <!--more-->
+
+## start-all.sh
+
+对应 https://github.com/apache/hadoop/blob/branch-3.3.6/hadoop-common-project/hadoop-common/src/main/bin/start-all.sh
 
 <iframe
   src="https://github.com/apache/hadoop/blob/branch-3.3.6/hadoop-common-project/hadoop-common/src/main/bin/start-all.sh"
@@ -33,4 +37,8 @@ categories: Hadoop
 - 47：trap 设置信号处理程序
 - 52：取消对 INT 信号的捕获
 
-55-63 运行另两个启动脚本
+55-63 运行另两个启动脚本 `start-dfs.sh` 和 `start-yarn.sh`
+
+## start-dfs.sh
+
+对应 https://github.com/apache/hadoop/blob/branch-3.3.6/hadoop-hdfs-project/hadoop-hdfs/src/main/bin/start-dfs.sh
