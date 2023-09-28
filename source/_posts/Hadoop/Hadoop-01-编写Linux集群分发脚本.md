@@ -1,5 +1,5 @@
 ---
-title: Hadoop - 01 - Linux - 集群分发脚本配置
+title: Hadoop - 01 - 编写Linux集群分发脚本
 date: 2023-09-14 15:20:00
 categories: Hadoop
 ---

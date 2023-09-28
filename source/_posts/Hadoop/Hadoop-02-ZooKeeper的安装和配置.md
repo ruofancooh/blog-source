@@ -1,5 +1,5 @@
 ---
-title: Hadoop - 02 - ZooKeeper - 安装和配置
+title: Hadoop - 02 - ZooKeeper的安装和配置
 date: 2023-09-14 16:48:00
 categories: Hadoop
 ---

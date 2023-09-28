@@ -1,5 +1,5 @@
 ---
-title: Hadoop - 03 - Zookeeper - 基本概念
+title: Hadoop - 03 - Zookeeper中的基本概念
 date: 2023-09-19 13:50:00
 categories: Hadoop
 ---
