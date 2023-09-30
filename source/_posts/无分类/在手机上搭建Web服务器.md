@@ -2,6 +2,7 @@
 title: 在手机上搭建Web服务器
 date: 2023-7-19 13:45:00
 categories: 无分类
+permalink: UC/as/
 ---
 
 使用的主要工具：
@@ -19,7 +20,7 @@ categories: 无分类
 
 在模拟的 Linux 环境下运行 Ngrok **需要手机有 root 权限，仅用于解决[这个问题](#在开始之前解决-dns-问题)**。如果没有更好的，不使用 root 权限的方法的话，可以尝试[在 Termux 上安装 Linux 发行版](#另外)。
 
-[root 手机教程（使用 Magisk）](/blog/2023/root%E6%89%8B%E6%9C%BA%E6%95%99%E7%A8%8B%EF%BC%88%E4%BD%BF%E7%94%A8Magisk%EF%BC%89/)
+[root 手机教程（使用 Magisk）](/blog/UC/ar)
 
 ## Termux——模拟 Linux 环境
 

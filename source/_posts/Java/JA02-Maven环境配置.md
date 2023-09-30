@@ -1,7 +1,8 @@
 ---
-title: Java - 05 - Maven环境配置
+title: JA02 - Maven环境配置
 date: 2023-09-27 19:10:00
 categories: Java
+permalink: JA/02/
 ---
 
 Maven（行家）是一个工具，用于构建和管理 Java 工程。
@@ -160,6 +161,8 @@ D:\ProgramData\Java\jdk-17.0.8.101-hotspot\bin\java.exe^
 ```
 
 ## 测试调第三方库
+
+[fastjson2](https://github.com/alibaba/fastjson2)
 
 1. 在 `pom.xml` 里的一对 `<dependencies>` 标签之间增加：
 

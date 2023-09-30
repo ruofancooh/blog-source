@@ -1,7 +1,8 @@
 ---
-title: Hadoop - 05 - 编写ZooKeeper集群控制脚本
+title: HD04 - 编写ZooKeeper集群控制脚本
 date: 2023-09-28 13:30:00
 categories: Hadoop
+permalink: HD/04/
 ---
 
 在此之前，我重新修改了三台机器的主机名。

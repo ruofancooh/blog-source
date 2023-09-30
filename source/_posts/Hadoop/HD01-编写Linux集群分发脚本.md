@@ -1,7 +1,8 @@
 ---
-title: Hadoop - 01 - 编写Linux集群分发脚本
+title: HD01 - 编写Linux集群分发脚本
 date: 2023-09-14 15:20:00
 categories: Hadoop
+permalink: HD/01/
 ---
 
 改配置文件后，用 Xftp 一个一个传还是很麻烦的，于是写一个脚本用来同步文件。

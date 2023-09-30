@@ -2,6 +2,7 @@
 title: root手机教程（使用Magisk）
 date: 2023-7-8 22:24:00
 categories: 无分类
+permalink: UC/ar/
 ---
 
 你需要：

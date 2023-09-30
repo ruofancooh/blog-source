@@ -2,6 +2,7 @@
 title: 在Windows中安装Linux虚拟机
 date: 2023-08-11 20:10:00
 categories: 无分类
+permalink: UC/wl/
 ---
 
 - 真机系统：Windows 10

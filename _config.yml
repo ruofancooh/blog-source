@@ -102,10 +102,10 @@ theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repo: https://github.com/ruofancooh/blog
-  branch: gh-pages
+# deploy:
+#   type: git
+#   repo: https://github.com/ruofancooh/blog
+#   branch: gh-pages
 
 # hexo-generator-searchdb
 search:

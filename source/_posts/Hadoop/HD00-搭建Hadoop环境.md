@@ -1,7 +1,8 @@
 ---
-title: Hadoop - 00 - 搭建环境
+title: HD00 - 搭建Hadoop环境
 date: 2023-09-11 17:45:00
 categories: Hadoop
+permalink: HD/00/
 ---
 
 Hadoop 完全分布式模式环境配置：
@@ -17,13 +18,13 @@ Hadoop 完全分布式模式环境配置：
 
 装了三台机器，名：master、worker1、worker2。
 
-（[后来](/blog/2023/编写ZooKeeper服务器集群控制脚本)又改成 ubuntu101、ubuntu102、ubuntu103 了）
+（[后来](/blog/HD/04)又改成 ubuntu101、ubuntu102、ubuntu103 了）
 
 <!--more-->
 
 ## 在 Windows 中安装 Linux 虚拟机
 
-[教程](/blog/2023/在Windows中安装Linux虚拟机)
+[教程](/blog/UC/wl)
 
 - 其中，【安装 Ubuntu】的第 4 步，我选的还是默认的 DHCP，装好之后再改成静态 IP。
 - 第 11 步，要安装 OpenSSH server。
@@ -97,7 +98,7 @@ reboot;
 
 （还可以写一个集群分发脚本，不过暂时没必要）
 
-（[Hadoop - 01 - 编写 Linux 集群分发脚本](/blog/2023/Hadoop-01-编写Linux集群分发脚本)）
+（[HD01 - 编写 Linux 集群分发脚本](/blog/HD/01)）
 
 把改好的文件存真机上一份，直接用 Xftp 传（如果传输失败，就修改文件权限）。
 

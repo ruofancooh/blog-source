@@ -1,7 +1,8 @@
 ---
-title: Hadoop - 02 - ZooKeeper的安装和配置
+title: HD02 - ZooKeeper的安装和配置
 date: 2023-09-14 16:48:00
 categories: Hadoop
+permalink: HD/02/
 ---
 
 ZooKeeper，顾名思义，就是管动物园的。因为 Hadoop 的形象是大象，名字是它的兄弟起的（Hadoop 是其开发者儿子的玩具名），加上 Hadoop 许多周边项目的形象都是动物，ZooKeeper 就是协调它们工作的。

@@ -2,6 +2,7 @@
 title: 让博客commit前的工作更简单
 date: 2023-08-27 20:38:00
 categories: 无分类
+permalink: UC/e0/
 ---
 
 起因是，我是把博客代码分两个仓库存的。需要做很多重复的工作。
@@ -48,6 +49,6 @@ xcopy public ..\blog /s /e
 call npx hexo clean
 ```
 
-再建一个专门存 bat 的文件夹，把它添加到环境变量 PATH。这样在任一文件夹下都可以做第 1-6 步了。
+再建一个专门存 bat 的文件夹，把它添加到环境变量 Path。这样在任一文件夹下都可以做第 1-6 步了。
 
 commit 我用的是 GitHub Desktop，暂时没有换的必要。
