@@ -3,6 +3,10 @@ title: 关于
 date: 2023-05-27 14:48:35
 ---
 
+- [分类页](/blog/categories)
+
+- [归档页](/blog/archives)
+
 - [Github Pages 使用入门](https://docs.github.com/zh/pages/getting-started-with-github-pages)
 
 - [Hexo 文档](https://hexo.io/zh-cn/docs/)
@@ -25,6 +29,5 @@ date: 2023-05-27 14:48:35
 
 - [涟波词集](https://kevinz.cn/lyricbook/?a=Kevinz)
 
-<div>
-<a style="float:right;" href="https://github.com/ruofancooh/blog-source/commits/main">此站点修改历史</a>
-</div>
+- [笔记修改历史](https://github.com/ruofancooh/blog-source/commits/main)
+
