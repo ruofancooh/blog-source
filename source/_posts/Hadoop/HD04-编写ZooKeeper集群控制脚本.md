@@ -99,3 +99,21 @@ zks stop ubuntu102
 ## 客户端的
 
 就是把自带的脚本 `zkCli.sh` 再封装一层，取名 `zkc.sh`：
+
+```sh
+#!/bin/bash
+
+ZK_HOME="/usr/local/zookeeper-3.8.2"
+ZKC_SH="$ZK_HOME/bin/zkCli.sh"
+servers="ubuntu101 ubuntu102 ubuntu103"
+
+"$ZKC_SH" -server $(hostname)
+```
+
+同样加执行权限，去后缀并移动位置。
+
+### 示例
+
+```sh
+zkc
+```
