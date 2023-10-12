@@ -5,7 +5,10 @@ categories: Hadoop
 permalink: HD/05/
 ---
 
-[HD04](/blog/HD/04)把 ZooKeeper 自带的启动脚本封装了一层，但是不影响这一篇。
+r3.8.2
+
+- [zookeeper CLI](https://zookeeper.apache.org/doc/r3.8.2/zookeeperCLI.html)
+- [zookeeper Server API](https://zookeeper.apache.org/doc/r3.8.2/apidocs/zookeeper-server/index.html)
 
 <!--more-->
 
@@ -14,8 +17,6 @@ permalink: HD/05/
 前提是服务端正常（半数以上节点存活），在启动了某一台存活机器上的客户端后的操作：
 
 见 `$ZK_HOME/docs/zookeeperCLI.html`
-
-https://zookeeper.apache.org/doc/r3.8.2/zookeeperCLI.html
 
 <iframe
   src="https://zookeeper.apache.org/doc/r3.8.2/zookeeperCLI.html"
@@ -65,7 +66,8 @@ https://zookeeper.apache.org/doc/r3.8.2/zookeeperCLI.html
    ```
 
 4. pom.xml 里的 `<maven.compiler.source>` 和 `<maven.compiler.target>` 的 JDK 版本从 `1.8` 改成 `17`。
-5. `src/main/resources` 里加 `log4j.properties` 配置文件：
+5. `mvn install`
+6. `src/main/resources` 里加 `log4j.properties` 配置文件：
 
    ```properties
    log4j.rootLogger=INFO, stdout
@@ -78,9 +80,9 @@ https://zookeeper.apache.org/doc/r3.8.2/zookeeperCLI.html
    log4j.appender.logfile.layout.ConversionPattern=%d %p [%c] - %m%n
    ```
 
-6. 在 `src/test/java` 下建 `zkClient.java`
+7. 在 `src/test/java` 下建 `zkClient.java`
 
-### 创建 ZK 客户端
+### 创建 Znode
 
 ```java
 import java.io.IOException;

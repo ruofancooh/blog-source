@@ -49,9 +49,10 @@ Windows 10 + VSCode 环境配置。
 `@ext:vscjava.vscode-maven`：
 
 ```json
-"maven.settingsFile": "%MAVEN_HOME%\\conf\\settings.xml",
-"maven.executable.path": "%MAVEN_HOME%\\bin\\mvn.cmd",
-"maven.executable.preferMavenWrapper": false
+"maven.settingsFile": "D:\\ProgramData\\apache-maven-3.9.4\\conf\\settings.xml",
+"maven.executable.path": "D:\\ProgramData\\apache-maven-3.9.4\\bin\\mvn.cmd",
+"maven.executable.preferMavenWrapper": false,
+"java.configuration.maven.globalSettings": "D:\\ProgramData\\apache-maven-3.9.4\\conf\\settings.xml"
 ```
 
 MavenWrapper 先不用。
