@@ -1,5 +1,5 @@
 ---
-title: HD05 - ZooKeeper客户端的Shell命令和JavaAPI操作
+title: HD05 - ZooKeeper的Shell命令和JavaAPI操作
 date: 2023-10-11 19:45:00
 categories: Hadoop
 permalink: HD/05/
@@ -65,7 +65,7 @@ r3.8.2
    </dependencies>
    ```
 
-4. pom.xml 里的 `<maven.compiler.source>` 和 `<maven.compiler.target>` 的 JDK 版本从 `1.8` 改成 `17`。
+4. 适当修改 pom.xml 里的 `<maven.compiler.source>` 和 `<maven.compiler.target>` 的 JDK 版本。
 5. `mvn install`
 6. `src/main/resources` 里加 `log4j.properties` 配置文件：
 
@@ -199,6 +199,129 @@ public class zkClient {
     public void test() throws KeeperException, InterruptedException {
         Stat sta = zkClient.exists("/fruit", false);
         System.out.println(null == sta ? "不存在" : "存在");
+    }
+}
+```
+
+### 服务器动态上下线案例
+
+暂时不知道作用
+
+`DistributeClient.java`：
+
+```java
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.zookeeper.KeeperException;
+import org.apache.zookeeper.WatchedEvent;
+import org.apache.zookeeper.Watcher;
+import org.apache.zookeeper.ZooKeeper;
+
+public class DistributeClient {
+
+    private String connectString = "ubuntu101:2181,ubuntu102:2181,ubuntu103:2181";
+    private int sessionTimeout = 100000;
+    private ZooKeeper zk;
+
+    public static void main(String[] args) throws IOException, KeeperException, InterruptedException {
+        DistributeClient client = new DistributeClient();
+
+        // 1 获取ZK连接
+        client.getConnect();
+        // 2 监听服务器下/servers下面子节点的增加和删除
+        client.getServerList();
+
+        // 3 相关业务逻辑（主要是添加延迟函数）
+        client.buisiness();
+    }
+
+    private void buisiness() throws InterruptedException {
+        Thread.sleep(Long.MAX_VALUE);
+    }
+
+    private void getServerList() throws KeeperException, InterruptedException {
+        // 第二个参数设置为true,监听走的是getConnect下的process方法。
+        List<String> children = zk.getChildren("/servers", true);
+        // 循环取出每一个节点对应的主机名称
+        ArrayList<Object> servers = new ArrayList<>();// 存储servers下的所有节点名称
+        for (String child : children) {
+            byte[] data = zk.getData("/servers/" + child, false, null);
+            servers.add(new String(data));
+        }
+        // 打印
+        System.out.println(servers);
+    }
+
+    private void getConnect() throws IOException {
+        zk = new ZooKeeper(connectString, sessionTimeout, new Watcher() {
+            @Override
+            public void process(WatchedEvent watchedEvent) {
+                // 因为注册一次，只能监听一次，所以需要在监听方法里面再注册一下
+                try {
+                    getServerList();
+                } catch (KeeperException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+}
+```
+
+`DistributeServer.java`：
+
+```java
+import java.io.IOException;
+
+import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.KeeperException;
+import org.apache.zookeeper.WatchedEvent;
+import org.apache.zookeeper.Watcher;
+import org.apache.zookeeper.ZooDefs;
+import org.apache.zookeeper.ZooKeeper;
+
+public class DistributeServer {
+
+    private String connectString = "ubuntu101:2181,ubuntu102:2181,ubuntu103:2181";
+    private int sessionTimeout = 2000;
+    private ZooKeeper zk;
+
+    public static void main(String[] args) throws IOException, KeeperException, InterruptedException {
+
+        DistributeServer server = new DistributeServer();
+        // 1. 连接zookeeper集群
+        server.getConnect();
+
+        // 2. 向集群进行注册（也就是创建服务器的路径）
+        server.regist(args[0]);
+
+        // 3. 业务逻辑的代码
+        // 添加延迟函数，防止程序结束了，看不到节点的相关变化
+        server.business();
+    }
+
+    private void business() throws InterruptedException {
+        Thread.sleep(Long.MAX_VALUE);
+    }
+
+    private void regist(String hostname) throws KeeperException, InterruptedException {
+        // znode 将在客户端断开连接时被删除，并且其名称将附加单调递增的数字
+        String create = zk.create("/servers/" + hostname, hostname.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE,
+                CreateMode.EPHEMERAL_SEQUENTIAL);
+        System.out.println(hostname + " is online");
+    }
+
+    private void getConnect() throws IOException {
+        zk = new ZooKeeper(connectString, sessionTimeout, new Watcher() {
+            @Override
+            public void process(WatchedEvent watchedEvent) {
+
+            }
+        });
     }
 }
 ```

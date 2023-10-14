@@ -57,7 +57,7 @@ r3.3.6
     </dependencies>
    ```
 
-4. pom.xml 里的 `<maven.compiler.source>` 和 `<maven.compiler.target>` 的 JDK 版本从 `1.8` 改成 `17`。
+4. 适当修改 pom.xml 里的 `<maven.compiler.source>` 和 `<maven.compiler.target>` 的 JDK 版本。[Hadoop 支持的 Java 版本](https://cwiki.apache.org/confluence/display/HADOOP/Hadoop+Java+Versions)
 5. `mvn install`
 6. `src/main/resources` 里加 `log4j.properties` 配置文件：
 
@@ -126,7 +126,7 @@ public class HdfsClient {
     }
 
     @AfterAll
-    public void exit() throws IOException {
+    public void close() throws IOException {
         fs.close();
     }
 
@@ -219,4 +219,159 @@ public class HdfsClient {
 
 ### 在物理机上编程打包，传到虚拟机上执行（ubuntu 文件系统 <-> HDFS）
 
-### 还可以用 VSCode 连接虚拟机，直接在虚拟机的文件系统上编程
+都能执行成功。就是把上面的注解去了，文件路径改了，然后加了一个 Main.java。
+
+`HdfsClient.java`：
+
+```java
+package test.hrf.hd;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
+import org.apache.hadoop.fs.FSDataOutputStream;
+import org.apache.hadoop.fs.FileStatus;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.FileUtil;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IOUtils;
+
+public class HdfsClient {
+
+    Configuration conf = new Configuration();
+    FileSystem fs = null;
+
+    public void connect() throws IOException, URISyntaxException, InterruptedException {
+        fs = FileSystem.get(new URI("hdfs://ubuntu101:9820"), conf, "rc");
+    }
+
+    public void close() throws IOException {
+        fs.close();
+    }
+
+    public void testPrint() {
+        System.out.println("1234567");
+    }
+
+    public void testMkdir() throws IllegalArgumentException, IOException {
+        fs.mkdirs(new Path("/test/path"));
+    }
+
+    public void testMkfile() throws IllegalArgumentException, IOException {
+        Path filePath = new Path("/test/1.txt");
+        FSDataOutputStream outputStream = fs.create(filePath);
+        outputStream.writeUTF("你好abc\n");
+        outputStream.close();
+    }
+
+    public void testReadFile() throws UnsupportedOperationException, IOException {
+        Path filePath = new Path("/test/1.txt");
+        FSDataInputStream inputStream = fs.open(filePath);
+        IOUtils.copyBytes(inputStream, System.out, 4096, false);
+        inputStream.close();
+    }
+
+    public void testDeleteFile() throws IOException {
+        Path filePath = new Path("/test");
+        fs.delete(filePath, true);
+    }
+
+    public void testUploadFile() throws IOException {
+        Path src = new Path("琵琶行.txt");
+        Path dst = new Path("/test/琵琶行.txt");
+        fs.copyFromLocalFile(false, true, src, dst);
+    }
+
+    public void testUploadFile1() throws IOException {
+        File src = new File("琵琶不行.txt");
+        Path dst = new Path("/test/琵琶不行.txt");
+        FileUtil.copy(src, fs, dst, false, conf);
+    }
+
+    public void testDownloadFile() throws IOException {
+        Path src = new Path("/test/琵琶行.txt");
+        Path dst = new Path("琵琶行1.txt");
+        fs.copyToLocalFile(src, dst);
+    }
+
+    public void testDownloadFile1() throws IOException {
+        Path src = new Path("/test/琵琶行.txt");
+        File dst = new File("琵琶行2.txt");
+        FileUtil.copy(fs, src, dst, false, conf);
+    }
+
+    // 列出指定目录下的文件和子目录信息，不深入子目录
+    public void testListStatus() throws FileNotFoundException, IOException {
+        Path path = new Path("/");
+        FileStatus[] fileStatuses = fs.listStatus(path);
+        for (FileStatus fileStatus : fileStatuses) {
+            System.out.println(fileStatus);
+        }
+    }
+
+    public void testCopyFileBetweenHDFS() throws IOException {
+        Path src = new Path("/test/琵琶行.txt");
+        Path dst = new Path("/test/1/琵琶可行.txt");
+        FileUtil.copy(fs, src, fs, dst, false, false, conf);
+    }
+
+    public void testRename() throws IOException {
+        Path src = new Path("/test/1/琵琶可行.txt");
+        Path dst = new Path("/test/1/琵琶不可行.txt");
+        fs.rename(src, dst);
+    }
+}
+```
+
+`Main.java`：
+
+测试用的先这么写。
+
+```java
+package test.hrf.hd;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+
+public class Main {
+    public static void main(String[] args) throws IOException, URISyntaxException, InterruptedException {
+        HdfsClient client = new HdfsClient();
+        client.connect();
+        if (args[0].equals("t0")) {
+            client.testPrint();
+        } else if (args[0].equals("testMkdir")) {
+            client.testMkdir();
+        } else if (args[0].equals("testMkfile")) {
+            client.testMkfile();
+        } else if (args[0].equals("testReadFile")) {
+            client.testReadFile();
+        } else if (args[0].equals("testDeleteFile")) {
+            client.testDeleteFile();
+        } else if (args[0].equals("testUploadFile")) {
+            client.testUploadFile();
+        } else if (args[0].equals("testUploadFile1")) {
+            client.testUploadFile1();
+        } else if (args[0].equals("testDownloadFile")) {
+            client.testDownloadFile();
+        } else if (args[0].equals("testDownloadFile1")) {
+            client.testDownloadFile1();
+        } else if (args[0].equals("testListStatus")) {
+            client.testListStatus();
+        } else if (args[0].equals("testCopyFileBetweenHDFS")) {
+            client.testCopyFileBetweenHDFS();
+        } else if (args[0].equals("testRename")) {
+            client.testRename();
+        } else {
+            System.out.println("456");
+        }
+        client.close();
+    }
+}
+```
+
+### 或许还可以用 VSCode 连接虚拟机，直接在虚拟机的文件系统上编程

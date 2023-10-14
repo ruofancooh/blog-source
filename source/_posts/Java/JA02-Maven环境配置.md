@@ -198,11 +198,6 @@ D:\ProgramData\Java\jdk-17.0.8.101-hotspot\bin\java.exe^
    }
    ```
 
-3. 改`pom.xml`里的 JDK 版本：
-
-   ```xml
-   <maven.compiler.source>17</maven.compiler.source>
-   <maven.compiler.target>17</maven.compiler.target>
-   ```
+3. 适当修改`pom.xml`里的 JDK 版本。
 
 4. ▶️
