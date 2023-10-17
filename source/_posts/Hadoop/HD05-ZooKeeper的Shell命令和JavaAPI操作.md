@@ -205,7 +205,12 @@ public class zkClient {
 
 ### 服务器动态上下线案例
 
-暂时不知道作用
+模拟服务器动态上下线：
+
+1. 提前创建 `/servers` 节点
+2. - DistributeClient 监听服务器上下线（监听`/servers`下子路径的变化）
+   - DistributeServer 模拟服务器上下线（创建/删除`/servers/hostname`）
+3. 上/下线后的业务逻辑
 
 `DistributeClient.java`：
 

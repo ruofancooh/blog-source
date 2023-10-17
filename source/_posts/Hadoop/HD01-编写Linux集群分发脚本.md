@@ -7,15 +7,13 @@ permalink: HD/01/
 
 改配置文件后，用 Xftp 一个一个传还是很麻烦的，于是写一个脚本用来同步文件。
 
-不管那么多，先能跑起来就行。毕竟连前置课程《Linux 操作系统》都没上，因为教学计划改变了。
-
 <!--more-->
 
 ## rsync
 
 远程同步文件用的。[rsync 用法教程](https://www.ruanyifeng.com/blog/2020/08/rsync.html)
 
-我使用的 Ubuntu 默认已经安装了 rsync。直接在根目录建一个文件夹`test`，里面再套几个文件夹和文件，然后执行：
+Ubuntu 默认已经安装了 rsync。直接在根目录建一个文件夹`test`，里面再套几个文件夹和文件，然后执行：
 
 ```sh
 sudo rsync -av /test worker1:/
@@ -23,7 +21,7 @@ sudo rsync -av /test worker1:/
 
 把`/test`文件夹整个复制到 worker1 的根目录。
 
-显示权限拒绝，说明我的 SSH 还没有配置好。[SSH 教程](https://wangdoc.com/ssh/key#ssh-copy-id-%E5%91%BD%E4%BB%A4%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0%E5%85%AC%E9%92%A5)
+显示权限拒绝，说明我还没有配置好 SSH。[SSH 教程](https://wangdoc.com/ssh/key#ssh-copy-id-%E5%91%BD%E4%BB%A4%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0%E5%85%AC%E9%92%A5)
 
 ## 改 SSHD 配置文件
 
@@ -93,7 +91,7 @@ done
 
 ### 问题
 
-由于我前面没有完全跟着老师的文档配置，导致：
+我没有完全跟着老师的文档配置，导致：
 
 - master 连不上。
 - 连 worker1 和 worker2 总共要输入 4 次 root 密码。
@@ -107,7 +105,7 @@ done
 
 - 把脚本里的 master 主机名删了，只在 master 放一份脚本。弊端是后续只能从 master 同步到另外两台，修改配置时需要在 master 修改。
 
-但是输 4 次密码暂时不知道解决方法。
+输 4 次密码暂时不知道解决方法。
 
 ## 运行分发脚本在 master：
 

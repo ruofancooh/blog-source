@@ -13,8 +13,8 @@ Hadoop 完全分布式模式环境配置：
 | **虚拟机容器**                                                       | VMware Workstation 17.0.2 Player（免费的，但是不支持克隆虚拟机，需要手动装另外两台） |
 | **虚拟机系统**                                                       | Ubuntu 22.04.3 server                                                                |
 | **主角**                                                             | Hadoop 3.3.6                                                                         |
-| **SSH 连接虚拟机用的，不装直接操作也可以，装了比较方便可以复制粘贴** | Xshell 7 （可用 VSCode 里调用系统的 cmd 代替）                                       |
-| **虚拟机与物理机互传文件用的**                                       | Xftp 7 （可用 VSCode 插件 `suntobright.vscode-sftp` 代替）                           |
+| **SSH 连接虚拟机用的，不装直接操作也可以，装了比较方便可以复制粘贴** | Xshell 7 （可用 VSCode 里调用系统的 cmd 代替，也可以复制粘贴）                       |
+| **虚拟机与物理机互传文件用的**                                       | Xftp 7                                                                               |
 
 装了三台机器，名：master、worker1、worker2。（[后来](/blog/HD/04)又改成 ubuntu101、ubuntu102、ubuntu103 了）
 
