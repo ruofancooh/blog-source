@@ -91,7 +91,7 @@ basic_backoff_time = 2 * tau  # 往返时延，基本退避时间
 for retransmit_count in range(1, 17):
     print(f"第{retransmit_count}次重传")
     k = min(retransmit_count, 10)
-    r = random.randint(0, 2**k)
+    r = random.randint(0, 2**k - 1)
     print(f"退避时间：{r*basic_backoff_time}")
 ```
 
