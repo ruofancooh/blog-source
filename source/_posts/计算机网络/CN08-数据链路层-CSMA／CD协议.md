@@ -7,7 +7,7 @@ mathjax: true
 mermaid: true
 ---
 
-- CSMA/CD：Carrier Sense Multiple Access with Collision Detection，带冲突检测的载波侦听多路访问协议。以太网用的。
+- CSMA/CD：Carrier Sense Multiple Access with Collision Detection，载波监听多址接入/碰撞检测协议。以太网用的。
   - 使用曼彻斯特编码（中心始终跳变，01 为跳变方向不同），频带宽度比基带信号增加一倍。
   - 多点接入：多台计算机连在一根总线上：多个人在同一个房间。
   - 载波（载体）监听：每个站都不停地检测信道：在说话前和说话中听别人有没有说话。
@@ -20,8 +20,19 @@ mermaid: true
   - 以太网的信道利用率
   - 争用期规定为 $51.2 \mathrm{\mu s}$，如果在这段时间内没有检测到碰撞，后续就不会碰撞。
   - 帧间最小间隔为 $9.6 \mathrm{\mu s}$
+  - 最短帧长 = 争用期 × 带宽。
 
 <!--more-->
+
+## 名词辨析：CSMA 与 CDMA
+
+CS 是载波监听（Carrier Sense），CD 是码分（Code Division），MA 都是多址接入（Multiple Access）。
+
+后者是码分多址复用。
+
+而 CSMA/CD 的 CD 是碰撞检测（Collision Detection）。
+
+CSMA/CD 用于有线网，还有一个 CSMA/CA（Collision Avoidance，碰撞避免），用于无线网。
 
 ## CSMA/CD 协议工作流程
 
@@ -105,4 +116,4 @@ $$
 \mathrm{s = \frac{bit}{bit/s} = } \frac{L}{C} = \frac{帧长}{数据发送速率}
 $$
 
-鸽
+拖
