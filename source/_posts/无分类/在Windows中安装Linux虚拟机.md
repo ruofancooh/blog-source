@@ -76,6 +76,16 @@ permalink: UC/wl/
 
 输入用户名和密码登录 Ubuntu。注意输入密码默认是不回显的。
 
+## 设置时区
+
+```sh
+sudo dpkg-reconfigure tzdata
+```
+
+选择 `Asia`
+
+再选择 `Shanghai`
+
 ## 设置虚拟机与真机的共享文件夹
 
 VM 的虚拟磁盘文件不好直接打开。有时候需要在虚拟机和真机之间互传文件，可以通过共享文件夹。
