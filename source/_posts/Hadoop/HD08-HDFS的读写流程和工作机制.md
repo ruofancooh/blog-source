@@ -20,7 +20,7 @@ HDFS 的读写流程和工作机制
 
 当寻址时间是传输时间的 1% 时，状态最佳。
 
-## 写数据
+## 写数据的流程
 
 创建一个文件，将数据写入文件，关闭文件。
 
@@ -31,8 +31,6 @@ hadoop fs -put ./voice.wav /app
 如果是一个 200MB 的文件，会被分为 128MB 的一块和 72MB 的一块。
 
 distributed：分布式
-
-### 写数据的流程
 
 ```mermaid
 sequenceDiagram
@@ -77,8 +75,45 @@ sequenceDiagram
 7. Client 向 DataNode1 发送第一个数据块的多个数据包（Packet），DataNode1 收到之后发给 DataNode2……类似路由器分组转发，但是保存了数据。
 8. 重复步骤 3 到 7，上传第二、第三……个数据块直到传输完成，Client 关闭连接。
 
-总结：Client 和 NameNode 问答两次（是否可以上传，DN 的地址），和 DataNode 问答一次（建立通信管道），之后开始分包传数据。
+总结：Client 和 NameNode 问答两次（是否可以上传，DN 的地址），和 DataNode 问答一次（建立通信管道），之后开始分包传数据。传完一个块后从 Client 和 NameNode 的第二次问答处开始循环。
 
-### 副本放置策略与机架感知
+## 读数据的流程
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant NN as NameNode
+    participant DN1 as 某 DataNode
+
+    C->>NN: 1
+    NN-->>C: 2
+    C->>DN1: 3
+    DN1-->>C: 4
+```
+
+1. C 问 NN，请求下载文件。
+2. NN 回答数据块所在的 DN，按与客户端的网络拓扑距离排序。
+3. C 选一台最近的 DN 请求读数据。
+4. DN 给 C 分包传数据。
+5. C 接收。接收完一个块后，看情况再向 NN 请求下一个块所在的 DN 地址（重复 1 到 4 步）。
+
+总结：C 和 NN 问答一次，开始分包传数据，传完一个块后重复前面的操作。
+
+散落在各个服务器上的碎片，构成了一个赛博你。一个块也可能存有多个副本，副本的数量叫冗余度，所以可能构成多个赛博你。
+
+## 副本放置策略、机架感知、网络拓扑距离、PineLine
 
 机架（rack）是放机器的架子，是连接到同一个交换机的物理存储节点的集合。
+
+Hadoop 集群由多个机架组成。
+
+副本放置策略，就是策划把数据块分别放置到哪个机架的哪个机器上。
+
+机架感知（RackAware）
+
+## NN 和 2NN 的工作机制
+
+1. 启动 NN，读 EditLog 和 FsImage 到内存里。（第一次格式化 HDFS 并启动 NN 时会创建）
+2. C 向 NN 发写请求。
+
+## DN 的工作机制
