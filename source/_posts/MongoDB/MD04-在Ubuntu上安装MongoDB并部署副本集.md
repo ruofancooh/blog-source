@@ -113,3 +113,7 @@ CRUD 就是增删改查 Create、Read、Update、Delete。
 ## Replication Methods
 
 [Replication Methods](https://www.mongodb.com/docs/manual/reference/method/js-replication/)
+
+## 另外
+
+还有一种【分片集群】，但是需要电脑性能很强。这里不部署。

@@ -113,7 +113,27 @@ Hadoop 集群由多个机架组成。
 
 ## NN 和 2NN 的工作机制
 
-1. 启动 NN，读 EditLog 和 FsImage 到内存里。（第一次格式化 HDFS 并启动 NN 时会创建）
+[HDFS 的 EditLog 和 FsImage 文件](/blog/HD/09/)
+
+- NN：记录 EditLog，滚动正在写的（inprogress）EditLog
+- 2NN：向 NN 请求（是否/执行）创建 CheckPoint，当 CheckPoint 触发时，合并 EditLog 为 FsImage
+
+1. 启动 NN，加载 EditLog 和 FsImage 到内存里（第一次格式化 HDFS 并启动 NN 时会创建），同时 2NN 加载 FsImage 到内存里。
 2. C 向 NN 发写请求。
+3. NN 写日志。
+4. 2NN 请求创建 CheckPoint。
+5. NN 滚动日志。
+6. NN 把日志复制到 2NN，2NN 加载日志到内存里。
+7. 当检查点到时，2NN 合并日志和镜像文件为新的镜像文件 fsimage.chkpoint。
+8. 2NN 把新的镜像文件复制到 NN，NN 对其重命名为 fsimage。
 
 ## DN 的工作机制
+
+- DN 启动后向 NN 注册。
+- DN 每隔一个 `dfs.blockreport.intervalMsec` 时间向 NN 上报所有数据块信息。
+- DN 每隔一个 `dfs.datanode.directoryscan.interval` 时间扫描本地的数据块信息。
+- DN 每隔一个 `dfs.heartbeat.interval` 时间向 NN 发送心跳信息。
+
+NN 判定 DN 死亡的超时时长 = 2 × `dfs.heartbeat.recheck-interval` + 10 × `dfs.heartbeat.interval`
+
+上面的参数可以在 `$HADOOP_HOME/share/hadoop/hdfs/hadoop-hdfs-3.3.6.jar` 里的 `hdfs-default.xml` 里查看。其参数可以被 `$HADOOP_HOME/etc/hadoop/hdfs-site.xml` 里设置的同名参数覆盖。
