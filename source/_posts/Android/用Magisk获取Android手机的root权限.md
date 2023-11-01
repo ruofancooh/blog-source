@@ -1,8 +1,8 @@
 ---
 title: 用Magisk获取Android手机的root权限
 date: 2023-7-8 22:24:00
-categories: 无分类
-permalink: UC/ar/
+categories: Android
+permalink: AO/magisk-root/
 ---
 
 你需要：

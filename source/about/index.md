@@ -7,6 +7,8 @@ date: 2023-05-27 14:48:35
 
 - [归档页](/blog/archives)
 
+- [写作只能塑造真实的自己](https://github.com/Macin20/why-we-write)
+
 - [Github Pages 使用入门](https://docs.github.com/zh/pages/getting-started-with-github-pages)
 
 - [Hexo 文档](https://hexo.io/zh-cn/docs/)
@@ -30,4 +32,3 @@ date: 2023-05-27 14:48:35
 - [涟波词集](https://kevinz.cn/lyricbook/?a=Kevinz)
 
 - [笔记修改历史](https://github.com/ruofancooh/blog-source/commits/main)
-

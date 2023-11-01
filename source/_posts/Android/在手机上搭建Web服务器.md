@@ -1,8 +1,8 @@
 ---
 title: 在手机上搭建Web服务器
 date: 2023-7-19 13:45:00
-categories: 无分类
-permalink: UC/as/
+categories: Android
+permalink: AO/termux-flask-ngrok/
 ---
 
 使用的主要工具：

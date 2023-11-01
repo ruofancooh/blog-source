@@ -1,8 +1,8 @@
 ---
 title: 用GDB查看变量内存
 date: 2023-8-23 16:30:00
-categories: 无分类
-permalink: UC/gd/
+categories: 计算机组成原理
+permalink: CO/gdb/
 ---
 
 起因是想验证浮点数的存储方式。
