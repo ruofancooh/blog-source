@@ -18,8 +18,6 @@ permalink: HD/09/
 
 执行下面两个命令都不需要启动集群（dfs）。
 
-且 `hadoop fs` 与 `hdfs` 命令效果相同。
-
 ## 用 oev 命令转换 EditLog 为 xml
 
 ```sh
