@@ -1,5 +1,5 @@
 ---
-title: HD09 - HDFS的EditLog和FsImage文件
+title: HD09 - HDFS 的 EditLog 和 FsImage 文件
 date: 2023-10-30 22:01:00
 categories: Hadoop
 permalink: HD/09/

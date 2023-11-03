@@ -1,5 +1,5 @@
 ---
-title: HD05 - ZooKeeper的Shell命令和JavaAPI操作
+title: HD05 - ZooKeeper 的 Shell 命令和 Java API 操作
 date: 2023-10-11 19:45:00
 categories: Hadoop
 permalink: HD/05/

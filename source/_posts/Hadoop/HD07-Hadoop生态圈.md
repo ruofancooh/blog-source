@@ -1,5 +1,5 @@
 ---
-title: HD07 - Hadoop生态圈
+title: HD07 - Hadoop 生态圈
 date: 2023-10-17 11:37:00
 categories: Hadoop
 permalink: HD/07/

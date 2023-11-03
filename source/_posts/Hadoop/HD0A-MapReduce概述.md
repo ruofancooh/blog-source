@@ -1,5 +1,5 @@
 ---
-title: HD0A - MapReduce概述
+title: HD0A - MapReduce 概述
 date: 2023-11-01 21:47:00
 categories: Hadoop
 permalink: HD/0A/

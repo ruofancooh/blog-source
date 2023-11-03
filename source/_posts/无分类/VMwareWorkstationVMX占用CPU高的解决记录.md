@@ -1,5 +1,5 @@
 ---
-title: VMware Workstation VMX占用CPU高的解决记录
+title: VMware Workstation VMX 占用 CPU 高的解决记录
 date: 2023-10-30 22:00:00
 categories: 无分类
 permalink: UC/b0/

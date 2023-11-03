@@ -1,5 +1,5 @@
 ---
-title: HD02 - ZooKeeper的安装和配置
+title: HD02 - ZooKeeper 的安装和配置
 date: 2023-09-14 16:48:00
 categories: Hadoop
 permalink: HD/02/

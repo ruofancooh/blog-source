@@ -1,10 +1,12 @@
 ---
-title: CN08 - 数据链路层 - CSMA／CD协议
+title: CN08 - 数据链路层 - CSMA／CD 协议
 date: 2023-10-18 21:40:00
 categories: 计算机网络
 permalink: CN/08/
 mathjax: true
 mermaid: true
+links:
+  - CN09-数据链路层-以太网
 ---
 
 - CSMA/CD：Carrier Sense Multiple Access with Collision Detection，载波监听多址接入/碰撞检测协议。以太网用的。

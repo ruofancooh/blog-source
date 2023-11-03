@@ -1,5 +1,5 @@
 ---
-title: 十进制与K进制小数互转
+title: 十进制与 K 进制小数互转
 date: 2023-8-19 20:56:00
 mathjax: true
 categories: 计算机组成原理

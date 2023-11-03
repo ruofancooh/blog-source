@@ -4,6 +4,8 @@ date: 2023-10-29 10:10:00
 categories: Hadoop
 permalink: HD/08/
 mermaid: true
+links:
+  - HD09-HDFS的EditLog和FsImage文件
 ---
 
 HDFS 的读写流程和工作机制

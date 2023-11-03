@@ -1,5 +1,5 @@
 ---
-title: HD03 - 对Hadoop集群启动脚本的注解
+title: HD03 - 对 Hadoop 集群启动脚本的注解
 date: 2023-09-26 17:45:00
 categories: Hadoop
 permalink: HD/03/

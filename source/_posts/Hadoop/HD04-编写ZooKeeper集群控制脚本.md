@@ -1,5 +1,5 @@
 ---
-title: HD04 - 编写ZooKeeper集群控制脚本
+title: HD04 - 编写 ZooKeeper 集群控制脚本
 date: 2023-09-28 13:30:00
 categories: Hadoop
 permalink: HD/04/

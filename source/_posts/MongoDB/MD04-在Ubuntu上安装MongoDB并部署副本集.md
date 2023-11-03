@@ -1,5 +1,5 @@
 ---
-title: MD04 - 在Ubuntu上安装MongoDB并部署副本集
+title: MD04 - 在 Ubuntu 上安装 MongoDB 并部署副本集
 date: 2023-10-25 18:20:00
 categories: MongoDB
 permalink: MD/04/

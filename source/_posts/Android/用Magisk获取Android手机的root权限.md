@@ -1,5 +1,5 @@
 ---
-title: 用Magisk获取Android手机的root权限
+title: 用 Magisk 获取 Android 手机的 root 权限
 date: 2023-7-8 22:24:00
 categories: Android
 permalink: AO/magisk-root/

@@ -1,5 +1,5 @@
 ---
-title: 让笔记commit前的工作更简单
+title: 让笔记 commit 前的工作更简单
 date: 2023-08-27 20:38:00
 categories: 无分类
 permalink: UC/e0/

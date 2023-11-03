@@ -1,5 +1,5 @@
 ---
-title: 在Windows中安装Linux虚拟机
+title: 在 Windows 中安装 Linux 虚拟机
 date: 2023-08-11 20:10:00
 categories: 无分类
 permalink: UC/wl/

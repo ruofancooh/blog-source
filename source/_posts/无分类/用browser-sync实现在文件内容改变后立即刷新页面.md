@@ -1,5 +1,5 @@
 ---
-title: 用browser-sync实现在文件内容改变后立即刷新页面
+title: 用 browser-sync 实现在文件内容改变后立即刷新页面
 date: 2023-8-23 16:31:00
 categories: 无分类
 permalink: UC/bs/

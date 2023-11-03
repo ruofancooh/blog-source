@@ -1,5 +1,5 @@
 ---
-title: 用GDB查看变量内存
+title: 用 GDB 查看变量内存
 date: 2023-8-23 16:30:00
 categories: 计算机组成原理
 permalink: CO/gdb/

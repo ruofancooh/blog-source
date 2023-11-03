@@ -1,5 +1,5 @@
 ---
-title: HD06 - HDFS的Shell命令和JavaAPI操作
+title: HD06 - HDFS 的 Shell 命令和 JavaAPI 操作
 date: 2023-10-12 21:58:00
 categories: Hadoop
 permalink: HD/06/

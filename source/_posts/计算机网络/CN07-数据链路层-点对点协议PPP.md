@@ -1,5 +1,5 @@
 ---
-title: CN07 - 数据链路层 - 点对点协议PPP
+title: CN07 - 数据链路层 - 点对点协议 PPP
 date: 2023-10-16 22:32:00
 categories: 计算机网络
 permalink: CN/07/

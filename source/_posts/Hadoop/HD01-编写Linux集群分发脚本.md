@@ -1,5 +1,5 @@
 ---
-title: HD01 - 编写Linux集群分发脚本
+title: HD01 - 编写 Linux 集群分发脚本
 date: 2023-09-14 15:20:00
 categories: Hadoop
 permalink: HD/01/

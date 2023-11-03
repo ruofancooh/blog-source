@@ -1,5 +1,5 @@
 ---
-title: CN0B - 网络层 - IP地址
+title: CN0B - 网络层 - IP 地址
 date: 2023-11-1 16:31:00
 categories: 计算机网络
 permalink: CN/0B/

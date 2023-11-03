@@ -1,8 +1,12 @@
 ---
-title: HD00 - 搭建Hadoop环境
+title: HD00 - 搭建 Hadoop 环境
 date: 2023-09-11 17:45:00
 categories: Hadoop
 permalink: HD/00/
+links:
+  - 在Windows中安装Linux虚拟机
+  - HD01-编写Linux集群分发脚本
+  - HD04-编写ZooKeeper集群控制脚本
 ---
 
 Hadoop 完全分布式模式环境配置：

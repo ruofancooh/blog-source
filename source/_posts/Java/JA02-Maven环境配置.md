@@ -1,5 +1,5 @@
 ---
-title: JA02 - Maven环境配置
+title: JA02 - Maven 环境配置
 date: 2023-09-27 19:10:00
 categories: Java
 permalink: JA/02/
