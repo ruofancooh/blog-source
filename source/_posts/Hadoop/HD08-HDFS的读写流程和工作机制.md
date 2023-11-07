@@ -14,6 +14,8 @@ HDFS 的读写流程和工作机制
 
 在 HDFS 中，数据是分块（Block）存储的。相当于你一个人分割在了多个社交平台上。
 
+存储位置配置在 `dfs.datanode.data.dir`
+
 在 Hadoop2.x 和 3.x 中，数据块大小默认是 128MB。
 
 如果数据分块太小，分割数量会变多，寻址时间会增加。就是你切换 APP 的时间增加。
@@ -21,6 +23,10 @@ HDFS 的读写流程和工作机制
 如果数据块太大，磁盘传输时间占比增加。就是你花在这一个 APP 上的时间增加。且分割数量变少，MR 的并行任务数变少。
 
 当寻址时间是传输时间的 1% 时，状态最佳。
+
+## hdfs-default.xml
+
+`$HADOOP_HOME/share/hadoop/hdfs/hadoop-hdfs-3.3.6.jar` 里的 `hdfs-default.xml`。其参数可以被 `$HADOOP_HOME/etc/hadoop/hdfs-site.xml` 里设置的同名参数覆盖。
 
 ## 写数据的流程
 
@@ -137,5 +143,3 @@ Hadoop 集群由多个机架组成。
 - DN 每隔一个 `dfs.heartbeat.interval` 时间向 NN 发送心跳信息。
 
 NN 判定 DN 死亡的超时时长 = 2 × `dfs.heartbeat.recheck-interval` + 10 × `dfs.heartbeat.interval`
-
-上面的参数可以在 `$HADOOP_HOME/share/hadoop/hdfs/hadoop-hdfs-3.3.6.jar` 里的 `hdfs-default.xml` 里查看。其参数可以被 `$HADOOP_HOME/etc/hadoop/hdfs-site.xml` 里设置的同名参数覆盖。

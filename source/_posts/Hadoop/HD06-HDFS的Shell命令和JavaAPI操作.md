@@ -89,6 +89,8 @@ WARN [org.apache.hadoop.util.NativeCodeLoader] - Unable to load native-hadoop li
 - 用 `FileSystem.copyToLocalFile(Path src, Path dst)` 向物理机复制文件为空。（测试结果报错）
 - 用 `FileUtil.copy(FileSystem srcFS, Path src, File dst, boolean deleteSource, Configuration conf)` 就可以向物理机复制文件。（测试结果不报错，调试控制台还是报缺的）
 
+可以先用 3.3.5 的。
+
 关于上传文件：
 
 - 用 `FileUtil.copy(File src, FileSystem dstFS, Path dst, boolean deleteSource, Configuration conf)` 和 `FileSystem.copyFromLocalFile(boolean delSrc, boolean overwrite, Path src, Path dst)` 均可。
@@ -373,5 +375,3 @@ public class Main {
     }
 }
 ```
-
-### 或许还可以用 VSCode 连接虚拟机，直接在虚拟机的文件系统上编程
