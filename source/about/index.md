@@ -3,11 +3,19 @@ title: 关于
 date: 2023-05-27 14:48:35
 ---
 
+## 水
+
 - [分类页](/blog/categories)
 
 - [归档页](/blog/archives)
 
+- [笔记修改历史](https://github.com/ruofancooh/blog-source/commits/main)
+
 - [写作只能塑造真实的自己](https://github.com/Macin20/why-we-write)
+
+你只能塑造自己，塑造不了别人。
+
+## 源
 
 - [Github Pages 使用入门](https://docs.github.com/zh/pages/getting-started-with-github-pages)
 
@@ -16,6 +24,8 @@ date: 2023-05-27 14:48:35
 - [Hexo-NexT 文档](https://hexo-next.readthedocs.io/zh_CN/latest/)
 
 - [Hexo 博客 NexT 主题的安装使用](http://home.ustc.edu.cn/~liujunyan/blog/hexo-next-theme-config/)
+
+## 他山之石
 
 - [JavaScript 艺术之旅](https://github.com/tanpero/JavaScript-Art-Tour)
 
@@ -30,5 +40,3 @@ date: 2023-05-27 14:48:35
 - [小时百科](https://wuli.wiki/online/index.html)
 
 - [涟波词集](https://kevinz.cn/lyricbook/?a=Kevinz)
-
-- [笔记修改历史](https://github.com/ruofancooh/blog-source/commits/main)
