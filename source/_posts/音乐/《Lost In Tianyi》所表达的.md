@@ -52,7 +52,7 @@ permalink: lost-in-tianyi.html
 - A2 - C1 - B1：开始创作并追求理想（4+2+4）
 - A3 - C2 - B2 - B3：与理想分离、发回忆刀，回到现实的一个人（4+2+4+7）
 
-整首歌是专辑《Lost In Tianyi》的一个微缩版。
+整首歌是专辑《Lost In Tianyi》的一个微缩版。或者说简化版更准确。
 
 ---
 

@@ -106,21 +106,21 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 public class WordCountReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
     // KEYIN 和 VALUEIN 来自 WordCountMapper.map() 里向 context 里写的
-    // 这些代码暂时不明白
-    int sum;
-    IntWritable v = new IntWritable();// VALUEOUT
+    // 每一个 reducer 处理的是 【相同的KEYIN】 的 【VALUEIN集合】
+    IntWritable outV = new IntWritable();// VALUEOUT
 
     @Override
     protected void reduce(Text key, Iterable<IntWritable> values, Context context)
             throws IOException, InterruptedException {
-        sum = 0;
+        int sum = 0;// 单词计数
 
         for (IntWritable count : values) {
             sum += count.get();
+            System.out.println(count.get());// values 的每一个 count 都是 1
         }
 
-        v.set(sum);
-        context.write(key, v);
+        outV.set(sum);
+        context.write(key, outV);
     }
 }
 ```
