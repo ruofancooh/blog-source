@@ -1,5 +1,5 @@
 ---
-title: HD11 - YARN概述
+title: HD11 - YARN 概述
 date: 2023-11-27 5:25:00
 categories: Hadoop
 permalink: HD/11/
