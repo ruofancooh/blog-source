@@ -1,5 +1,5 @@
 ---
-title: HD0C - MapReduce 框架原理之 InputFormat
+title: HD0C - MapReduce 框架原理
 date: 2023-11-08 21:47:48
 categories: Hadoop
 permalink: HD/0C/
@@ -10,6 +10,8 @@ HDFS 在物理层面上把数据分成若干个数据块（block）
 切片是在逻辑上对输入的数据划分，一个切片对应一个 MapTask。
 
 <!--more-->
+
+期末了（
 
 ## Job 提交流程
 

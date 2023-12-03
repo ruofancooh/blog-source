@@ -7,6 +7,7 @@ links:
   - 在Windows中安装Linux虚拟机
   - HD01-编写Linux集群分发脚本
   - HD04-编写ZooKeeper集群控制脚本
+  - HD0D-当前配置
 ---
 
 Hadoop 完全分布式模式环境配置：
@@ -21,6 +22,8 @@ Hadoop 完全分布式模式环境配置：
 | **虚拟机与物理机互传文件用的**                                       | Xftp 7                                                                               |
 
 装了三台机器，名：master、worker1、worker2。（[后来](/blog/HD/04)又改成 ubuntu101、ubuntu102、ubuntu103 了）
+
+配置仅供参考。[当前配置](/blog/HD/0D/)
 
 <!--more-->
 
