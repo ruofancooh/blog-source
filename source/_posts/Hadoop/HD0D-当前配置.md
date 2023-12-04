@@ -13,14 +13,14 @@ permalink: HD/10/
 
 <!--more-->
 
-|                                           | ubuntu101   | ubuntu102                        | ubuntu103   |
-| ----------------------------------------- | ----------- | -------------------------------- | ----------- |
-| **HDFS**                                  | NameNode    |                                  | 2NN         |
-| **HDFS（workers 文件里配置的）**          | DataNode    | DataNode                         | DataNode    |
-| **MR/YARN（与 DN 一一对应）**             | NodeManager | NodeManager                      | NodeManager |
-| **MR/YARN**                               |             | ResourceManager JobHistoryServer |             |
-| **虚拟机设置里的内存**                    | 4GB         | 4GB                              | 4GB         |
-| **上述进程全开后，all free -h 后的 free** |             |                                  |             |
+|                                           | ubuntu101   | ubuntu102       | ubuntu103        |
+| ----------------------------------------- | ----------- | --------------- | ---------------- |
+| **HDFS（core-site.xml hdfs-site.xml）**   | NameNode    |                 | 2NN              |
+| **HDFS（workers 文件里配置的）**          | DataNode    | DataNode        | DataNode         |
+| **MR/YARN（与 DN 一一对应）**             | NodeManager | NodeManager     | NodeManager      |
+| **MR/YARN（yarn-site.xml）**              |             | ResourceManager | JobHistoryServer |
+| **虚拟机设置里的内存**                    | 4GB         | 4GB             | 4GB              |
+| **上述进程全开后，all free -h 后的 free** |             |                 |                  |
 
 ## all 脚本
 
@@ -36,4 +36,40 @@ else
         ssh $host "$@"
     done
 fi
+```
+
+## 启停脚本 myhadoop
+
+```sh
+#!/bin/bash
+case "$1" in
+    "start")
+        echo "============ 启动 hadoop 集群 ============"
+
+        echo "-------- 启动 HDFS --------"
+        ssh "ubuntu101" "$HADOOP_HOME/sbin/start-dfs.sh"
+        echo "-------- 启动 YARN --------"
+        ssh "ubuntu102" "$HADOOP_HOME/sbin/start-yarn.sh"
+        echo "-------- 启动 historyserver --------"
+        ssh "ubuntu103" "$HADOOP_HOME/bin/mapred --daemon start historyserver"
+
+        all jps
+        ;;
+    "stop")
+        echo "============ 关闭 hadoop 集群 ============"
+
+        echo "-------- 关闭 historyserver --------"
+        ssh "ubuntu103" "$HADOOP_HOME/bin/mapred --daemon stop historyserver"
+        echo "-------- 关闭 YARN --------"
+        ssh "ubuntu102" "$HADOOP_HOME/sbin/stop-yarn.sh"
+        echo "-------- 关闭 HDFS --------"
+        ssh "ubuntu101" "$HADOOP_HOME/sbin/stop-dfs.sh"
+
+        all jps
+        ;;
+    *)
+        echo "Invalid parameter!"
+        exit 1
+        ;;
+esac
 ```
