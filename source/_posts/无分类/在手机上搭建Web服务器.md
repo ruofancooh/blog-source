@@ -1,8 +1,8 @@
 ---
 title: 在手机上搭建 Web 服务器
 date: 2023-7-19 13:45:00
-categories: Android
-permalink: AO/termux-flask-ngrok/
+categories: 无分类
+permalink: termux-flask-ngrok.html
 links:
   - 用Magisk获取Android手机的root权限
 ---
