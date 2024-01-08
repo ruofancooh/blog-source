@@ -13,6 +13,8 @@ permalink: UC/wl/
 
 也可以给硬盘分一个新的区，单独安装 Linux。不过没有必要。
 
+好像还能用 Docker，我没试过。
+
 ## 下载安装 VMware Workstation Player
 
 > 使用 VMware Workstation Player 在 Windows 或 Linux PC 上轻松地将多个操作系统作为虚拟机运行。——网站介绍

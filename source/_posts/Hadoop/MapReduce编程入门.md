@@ -1,58 +1,29 @@
 ---
-title: HD0A - MapReduce 概述及编程入门
+title: MapReduce编程入门
 date: 2023-11-07 21:47:00
 categories: Hadoop
-permalink: HD/0A/
+permalink: hadoop-mapreduce.html
 ---
 
-MR 是一个分布式计算程序的编程框架，是用户开发基于 Hadoop 的数据分析应用程序的核心框架。
-
-MR 的核心功能是将用户编写的业务逻辑代码和自带的默认组件整合成一个完整的分布式计算程序，并将其并发运行在一个 Hadoop 集群上。
-
-<!--more-->
-
-## MR 的优点
-
-- 易于编写一个分布式计算程序【像“编写一个串行程序一样简单”，MR 的接口都写好了，相当于库函数，或者相当于 C 对汇编的封装】
-- 良好的扩展性【硬件性能不够？直接加节点】
-- 高容错性【节点挂了？甩给其他节点接盘】
-- 适合 PB 级以上数据的离线处理【TB 的后一个数量级，一百万 GB，我是蜩】
-
-## MR 的缺点
-
-- 不擅长实时计算，返回结果的速度相对慢【高射炮打蚊子】
-- 不擅长流式计算【不能在消化的同时吃东西】
-- 不擅长有向无环图（DAG）计算【多个应用程序之间相联系，前一个程序的输出是后一个程序的输入，这时 MR 不是不能计算，而是会造成大量的磁盘 I/O。因为每个 MR 运行完之后都会写磁盘】
-
-## MR 的核心思想
-
-映射（map）和规约（reduce）。分而治之。
-
-MR 编程模型包含且只包含一个 map 阶段和一个 reduce 阶段。
+[官方教程](https://github.com/apache/hadoop/blob/branch-3.3.6/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core/src/site/markdown/MapReduceTutorial.md)
 
 <img src="/blog/images/MapReduce.png">
 
-还有一个 MRAppMaster 进程，负责 MR 的调度。
+<!--more-->
 
-## 编程入门
+我们想统计一篇英文文章里的单词，每个都出现了多少次。假设这个文本文件只有英文单词、空格和换行符（LF 或者 CRLF）。
 
-可以参考：https://github.com/apache/hadoop/blob/branch-3.3.6/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core/src/site/markdown/MapReduceTutorial.md
+需要继承 Mapper 类，重写它的 map() 方法。这个方法里传了三个参数：该行的偏移量、该行的文本内容、环境上下文。在这个方法里，对每一行按空格进行分割，形成一个 String[]，遍历这个 String[]，把它写到上下文里，这样写的就是一系列 `<word,1>`。
 
-这里主要参考尚硅谷教材，我英语不好，用翻译看不如看身边的纸质书。
+继承 Reducer 类，重写 reduce() 方法。。写教程真的很难，我前面压根没认真看书，全忘了，只注重形式了，发出来=我会了。向写教程的人致敬。
 
-### input.txt
+继承 Driver 类，进行一些配置。
 
-```
-a good beginning is half the battle
-where there is a will there is a way
-hello world
-```
+官方示例分词用的是 StringTokenizer，其他原理和细节不知道，先跑。
 
 ### WordCountMapper.java
 
 ```java
-package test.hrf.hd;
-
 import org.apache.hadoop.io.Text;
 
 import java.io.IOException;
@@ -65,7 +36,6 @@ public class WordCountMapper extends Mapper<LongWritable, Text, Text, IntWritabl
     // KEYIN（偏移量），VALUEIN（每一行的文本），KEYOUT（单词），VALUEOUT（1）
     // 对每一行进行分割
     private Text wordText = new Text();// 向 context 里写的 KEYOUT。Text 相当于一个盒子
-    private final static IntWritable one = new IntWritable(1);// 向 context 里写的 VALUEOUT
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
@@ -81,11 +51,7 @@ public class WordCountMapper extends Mapper<LongWritable, Text, Text, IntWritabl
 
         for (String word : words) {
             wordText.set(word);
-            context.write(wordText, one);
-            // context：上下文
-            // 这里的 context 是在调用 map() 时传的，是 Context 类的实例
-            // Context 是 Mapper 的内部抽象类，实现了 MapContext 接口
-
+            context.write(wordText, new IntWritable(1));
             System.out.println(context.getCurrentKey() + " | " + context.getCurrentValue());
             // 这行语句每次输出的 key 和 value 和当前 map() 传的参相同
         }
@@ -96,8 +62,6 @@ public class WordCountMapper extends Mapper<LongWritable, Text, Text, IntWritabl
 ### WordCountReducer.java
 
 ```java
-package test.hrf.hd;
-
 import java.io.IOException;
 
 import org.apache.hadoop.io.IntWritable;
@@ -128,8 +92,6 @@ public class WordCountReducer extends Reducer<Text, IntWritable, Text, IntWritab
 ### WordCountDriver.java
 
 ```java
-package test.hrf.hd;
-
 import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
@@ -168,6 +130,8 @@ public class WordCountDriver {
 ### 本地测试
 
 [winutils](https://github.com/cdarlint/winutils)，可以先用 3.3.5 的。
+
+winutils 是个什么东西呢？把它放在 Windows 上，然后在 Windows 上运行的 Java 程序可以通过它操作虚拟机。
 
 ### 集群测试
 

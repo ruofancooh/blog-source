@@ -207,7 +207,7 @@ with open(output_file_name, "w", encoding="utf-8") as output_file:
 - `float`：四个字节
 - `double`：八个字节
 
-## 茴字有几种写法？
+## 格式化输出
 
 Java 和 Python、JS 等一样，都可以在输出函数里直接写表达式（不用格式字符串的情况下）。以及 Java 也可以格式化输出。
 
