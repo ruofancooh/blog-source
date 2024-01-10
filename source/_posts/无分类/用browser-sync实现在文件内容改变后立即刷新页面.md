@@ -9,6 +9,10 @@ permalink: UC/bs/
 
 不管是直接打开 html 文件，还是用`python -m http.server 8000 --bind 127.0.0.1`，在修改保存 html 文件后浏览器都不能立马刷新。
 
+结果是：
+
+用 Vue 就没这么多事了。
+
 <!--more-->
 
 1. 安装
@@ -30,7 +34,6 @@ permalink: UC/bs/
    `.` 表示监视当前目录以及子目录下的所有文件。
 
    可以改成 `*.html`，`public/*.*` 等。
-
 
 html 文件里至少得有一对`<body>`标签，要么没法自动刷新。
 
