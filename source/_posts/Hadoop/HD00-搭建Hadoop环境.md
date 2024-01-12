@@ -23,7 +23,7 @@ Hadoop 完全分布式模式环境配置：
 
 装了三台机器，名：master、worker1、worker2。（[后来](/blog/HD/04)又改成 ubuntu101、ubuntu102、ubuntu103 了）
 
-配置仅供参考。[当前配置](/blog/HD/0D/)
+配置仅供参考。
 
 <!--more-->
 
@@ -337,8 +337,12 @@ worker2
 三台机器上都执行：
 
 ```sh
-ssh-keygen -t rsa
+ssh-keygen -t rsa -m PEM
 ```
+
+SSH-2.0-JSCH-0.1.54
+
+我这里的版本是 `OpenSSH_8.9p1 Ubuntu-3ubuntu0.6, OpenSSL 3.0.2 15 Mar 2022`，要加上 `-m PEM`，确保私钥以 -----BEGIN **RSA** PRIVATE KEY----- 开头。[后续错误](https://www.cnblogs.com/simple-li/p/14654812.html)
 
 三台机器上都执行：
 
