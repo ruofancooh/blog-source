@@ -5,9 +5,6 @@ categories: Hadoop
 permalink: HD/00/
 links:
   - 在Windows中安装Linux虚拟机
-  - HD01-编写Linux集群分发脚本
-  - HD04-编写ZooKeeper集群控制脚本
-  - HD0D-当前配置
 ---
 
 Hadoop 完全分布式模式环境配置：

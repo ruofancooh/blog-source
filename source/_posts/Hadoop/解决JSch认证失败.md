@@ -80,7 +80,7 @@ C. 想办法调试 Hadoop，看源码
 
 ## 解决方法
 
-A，选简单直接的
+A，选简单直接的。在怀疑别人代码之前，先怀疑自己配置
 
 ```
 userauth_pubkey: key type ssh-rsa not in PubkeyAcceptedAlgorithms
@@ -101,7 +101,7 @@ PubkeyAcceptedAlgorithms +ssh-rsa
 sudo systemctl restart sshd
 ```
 
-## 又有新问题
+## 不是问题的问题
 
 用
 
@@ -113,52 +113,4 @@ hdfs haadmin -getAllServiceState
 
 具体地说，转移成功之后，三个方的 DN 都一直在尝试连被杀那一方的 NN，一直在写日志。除此之外上传下载都没问题。
 
-被杀那一方的 NN：
-
-```
-21:39:15,145 这是被杀的时候
-```
-
-被杀那一方的 ZKFC：
-
-```
-21:39:19,608 EOF 这是被杀的时候
-21:39:21,840 往后一直重试连接本机 NN（8020），被杀了自然连不上
-```
-
-转移到那一方的 ZKFC:
-
-```
-21:39:21,989 转移成功
-21:42:20,688 EOF 这是停止集群的时候
-```
-
-第三个方的 ZKFC：
-
-```
-21:42:20,506 EOF 这是停止集群的时候
-```
-
-转移到那一方的 NN：
-
-```
-21:39:21,619 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Stopping services started for standby state
-21:39:21,623 WARN org.apache.hadoop.hdfs.server.namenode.ha.EditLogTailer: Edit log tailer interrupted: sleep interrupted
-21:39:21,639 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Starting services required for active state
-21:42:19,876 这是停止集群的时候
-```
-
-第三个方的 NN：
-
-```
-21:39:14,926 INFO org.apache.hadoop.hdfs.server.namenode.ha.EditLogTailer: Triggering log roll on remote NameNode
-21:39:15,133 WARN org.apache.hadoop.hdfs.server.namenode.ha.EditLogTailer: Exception from remote name node RemoteNameNodeInfo [nnId=namenode1, ipcAddress=ubuntu101/192.168.78.101:8020, httpAddress=http://ubuntu101:9870], try next.
-org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.ipc.StandbyException): Operation category JOURNAL is not supported in state standby. Visit https://s.apache.org/sbnn-error
-//...
-21:41:15,419 INFO org.apache.hadoop.hdfs.server.namenode.ha.EditLogTailer: Triggering log roll on remote NameNode
-21:41:16,425 INFO org.apache.hadoop.ipc.Client: Retrying connect to server: ubuntu102/192.168.78.102:8020. Already tried 0 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
-//...
-21:41:25,545 INFO org.apache.hadoop.ipc.Client: Retrying connect to server: ubuntu102/192.168.78.102:8020. Already tried 9 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
-21:41:25,548 WARN org.apache.hadoop.hdfs.server.namenode.ha.EditLogTailer: Exception from remote name node RemoteNameNodeInfo [nnId=namenode2, ipcAddress=ubuntu102/192.168.78.102:8020, httpAddress=http://ubuntu102:9870], try next.
-java.net.ConnectException: Call From ubuntu103/192.168.78.103 to ubuntu102:8020 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused
-```
+这应该是集群自带的心跳机制，不是问题
