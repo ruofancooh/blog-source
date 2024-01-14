@@ -1,7 +1,7 @@
 ---
 title: 解决 JSch 认证失败
 date: 2024-1-12 23:00:00
-categories: Hadoop
+categories: 问题
 permalink: jsch-auth-fail.html
 ---
 

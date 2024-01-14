@@ -5,9 +5,9 @@ categories: 音乐
 permalink: lost-in-tianyi.html
 ---
 
-《Lost In Tianyi》，谁 Lost In Tianyi？
+[《Lost In Tianyi》](https://music.douban.com/subject/34778807/)，谁 Lost In Tianyi？
 
-创作者或者听众，写歌的人或者听歌的人。洛天依是歌声数据库，同时作为一个纸片人歌手。
+创作者或者听众，写歌的人或者听歌的人。洛天依是歌声数据库，同时作为一个[纸片人](https://www.bilibili.com/video/BV1Hj411B7vc/)歌手。
 
 为什么写歌/听歌？要表达一些什么东西/缺失一些什么东西，或许是理想。
 
@@ -94,4 +94,4 @@ B 是副歌，副歌就是吸引人的部分，这里是副歌前置，直接开
 
 ## 《Monologue》
 
-独白，创作者以洛天依的视角写给创作者和听众的。
+独白，屏幕外边的人以屏幕里面的人的视角写给屏幕外面的人的。

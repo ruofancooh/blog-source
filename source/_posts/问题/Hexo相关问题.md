@@ -1,22 +1,70 @@
 ---
-title: 把文章链接折腾得简单点
-date: 2023-09-30 15:45:00
-categories: 无分类
-permalink: UC/e1/
-links:
-  - 让笔记commit前的工作更简单
+title: Hexo 相关问题
+date: 2023-08-27 20:38:00
+categories: 问题
+permalink: hexo.html
 ---
 
-起因是我觉得文章链接太长了。
+起因是，我是把笔记代码分两个仓库存的。需要做很多重复的工作。
+
+于是我写了两个 bat 文件。
 
 <!--more-->
 
-## 需求
+## 解决重复工作
+
+起因是，我是把笔记代码分两个仓库存的：
+
+- `blog-source`存 Hexo 框架源码，NexT 主题源码和自己的部分（更改后的配置文件、md 文档、图片等）
+- `blog`存渲染之后的网页，分支是`gh-pages`
+
+这就造成在 commit 前，我需要做以下工作：
+
+1. 在`blog-source`文件夹里先打开本地预览服务器。
+2. 点击链接，在浏览器里打开。
+3. 预览没问题，渲染网页。
+4. 删除`blog`文件夹里除了`.git`外的所有文件和文件夹。
+5. 把渲染的网页从`blog-source/public/`转移到`blog`文件夹里。
+6. 清除`blog-source`文件夹里渲染的网页。
+
+手动操作了十几天后很烦，于是我写了两个 bat 文件：
+
+`bs.bat` 做第 1-2 步
+
+```bat
+cd /d d:\repo\blog-source
+start http://localhost:4000/blog/
+call npx hexo s
+```
+
+`bg.bat` 做第 3-6 步
+
+```bat
+:: 删除旧文件
+cd /d d:\repo\blog
+git rm -r *
+:: 渲染新文件
+cd ..\blog-source
+call npx hexo g
+:: 转移新文件
+xcopy public ..\blog /s /e
+call npx hexo clean
+```
+
+再建一个专门存 bat 的文件夹，把它添加到环境变量 Path。这样在任一文件夹下都可以做第 1-6 步了。
+
+## 把文章链接折腾得简单点
+
+起因是我觉得文章链接太长了。
+
+结果是：加什么分类路径啊，直接用永久链接
+
+### 需求
 
 1. 把 `hrfis.me/blog/2023/计网-02-概述-体系结构`，改成 `hrfis.me/blog/CN/02`。
 2. 删除 `/blog/archives/` 下多渲染的年份文件夹。
 
-## 分析
+### 分析
 
 笨办法，用 Python 的 `BeautifulSoup` 库，二次处理 Hexo 渲染出来的 html。
 
@@ -57,7 +105,7 @@ permalink: CN/02/
 - 在所有操作之前，且只用做一次的：
   - 修改所有已经写的 `.md` 文件里的站内链接
 
-## `bm.py` 在每次渲染完成之后运行：
+### `bm.py` 在每次渲染完成之后运行：
 
 可以尝试用 `shutil.move()` 和 `os.path.join()`，这样可以跨平台。我用的时候出错了，但是想先解决这个问题，就没有去研究，所以用的是 f 字符串拼接地址，`os.system()`执行命令。
 
