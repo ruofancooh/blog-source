@@ -2,7 +2,7 @@
 title: JSON
 date: 2023-05-26 18:21:43
 categories: 无分类
-permalink: UC/jn/
+permalink: json.html
 ---
 
 JSON（JavaScript Object Notation，JavaScript 对象表示法）是一种轻量级的数据交换格式，可以看成是字符串。

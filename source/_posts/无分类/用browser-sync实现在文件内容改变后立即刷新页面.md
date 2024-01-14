@@ -2,7 +2,7 @@
 title: 用 browser-sync 实现在文件内容改变后立即刷新页面
 date: 2023-8-23 16:31:00
 categories: 无分类
-permalink: UC/bs/
+permalink: browser-sync.html
 ---
 
 起因是：

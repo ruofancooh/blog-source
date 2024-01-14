@@ -2,7 +2,7 @@
 title: 用 GIMP 让拍摄的纸上的字更清晰
 date: 2023-09-14 14:30:00
 categories: 无分类
-permalink: UC/sp/
+permalink: gimp-make-words-on-the-photographed-paper-clearer.html
 ---
 
 0. [GIMP](https://www.gimp.org/downloads/)
