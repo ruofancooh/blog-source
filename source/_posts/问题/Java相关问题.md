@@ -1,12 +1,11 @@
 ---
-title: Java
+title: Java 相关问题
 date: 2023-09-04 21:31:47
-categories: 无分类
+categories: 问题
 permalink: java.html
 ---
 
-- Windows 10 + VSCode 环境配置
-- `Hello.java`
+基础不牢
 
 <!--more-->
 
@@ -141,22 +140,8 @@ public class Test {
 }
 ```
 
-对比 Python：
+## 和 C/C++ 的运算符有什么不同？
 
-```py
-input_file_name = "input.txt"
-with open(input_file_name, "r", encoding="utf-8") as input_file:
-    content = input_file.readlines()
-    ...
-
-output_file_name = "output.txt"
-with open(output_file_name, "w", encoding="utf-8") as output_file:
-    output_file.write("啊啊啊")
-```
-
-## 和 C/C++的运算符有什么不同？
-
-先射箭后画靶：
 
 - C/C++/Java 在对整型变量右移 `>>` 时：
 
