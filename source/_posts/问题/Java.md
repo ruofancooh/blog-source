@@ -1,5 +1,5 @@
 ---
-title: Java 相关问题
+title: Java
 date: 2023-09-04 21:31:47
 categories: 问题
 permalink: java.html

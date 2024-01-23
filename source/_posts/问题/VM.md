@@ -1,5 +1,5 @@
 ---
-title: VM 相关问题
+title: VM
 date: 2023-08-11 20:10:00
 categories: 问题
 permalink: ubuntu-on-vmplayer.html
@@ -210,4 +210,4 @@ top
 htop
 ```
 
-DataNode 出问题了，CPU 占满了。看 log：DataNode 和 ZKFC 的 log 文件大小都在涨，一直在尝试重连。所以**当 CPU 占用高，写磁盘不到 1MB/s，可能是出问题了在一直写 log**。所以要习惯看 log，本来就是盲人摸 Hadoop，log 看不明白就完了。
+DataNode 出问题了，CPU 占满了。看 log：DataNode 和 ZKFC 的 log 文件大小都在涨，一直在尝试重连。所以**当 CPU 占用高，写磁盘不到 1MB/s，可能是出问题了在一直写 log**。

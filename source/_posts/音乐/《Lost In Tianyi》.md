@@ -1,5 +1,5 @@
 ---
-title: 《Lost In Tianyi》所表达的
+title: 《Lost In Tianyi》
 date: 2023-11-04 14:55:00
 categories: 音乐
 permalink: lost-in-tianyi.html

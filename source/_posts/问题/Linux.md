@@ -1,5 +1,5 @@
 ---
-title: Linux 相关问题
+title: Linux
 date: 2024-1-14 10:30:00
 categories: 问题
 permalink: linux.html

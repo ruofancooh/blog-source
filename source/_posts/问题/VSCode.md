@@ -1,5 +1,5 @@
 ---
-title: VSCode 相关问题
+title: VSCode
 date: 2024-1-12 10:40:00
 categories: 问题
 permalink: vscode.html

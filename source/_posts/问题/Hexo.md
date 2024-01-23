@@ -1,5 +1,5 @@
 ---
-title: Hexo 相关问题
+title: Hexo
 date: 2023-08-27 20:38:00
 categories: 问题
 permalink: hexo.html
