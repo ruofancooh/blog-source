@@ -15,7 +15,7 @@ permalink: hadoop-mapreduce.html
 
 需要继承 Mapper 类，重写它的 map() 方法。这个方法里传了三个参数：该行的偏移量、该行的文本内容、环境上下文。在这个方法里，对每一行按空格进行分割，形成一个 String[]，遍历这个 String[]，把它写到上下文里，这样写的就是一系列 `<word,1>`。
 
-继承 Reducer 类，重写 reduce() 方法。。写教程真的很难，我前面压根没认真看书，全忘了，只注重形式了，发出来=我会了。向写教程的人致敬。
+继承 Reducer 类，重写 reduce() 方法。。写教程真的很难，笔者前面压根没认真看书，全忘了，只注重形式了，发出来=会了。向写教程的人致敬。
 
 继承 Driver 类，进行一些配置。
 
@@ -144,7 +144,7 @@ FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
 ---
 
-我这里没有看到 `System.out.println()` 的内容。
+笔者这里没有看到 `System.out.println()` 的内容。
 
 ---
 

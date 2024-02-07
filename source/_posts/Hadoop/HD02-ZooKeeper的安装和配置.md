@@ -49,7 +49,7 @@ cd zkData;
 sudo vi myid;
 ```
 
-我填的是 _当前主机_ 的 ip 后三位 `10x`。
+笔者填的是 _当前主机_ 的 ip 后三位 `10x`。
 
 ### 配置 `conf/zoo.cfg`
 

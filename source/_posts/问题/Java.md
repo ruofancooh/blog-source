@@ -358,7 +358,7 @@ public static boolean equals(byte[] value, byte[] other) {
 
 [下载地址](https://dlcdn.apache.org/maven/)
 
-我下载的是 `apache-maven-3.9.4-bin.zip`
+笔者下载的是 `apache-maven-3.9.4-bin.zip`
 
 ### 配置环境变量
 

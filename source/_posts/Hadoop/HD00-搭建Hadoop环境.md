@@ -28,7 +28,7 @@ Hadoop 完全分布式模式环境配置：
 
 [教程](/blog/UC/wl)
 
-- 其中，【安装 Ubuntu】的第 4 步，我选的还是默认的 DHCP，装好之后再改成静态 IP。
+- 其中，【安装 Ubuntu】的第 4 步，笔者选的还是默认的 DHCP，装好之后再改成静态 IP。
 - 第 11 步，要安装 OpenSSH server。
 - 不用设置共享文件夹，因为我们有 Xftp。
 
@@ -51,7 +51,7 @@ ifconfig
 
 [下载页面（清华源）](https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/)
 
-我这里下载的是`hadoop-3.3.6.tar.gz`。
+笔者这里下载的是`hadoop-3.3.6.tar.gz`。
 
 用 Xftp 把压缩包传到虚拟机的家目录下，然后：
 
@@ -74,7 +74,7 @@ sudo apt-get install openjdk-8-jdk libbcprov-java;
 sudo apt-get clean;
 # 存放 Hadoop 压缩包的位置
 cd;
-# 解压，删除（这两句我执行的时候没执行上，重启后手动执行）
+# 解压，删除（这两句笔者执行的时候没执行上，重启后手动执行）
 sudo tar -zxvf hadoop-3.3.6.tar.gz -C /usr/local;
 sudo rm hadoop-3.3.6.tar.gz;
 # 写环境变量
@@ -201,7 +201,7 @@ export YARN_RESOURCEMANAGER_USER=rc
 export YARN_NODEMANAGER_USER=rc
 ```
 
-rc 是我每台机器的用户名。
+rc 是笔者每台机器的用户名。
 
 **下面的文件都是在`$HADOOP_HOME/etc/hadoop`目录里。**
 
@@ -339,7 +339,7 @@ ssh-keygen -t rsa -m PEM
 
 SSH-2.0-JSCH-0.1.54
 
-我这里的版本是 `OpenSSH_8.9p1 Ubuntu-3ubuntu0.6, OpenSSL 3.0.2 15 Mar 2022`，要加上 `-m PEM`，确保私钥以 -----BEGIN **RSA** PRIVATE KEY----- 开头。[后续错误](https://www.cnblogs.com/simple-li/p/14654812.html)
+笔者这里的版本是 `OpenSSH_8.9p1 Ubuntu-3ubuntu0.6, OpenSSL 3.0.2 15 Mar 2022`，要加上 `-m PEM`，确保私钥以 -----BEGIN **RSA** PRIVATE KEY----- 开头。[后续错误](https://www.cnblogs.com/simple-li/p/14654812.html)
 
 三台机器上都执行：
 
