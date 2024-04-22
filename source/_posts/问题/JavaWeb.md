@@ -84,3 +84,77 @@ jcmd
 2. Tomcat 启动一个线程，把 jsp 文件转换成 java 文件（Servlet）
 3. 把 java 文件编译成 class 文件（字节码）
 4. 客户
+
+## 问答
+
+> jsp 指令与 jsp 动作？
+
+前者是静态的，后者是动态的（感性认识）
+
+前者类似
+
+```jsp
+<%@ include file = "sub.jsp" %>
+```
+
+后者类似
+
+```jsp
+<jsp:include page = "sub.jsp"/>
+```
+
+> 在一个 jsp 页里，如何把表单传递给另一个 jsp 页？另一个 jsp 页如何接收？
+
+传递的两种方式：
+
+使用 get 方法会在 url 里看到请求参数，post 不会
+
+1.  `jsp:include` 配合 `jsp:param`
+
+```jsp
+	<form method="get">
+		请输入圆的半径：<input type="text" name="radius" /> <input type="submit"
+			value="提交" />
+	</form>
+	<jsp:include page="computeAreaOfCircle.jsp">
+		<jsp:param value="${param.radius}" name="radius" />
+	</jsp:include>
+```
+
+2. `jsp:forward` 配合 `jsp:param`
+
+```jsp
+	<form method="post" action="">
+		<label>请选择一个图形：</label><br> <input type="radio" name="shape"
+			id="circle" value="circle" /><label for="circle">圆形</label><br>
+		<input type="radio" name="shape" id="rectangle" value="rectangle" /><label
+			for="rectangle">矩形</label><br> <input type="submit" value="提交" />
+	</form>
+	<%
+		Random random = new Random();
+	String shape = request.getParameter("shape");
+	if (shape != null) {
+		if (shape.equals("circle")) {
+			double radius = 100 * random.nextDouble();
+	%>
+	<jsp:forward page="process.jsp">
+		<jsp:param value="<%=shape%>" name="shape" />
+		<jsp:param value="<%=radius%>" name="radius" />
+	</jsp:forward>
+	<%
+		} else if (shape.equals("rectangle")) {
+		double width = 100 * random.nextDouble();
+		double height = 100 * random.nextDouble();
+	%>
+	<jsp:forward page="process.jsp">
+		<jsp:param value="<%=shape%>" name="shape" />
+		<jsp:param value="<%=width%>" name="width" />
+		<jsp:param value="<%=height%>" name="height" />
+	</jsp:forward>
+	<%
+		}
+	}
+	%>
+```
+
+接收方用 `request.getParameter("name")` 接收
