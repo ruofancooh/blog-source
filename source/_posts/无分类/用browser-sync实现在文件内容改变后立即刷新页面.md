@@ -11,7 +11,6 @@ permalink: browser-sync.html
 
 结果是：
 
-用 Vue 就没这么多事了。
 
 <!--more-->
 

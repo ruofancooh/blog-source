@@ -5,10 +5,6 @@ categories: Hadoop
 permalink: HD/05/
 ---
 
-r3.8.2
-
-- [zookeeper CLI](https://zookeeper.apache.org/doc/r3.8.2/zookeeperCLI.html)
-- [zookeeper Server API](https://zookeeper.apache.org/doc/r3.8.2/apidocs/zookeeper-server/index.html)
 
 <!--more-->
 
@@ -37,33 +33,6 @@ r3.8.2
 ## JavaAPI 操作
 
 使用了 [JUnit5](https://junit.org/junit5/docs/current/user-guide/) 测试框架，在 `工程目录/src/test/java` 下创建 java 源文件进行测试。
-
-### 工程创建
-
-1. VSCode -> 从 Maven 原型创建新项目 -> No Archetype
-2. groupId 设为 `test.hrf.zk`，artifactId 设为 `zktest`
-3. pom.xml 里加：
-
-   ```xml
-   <dependencies>
-       <dependency>
-           <groupId>org.junit.jupiter</groupId>
-           <artifactId>junit-jupiter</artifactId>
-           <version>5.10.0</version>
-           <scope>test</scope>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.logging.log4j</groupId>
-           <artifactId>log4j-core</artifactId>
-           <version>2.20.0</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.zookeeper</groupId>
-           <artifactId>zookeeper</artifactId>
-           <version>3.8.2</version>
-       </dependency>
-   </dependencies>
-   ```
 
 4. 适当修改 pom.xml 里的 `<maven.compiler.source>` 和 `<maven.compiler.target>` 的 JDK 版本。
 5. `mvn install`
@@ -291,7 +260,7 @@ import org.apache.zookeeper.ZooKeeper;
 
 public class DistributeServer {
 
-    private String connectString = "ubuntu101:2181,ubuntu102:2181,ubuntu103:2181";
+    private String connectString = "ubuntu101:2181,ubuntu102:2181";
     private int sessionTimeout = 2000;
     private ZooKeeper zk;
 
