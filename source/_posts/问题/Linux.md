@@ -17,7 +17,6 @@ nc -N <目标主机> <端口号>
 nc -zv <目标主机> <起始端口>-<结束端口>
 sudo du -h --max-depth=1
 sudo apt-get remove xxx
-sudo rm /var/log/*.log
 ```
 
 <!--more-->

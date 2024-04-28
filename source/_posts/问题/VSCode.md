@@ -7,7 +7,7 @@ permalink: vscode.html
 
 工具没用明白
 
-[文档](https://code.visualstudio.com/docs/)
+https://code.visualstudio.com/docs/
 
 <!--more-->
 
@@ -17,15 +17,7 @@ permalink: vscode.html
 
 搜冲突的按键，右键更改 When 表达式，加上 `&& !terminalFocus`
 
-## 远程附加调试 Hadoop 的 Java 进程
-
-在物理机上开 VSCode，开不开 Remote - SSH 插件都可。
-
-如果开了，工作区在虚拟机上。如果没开，工作区在物理机上。
-
-这个暂时没什么作用，只能看到函数名，看不到来源代码。还没折腾明白
-
-[文档](https://code.visualstudio.com/docs/java/java-debugging)
+## 远程附加调试
 
 ### hadoop-env.sh
 

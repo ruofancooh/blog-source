@@ -11,32 +11,17 @@ JSON（JavaScript Object Notation，JavaScript 对象表示法）是一种轻量
 
 <!--more-->
 
-## JSON 字符串 与 JS 对象互转
+## JS
 
 ```js
-let jsonStr = "";
-let jsObj = {
-  a: 1,
-  b: 2,
-  c: 3,
-};
-// JS 对象转 JSON 字符串
 jsonStr = JSON.stringify(jsObj);
-
-// JSON 字符串转 JS 对象
 jsObj = JSON.parse(jsonStr);
 ```
 
-## JSON 字符串与 Python 字典互转
+## Python
 
 ```python
 import json
-
-py_dic = {'a': 1, 'b': 2, 'c': 3}
-
-# Python 字典转 JSON 字符串
 json_str = json.dumps(py_dic)
-
-# JSON 字符串转 Python 字典
 py_dic = json.loads(json_str)
 ```
