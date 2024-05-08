@@ -107,28 +107,29 @@ jcmd
 
 传递的两种方式：
 
-使用 get 方法会在 url 里看到请求参数，post 不会
+（使用 get 方法会在 url 里看到请求参数，post 不会）
 
-1.  `jsp:include` 配合 `jsp:param`
+1.  `jsp:include` 配合 `jsp:param`。这是把另一个 jsp 页包含进来。
 
 ```jsp
 	<form method="get">
-		请输入圆的半径：<input type="text" name="radius" /> <input type="submit"
-			value="提交" />
+		请输入圆的半径：
+		<input type="text" name="radius" />
+		<input type="submit" value="提交" />
 	</form>
 	<jsp:include page="computeAreaOfCircle.jsp">
 		<jsp:param value="${param.radius}" name="radius" />
 	</jsp:include>
 ```
 
-2. `jsp:forward` 配合 `jsp:param`
+2. `jsp:forward` 配合 `jsp:param`。这时处理表单的是本页面。这种把 JSP 标签和 Java 代码混在一起的写法很反人类：
 
 ```jsp
 	<form method="post" action="">
-		<label>请选择一个图形：</label><br> <input type="radio" name="shape"
-			id="circle" value="circle" /><label for="circle">圆形</label><br>
-		<input type="radio" name="shape" id="rectangle" value="rectangle" /><label
-			for="rectangle">矩形</label><br> <input type="submit" value="提交" />
+		请选择一个图形：<br />
+		<input type="radio" name="shape" id="circle" value="circle" />圆形<br />
+		<input type="radio" name="shape" id="rectangle" value="rectangle" />矩形<br />
+		<input type="submit" value="提交" />
 	</form>
 	<%
 		Random random = new Random();
@@ -158,3 +159,14 @@ jcmd
 ```
 
 接收方用 `request.getParameter("name")` 接收
+
+> eclipse 如何导入外部 jar 包？
+
+比如我们用 JDBC 连接 MySQL 时，需要 `com.mysql.cj.jdbc.Driver`，
+
+1. 先搞到这个 jar 包
+2. 打开 eclipse 的首选项，在 File -> Properties（属性）
+
+不止 eclipse，大部分的软件都有类似“首选项”的东西，相当于一个统一的设置。
+
+3.  Java Build Path -> Libraries -> Add External Jars

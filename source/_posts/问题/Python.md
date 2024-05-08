@@ -59,7 +59,7 @@ Python 的标准库有上百个。https://docs.python.org/zh-cn/3/tutorial/whatn
 
 虽然 Python 的一个变量名可以赋多个类型，但在有必要的情况下，还是加上类型注解。这对 VSCode 的代码补全也有帮助：把鼠标移到一个变量名上边，如果你想要它是某一个类的对象，但是它显示为 `Any`，这时候你在它后面加 `.`，VSCode 没法给你列出它的方法。这时候你需要显式标注它的类型，比如 `foo: Bar`。或者 `assert isinstance(foo, Bar)`
 
-不要使用 `from xxx import *`，可能会出现同名的东西。
+不要使用 `from xxx import *`。这种行为类似于：你在搭积木的时候，闭着眼睛把一整个塑料袋的积木全倒出来，然后闭着眼睛摸一个、闭着眼睛摸一个。
 
 `import` 语句的顺序是：标准库、第三方库、自定义库。可通过 VSCode 插件 isort 解决，按 Ctrl + Shift + O 排序。
 
@@ -114,9 +114,11 @@ numpy
 pandas
 ppadb
 pyautogui
+pyecharts
 requests
 scipy
 seaborn
+selenium
 shapely
 sklearn
 yaml
