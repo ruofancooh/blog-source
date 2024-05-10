@@ -3,6 +3,7 @@ title: JavaWeb
 date: 2024-04-15 16:32:00
 categories: 问题
 permalink: java-web.html
+mermaid: true
 ---
 
 > Web 是一种分布式的应用框架。基于 Web 的应用是典型的浏览器/服务器（B/S）架构。
@@ -15,11 +16,33 @@ permalink: java-web.html
 
 <!--more-->
 
+## 整
+
+```mermaid
+%%{ 
+    init: {
+	    "theme": "neutral",
+	    "fontFamily": "Times New Roman"
+    } 
+}%%
+sequenceDiagram
+    participant S as display.jsp<br/> Other Servlets
+	participant U as DBUtil.java
+    participant R as result.jsp
+    S ->> U:    DBUtil.createConnection()<br/>DBUtil.xxx()
+	U ->> U:    try(connection.prepareStatement(SQL)){<br/>statement.executeQuery()<br/>...
+    U -->> S:   return studentList
+	S -->> S:    request.setAttribute("studentList", studentList)<br/>request.getRequestDispatcher("result.jsp")
+	S -->> R:    dispatcher.forward(request, response)
+	R ->> R:    &lt;table&gt;...    <br/>    &lt;%<br/>    request.getAttribute("studentList")<br/>     for(studentList){<br/>    ... %&gt;<br/>    &lttr&gt;<br/>    &lt;td&gt; &lt;%=student.get("id")%&gt; &lt;/td&gt; ...<br/>    &lt;/tr&gt;<br/>    &lt;% } %&gt;<br/>    &lt;/table&gt;<br/>
+	R ->> S:    &lt;form action="xxServlet" method="xxx"&gt;
+```
+
 ## 新建工程
 
 据笔者测试，用 VSCode 和最新的 IDEA 社区版都没办法格式化 JSP 代码，或者是暂时没找到解决方法。
 
-### 用 VSCode 或 IDEA
+**用 VSCode 或 IDEA**
 
 ```bat
 mvn archetype:generate "-DgroupId=com.example" "-DartifactId=demo" "-DarchetypeArtifactId=maven-archetype-webapp" "-DinteractiveMode=true"
@@ -29,7 +52,7 @@ VSCode 使用 Community Server Connectors 插件
 
 IDEA 使用 Smart Tomcat 插件
 
-### 用 Eclipse 2020-03 (4.15.0)
+**用 Eclipse 2020-03 (4.15.0)**
 
 在首选项里设置 JDK 和 Tomcat 的路径。
 
@@ -81,13 +104,16 @@ jcmd
 
 查看 java 进程，为 `org.apache.catalina.startup.Bootstrap start`
 
-2. Tomcat 启动一个线程，把 jsp 文件转换成 java 文件（Servlet）
+2. Tomcat 启动一个线程，把 jsp 文件转换成 java 文件
+
+（一个继承自 `javax.servlet.http.HttpServlet` 的类，头上带一个注解 `@WebServlet("/path")`，相当于 Python 的 Flask 框架里的 `@app.route("/path")`）
+
 3. 把 java 文件编译成 class 文件（字节码）
 4. 客户
 
 ## 问答
 
-> jsp 指令与 jsp 动作？
+### jsp 指令与 jsp 动作？
 
 前者是静态的，后者是动态的（感性认识）
 
@@ -103,70 +129,158 @@ jcmd
 <jsp:include page = "sub.jsp"/>
 ```
 
-> 在一个 jsp 页里，如何把表单传递给另一个 jsp 页？另一个 jsp 页如何接收？
+### 在一个 jsp 页里，如何把表单传递给另一个 jsp 页？另一个 jsp 页如何接收？
 
-传递的两种方式：
+三种方式：（使用 get 方法会在 url 里看到请求参数，post 不会）
 
-（使用 get 方法会在 url 里看到请求参数，post 不会）
-
-1.  `jsp:include` 配合 `jsp:param`。这是把另一个 jsp 页包含进来。
+1.  【包含对面的】 `jsp:include` 配合 `jsp:param`。这是把另一个 jsp 页包含进来。
 
 ```jsp
-	<form method="get">
-		请输入圆的半径：
-		<input type="text" name="radius" />
-		<input type="submit" value="提交" />
-	</form>
-	<jsp:include page="computeAreaOfCircle.jsp">
-		<jsp:param value="${param.radius}" name="radius" />
-	</jsp:include>
+<form method="get">
+    请输入圆的半径：
+    <input type="text" name="radius" />
+    <input type="submit" value="提交" />
+</form>
+<jsp:include page="computeAreaOfCircle.jsp">
+    <jsp:param value="${param.radius}" name="radius" />
+</jsp:include>
 ```
 
-2. `jsp:forward` 配合 `jsp:param`。这时处理表单的是本页面。这种把 JSP 标签和 Java 代码混在一起的写法很反人类：
+2. 【请求转发】先使用本页面的 Java 代码处理表单，再使用 `jsp:forward` 配合 `jsp:param`，把 request 对象转发给另一个 jsp 页面。
 
-```jsp
-	<form method="post" action="">
-		请选择一个图形：<br />
-		<input type="radio" name="shape" id="circle" value="circle" />圆形<br />
-		<input type="radio" name="shape" id="rectangle" value="rectangle" />矩形<br />
-		<input type="submit" value="提交" />
-	</form>
-	<%
-		Random random = new Random();
-	String shape = request.getParameter("shape");
-	if (shape != null) {
-		if (shape.equals("circle")) {
-			double radius = 100 * random.nextDouble();
-	%>
-	<jsp:forward page="process.jsp">
-		<jsp:param value="<%=shape%>" name="shape" />
-		<jsp:param value="<%=radius%>" name="radius" />
-	</jsp:forward>
-	<%
-		} else if (shape.equals("rectangle")) {
-		double width = 100 * random.nextDouble();
-		double height = 100 * random.nextDouble();
-	%>
-	<jsp:forward page="process.jsp">
-		<jsp:param value="<%=shape%>" name="shape" />
-		<jsp:param value="<%=width%>" name="width" />
-		<jsp:param value="<%=height%>" name="height" />
-	</jsp:forward>
-	<%
-		}
-	}
-	%>
-```
+这种把 JSP 标签和 Java 代码混在一起的写法很新鲜：
 
 接收方用 `request.getParameter("name")` 接收
 
-> eclipse 如何导入外部 jar 包？
+```jsp
+<form method="post" action="">
+    请选择一个图形：<br />
+    <input type="radio" name="shape" id="circle" value="circle" />圆形<br />
+    <input type="radio" name="shape" id="rectangle" value="rectangle" />矩形<br />
+    <input type="submit" value="提交" />
+</form>
+<%
+	Random random = new Random();
+String shape = request.getParameter("shape");
+if (shape != null) {
+    if (shape.equals("circle")) {
+        double radius = 100 * random.nextDouble();
+%>
+<jsp:forward page="process.jsp">
+    <jsp:param value="<%=shape%>" name="shape" />
+    <jsp:param value="<%=radius%>" name="radius" />
+</jsp:forward>
+<%
+    } else if (shape.equals("rectangle")) {
+    double width = 100 * random.nextDouble();
+    double height = 100 * random.nextDouble();
+%>
+<jsp:forward page="process.jsp">
+    <jsp:param value="<%=shape%>" name="shape" />
+    <jsp:param value="<%=width%>" name="width" />
+    <jsp:param value="<%=height%>" name="height" />
+</jsp:forward>
+<%
+	}
+}
+%>
+```
 
-比如我们用 JDBC 连接 MySQL 时，需要 `com.mysql.cj.jdbc.Driver`，
+3. 【重定向】`response.sendRedirect("result.jsp")` 不会把 request 对象传递过去
 
-1. 先搞到这个 jar 包
-2. 打开 eclipse 的首选项，在 File -> Properties（属性）
+应 `session.setAttribute("name", value)`
 
-不止 eclipse，大部分的软件都有类似“首选项”的东西，相当于一个统一的设置。
+对方使用 `session.getAttribute("name")` 接收。
 
-3.  Java Build Path -> Libraries -> Add External Jars
+访问使用 response.sendRedirect 的一方 jsp 时，会跳转到对面的一方
+
+### 重定向和请求转发？
+
+重定向会丢失 request 对象，请求转发不会。
+
+在 JSP 或者 Servert 里请求转发：
+
+```java
+request.setAttribute("studentList", studentList);
+RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
+dispatcher.forward(request, response);
+```
+
+### 如何实现点一个按钮出现一个新表单？
+
+在第一个表单里加一个隐藏的 `<input>` 标签，第一个表单提交给本页面，然后在本页面里写 Java 代码：
+
+笔者觉得这比 JS 操作 DOM 看起来新鲜，很好玩。
+
+```jsp
+<form action="">
+    <input type="hidden" name="showInput" value="true">
+    <input type="submit" value="查找">
+</form>
+<%
+    String showInput = request.getParameter("showInput");
+if (showInput != null && showInput.equals("true")) {
+%>
+<form action="Query" method="get">
+    <input type="text" name="id" placeholder="输入学号">
+    <input type="submit" value="提交">
+</form>
+<%
+}
+%>
+```
+
+### Filter 是什么？
+
+一个实现了 `javax.servlet.Filter` 接口的类。可在 `doFilter` 方法里对请求预处理，响应后处理：
+
+```java
+@WebFilter("/*")
+public class ProZhInput implements Filter {
+    //...
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        chain.doFilter(request, response);
+    }
+    //...
+}
+```
+
+### 如何使用 JDBC 连接 MySQL？
+
+```java
+public class DBUtil {
+    private static Connection connection = null;
+
+    public static boolean createConnection()  {
+        String url = "jdbc:mysql://localhost:3306/yourdbname?serverTimezone=UTC&useSSL=false";
+        String user = "yourname";
+        String password = "yourpassword";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");// 注册MySQL JDBC驱动程序
+            connection = DriverManager.getConnection(url, user, password);
+            if (connection != null) {
+            	System.out.println("成功连接到数据库！");
+            	return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+}
+```
+
+1. 下载驱动 Jar 包 https://dev.mysql.com/downloads/connector/j/
+2. 把 Jar 包 复制到 `yourprojectname\WebContent\WEB-INF\lib`
+
+### MySQL 里有两张表，一张表的外键是另一张表的主键（如 id），级联更新和删除。如何插入“一条”id 的记录“分散给”这两张表？即对这两张表分别插了一个 id 相同的记录。
+
+先插 id 为主键所在的表，后插 id 为外键所在的表。
+
+这是（关系型）数据库原理的知识。本表里的“外键”就是引用外部表里的“主键”，那得先有外部表。
+

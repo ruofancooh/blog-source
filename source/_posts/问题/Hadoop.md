@@ -227,7 +227,7 @@ EditLog 和 FsImage 在：
 
 你输入一个命令，命令行解释器会在 `PATH` 里寻找你命令的源文件入口在哪，然后向它传递参数。
 
-你可以使用 `which xxx` 或 `readlink -f $(which xxx)` 找你的命令源文件在哪里。
+你可以使用 `which xxx` 或 `readlink -f $(which xxx)` 找你的命令源文件在哪里；使用 `which which` 找你的 `which` 在哪里。
 
 查看虚拟机的 IP 地址：`ifconfig`
 
