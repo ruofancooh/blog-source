@@ -26,16 +26,22 @@ mermaid: true
     } 
 }%%
 sequenceDiagram
-    participant S as display.jsp<br/> Other Servlets
+    participant D as display.jsp
 	participant U as DBUtil.java
     participant R as result.jsp
-    S ->> U:    DBUtil.createConnection()<br/>DBUtil.xxx()
+    participant I as Insert Servlet
+    participant Q as Query Servlet
+    D ->> U:    DBUtil.createConnection()<br/>DBUtil.xxx()
 	U ->> U:    try(connection.prepareStatement(SQL)){<br/>statement.executeQuery()<br/>...
-    U -->> S:   return studentList
-	S -->> S:    request.setAttribute("studentList", studentList)<br/>request.getRequestDispatcher("result.jsp")
-	S -->> R:    dispatcher.forward(request, response)
+    U -->> D:   return studentList
+	D -->> D:   request.getSession()<br/>session.setAttribute("studentList", studentList)
+	D -->> R:   response.sendRedirect("result.jsp");
 	R ->> R:    &lt;table&gt;...    <br/>    &lt;%<br/>    request.getAttribute("studentList")<br/>     for(studentList){<br/>    ... %&gt;<br/>    &lt;tr&gt;<br/>    &lt;td&gt; &lt;%=student.get("id")%&gt; &lt;/td&gt; ...<br/>    &lt;/tr&gt;<br/>    &lt;% } %&gt;<br/>    &lt;/table&gt;<br/>
-	R ->> S:    &lt;form action="xxServlet" method="xxx"&gt;
+	R ->> I:    &lt;form action="xxServlet" method="xxx"&gt;
+    I ->> U:    ……
+    U ->> U:    ……
+    U -->> I:    ……
+    I -->> D:   response.sendRedirect("display.jsp")
 ```
 
 ## 新建工程
@@ -255,7 +261,7 @@ public class DBUtil {
     private static Connection connection = null;
 
     public static boolean createConnection()  {
-        String url = "jdbc:mysql://localhost:3306/yourdbname?serverTimezone=UTC&useSSL=false";
+        String url = "jdbc:mysql://localhost:3306/yourdbname?serverTimezone=UTC";
         String user = "yourname";
         String password = "yourpassword";
         try {
@@ -278,9 +284,18 @@ public class DBUtil {
 1. 下载驱动 Jar 包 https://dev.mysql.com/downloads/connector/j/
 2. 把 Jar 包 复制到 `yourprojectname\WebContent\WEB-INF\lib`
 
-### MySQL 里有两张表，一张表的外键是另一张表的主键（如 id），级联更新和删除。如何插入“一条”id 的记录“分散给”这两张表？即对这两张表分别插了一个 id 相同的记录。
+### 插入的问题
+
+> MySQL 里有两张表，一张表的外键是另一张表的主键（如 id），级联更新和删除。如何插入“一条”id 的记录“分散给”这两张表？即对这两张表分别插了一个 id 相同的记录。
 
 先插 id 为主键所在的表，后插 id 为外键所在的表。
 
 这是（关系型）数据库原理的知识。本表里的“外键”就是引用外部表里的“主键”，那得先有外部表。
 
+### 乱码的问题
+
+保证这些地方的编码是 UTF-8：
+
+1. Eclipse 首选项里的文件编码
+2. 搞一个 Filter
+3. MySQL 数据库表的编码
