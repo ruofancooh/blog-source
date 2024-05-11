@@ -34,7 +34,7 @@ sequenceDiagram
     U -->> S:   return studentList
 	S -->> S:    request.setAttribute("studentList", studentList)<br/>request.getRequestDispatcher("result.jsp")
 	S -->> R:    dispatcher.forward(request, response)
-	R ->> R:    &lt;table&gt;...    <br/>    &lt;%<br/>    request.getAttribute("studentList")<br/>     for(studentList){<br/>    ... %&gt;<br/>    &lttr&gt;<br/>    &lt;td&gt; &lt;%=student.get("id")%&gt; &lt;/td&gt; ...<br/>    &lt;/tr&gt;<br/>    &lt;% } %&gt;<br/>    &lt;/table&gt;<br/>
+	R ->> R:    &lt;table&gt;...    <br/>    &lt;%<br/>    request.getAttribute("studentList")<br/>     for(studentList){<br/>    ... %&gt;<br/>    &lt;tr&gt;<br/>    &lt;td&gt; &lt;%=student.get("id")%&gt; &lt;/td&gt; ...<br/>    &lt;/tr&gt;<br/>    &lt;% } %&gt;<br/>    &lt;/table&gt;<br/>
 	R ->> S:    &lt;form action="xxServlet" method="xxx"&gt;
 ```
 
