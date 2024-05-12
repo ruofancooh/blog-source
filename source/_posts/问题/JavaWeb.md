@@ -16,32 +16,48 @@ mermaid: true
 
 <!--more-->
 
+<style>
+    .main{
+        width:100%
+    }
+</style>
+
 ## 整
 
 ```mermaid
-%%{ 
+%%{
     init: {
 	    "theme": "neutral",
 	    "fontFamily": "Times New Roman"
-    } 
+    }
 }%%
-sequenceDiagram
-    participant D as display.jsp
-	participant U as DBUtil.java
-    participant R as result.jsp
-    participant I as Insert Servlet
-    participant Q as Query Servlet
-    D ->> U:    DBUtil.createConnection()<br/>DBUtil.xxx()
-	U ->> U:    try(connection.prepareStatement(SQL)){<br/>statement.executeQuery()<br/>...
-    U -->> D:   return studentList
-	D -->> D:   request.getSession()<br/>session.setAttribute("studentList", studentList)
-	D -->> R:   response.sendRedirect("result.jsp");
-	R ->> R:    &lt;table&gt;...    <br/>    &lt;%<br/>    request.getAttribute("studentList")<br/>     for(studentList){<br/>    ... %&gt;<br/>    &lt;tr&gt;<br/>    &lt;td&gt; &lt;%=student.get("id")%&gt; &lt;/td&gt; ...<br/>    &lt;/tr&gt;<br/>    &lt;% } %&gt;<br/>    &lt;/table&gt;<br/>
-	R ->> I:    &lt;form action="xxServlet" method="xxx"&gt;
-    I ->> U:    ……
-    U ->> U:    ……
-    U -->> I:    ……
-    I -->> D:   response.sendRedirect("display.jsp")
+flowchart LR
+    subgraph "Web页面"
+        result[result.jsp]
+        display[display.jsp]
+        register[register.jsp]
+    end
+    subgraph "Servlet"
+        Query[Query Servlet]
+        Insert[Insert Servlet]
+        Delete[Delete Servlet]
+        Update[Update Servlet]
+    end
+    subgraph "DBUtil"
+        dbutil[DBUtil.java]
+    end
+    db[(Database)]
+     
+    display--o|查询所有|DBUtil--odb
+    display-.->|重定向|result
+    result-->|查询某个|Query--o|查询某个|DBUtil
+    Query-.->|重定向|result
+    result-->|插入某个|register-->|POST|Insert--o|插入某个|DBUtil
+    Insert-.->|重定向|display
+    result-->|删除某个|Delete--o|删除某个|DBUtil
+    Delete-.->|重定向|display
+    result-->|修改某个|Update--o|修改某个|DBUtil
+    Update-.->|重定向|display
 ```
 
 ## 新建工程
@@ -299,3 +315,9 @@ public class DBUtil {
 1. Eclipse 首选项里的文件编码
 2. 搞一个 Filter
 3. MySQL 数据库表的编码
+4.
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+```
