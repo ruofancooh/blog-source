@@ -12,7 +12,7 @@ date: 2023-05-27 14:48:35
 
 ## 怎么把这个网站搞出来的
 
-Hexo 是一个博客框架，它把 markdown 文件渲染成静态的 html 文件。
+Hexo 是一个博客框架，它把带 YAML Front matter 的 Markdown 文件通过 Node.js 和 Pandoc 渲染成静态的 html 文件。
 
 Github Pages 用于托管静态网页，就是放在上面就不能动了，没有数据库，更新页面要重新上传。创建一个名为 `yourusername.github.io` 的仓库，分支为 `gh-pages`。然后可以访问 `yourusername.github.io`。之后再创建的名为 `sample` 且分支为 `gh-pages` 的仓库，为 `yourusername.github.io/sample`。
 

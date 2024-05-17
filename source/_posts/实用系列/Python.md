@@ -52,6 +52,8 @@ logging.error(...)
 
 你只要写一个稍微像样的项目，都不可能不用模块/库，不拆分文件。这只能说明笔者代码写得实在太少了。
 
+日志有五个等级：DEBUG 调试诊断用的；INFO 确认正常运行；WARNING 是不影响正常运行的错误，如向数据库里插入一条已经存在的记录，然后忽略它；ERROR 是影响正常运行的错误，如数据库连接失败（但是你系统的其他功能可用）；CRITICAL 是你的系统的关键功能不可用（如果你的系统必须要用数据库）。
+
 ## 报菜名
 
 Python 的标准库有上百个。https://docs.python.org/zh-cn/3/tutorial/whatnow.html
@@ -129,7 +131,7 @@ sklearn
 yaml
 ```
 
-## matplotlib.pyplot
+## matplotlib.pyplot 与 seaborn
 
 条形图和柱形图的区别是：前者是横着的，后者是竖着的。前者用 `plt.barh`，后者用 `plt.bar`
 
@@ -167,6 +169,83 @@ plt.title('Scatter plot with Quadratic Curve')
 # 图例
 plt.legend()
 plt.show()
+```
+
+### 鸢尾花数据集绘图示例
+
+```py
+from pprint import pprint
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+from pandas.plotting import parallel_coordinates
+from sklearn.datasets import load_iris
+
+plt.rcParams["font.family"] = "SimHei"
+
+iris = load_iris()
+iris_df = pd.DataFrame(iris.data, columns=iris.feature_names)
+iris_df["species"] = iris.target_names[iris.target]
+pprint(iris_df)
+
+# 柱形图
+# iris_df.hist(bins=10)
+# iris_df.hist(bins=20)
+# plt.show()
+
+
+# 饼图
+# v = iris_df["species"].value_counts()
+# pprint(v)
+# v.plot.pie(explode=[0.1, 0.1, 0.1], autopct="%1.1f", shadow=True, figsize=(10, 10))
+# plt.show()
+
+
+# 箱线图
+# iris_df.boxplot(by="species", figsize=(12, 12))
+# plt.show()
+
+
+# 平行坐标系图
+# eordered_df = iris_df[
+#     [
+#         "sepal width (cm)",  # 花萼
+#         "sepal length (cm)",
+#         "petal length (cm)",  # 花瓣
+#         "petal width (cm)",
+#         "species",
+#     ]
+# ]
+# parallel_coordinates(eordered_df, "species", color=("red", "green", "blue"))
+# plt.show()
+
+
+# 散布图矩阵
+# sns.pairplot(iris_df, kind="scatter", hue="species")
+# plt.show()
+
+
+# 箱线图
+# setosa = iris_df[iris_df["species"] == "setosa"]
+# virginica = iris_df[iris_df["species"] == "virginica"]
+# versicolor = iris_df[iris_df["species"] == "versicolor"]
+# fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+# x_labels = ["花萼长", "花萼宽", "花瓣长", "花瓣宽"]
+# sns.boxplot(data=setosa, ax=axes[0])
+# axes[0].set_title("Setosa")
+# axes[0].set_ylabel("值（cm）")
+# axes[0].set_xticklabels(x_labels)
+# sns.boxplot(data=virginica, ax=axes[1])
+# axes[1].set_title("Virginica")
+# axes[1].set_ylabel("值（cm）")
+# axes[1].set_xticklabels(x_labels)
+# sns.boxplot(data=versicolor, ax=axes[2])
+# axes[2].set_title("Versicolor")
+# axes[2].set_ylabel("值（cm）")
+# axes[2].set_xticklabels(x_labels)
+# plt.tight_layout()
+# plt.show()
 ```
 
 ## scipy.stats.某种分布.
