@@ -242,6 +242,19 @@ start-hbase.sh
 hbase shell
 ```
 
+```sh
+help
+list
+create 'tablename','cfname1','cfname2'
+put 'tablename','rowname','cfname1:qualifiername1','value'
+put 'tablename','rowname','cfname2:','value'
+scan 'tablename'
+scan 'tablename',{COLUMNS=>'cfname1'}
+get 'tablename','rowname'
+describe 'tablename'
+drop 'tablename'
+```
+
 如果你没有在 `hbase-env.sh` 里配置 `JAVA_HOME`，你会看到：
 
 ```
