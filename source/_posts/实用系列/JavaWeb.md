@@ -32,6 +32,34 @@ mermaid: true
     }
 }%%
 flowchart LR
+    subgraph "View"
+        input[input.jsp]
+        result[result.jsp]
+    end
+    subgraph "Model"
+    end
+    subgraph "Controller"
+        selectShape[SelectShape.java]
+        compute[Compute.java]
+    end
+
+    input-->selectShape
+    compute-->result
+    compute--oBeans
+
+
+```
+
+## 整
+
+```mermaid
+%%{
+    init: {
+	    "theme": "neutral",
+	    "fontFamily": "Times New Roman"
+    }
+}%%
+flowchart LR
     subgraph "Web页面"
         result[result.jsp]
         display[display.jsp]
@@ -47,7 +75,7 @@ flowchart LR
         dbutil[DBUtil.java]
     end
     db[(Database)]
-     
+
     display--o|查询所有|DBUtil--odb
     display-.->|重定向|result
     result-->|查询某个|Query--o|查询某个|DBUtil
@@ -134,6 +162,16 @@ jcmd
 4. 客户
 
 ## 问答
+
+### Struts2 是干嘛的？
+
+是一个框架，是一个库，是一系列 Jar 包。
+
+`com.opensymphony.xwork2.ActionSupport` 这个类的子类充当 MVC 架构中的控制器，jsp 充当视图，JavaBean 充当模型。
+
+> 视图表单怎么写？
+
+> Action 怎么获取视图传过来的表单？
 
 ### jsp 指令与 jsp 动作？
 
