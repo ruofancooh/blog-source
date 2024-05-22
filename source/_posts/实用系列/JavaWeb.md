@@ -46,8 +46,6 @@ flowchart LR
     input-->selectShape
     compute-->result
     compute--oBeans
-
-
 ```
 
 ## 整
