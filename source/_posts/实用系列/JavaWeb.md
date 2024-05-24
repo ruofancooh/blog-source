@@ -32,19 +32,20 @@ mermaid: true
     }
 }%%
 flowchart LR
+    subgraph "Controller"
+        selectShape[SelectShape Action]
+        compute[Compute Action]
+    end
+    subgraph "Model"
+        Beans
+    end
     subgraph "View"
         input[input.jsp]
         result[result.jsp]
     end
-    subgraph "Model"
-    end
-    subgraph "Controller"
-        selectShape[SelectShape.java]
-        compute[Compute.java]
-    end
 
-    input-->selectShape
-    compute-->result
+    input-->selectShape-.->input
+    input-->compute-.->result
     compute--oBeans
 ```
 

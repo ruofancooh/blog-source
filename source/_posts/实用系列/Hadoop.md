@@ -180,6 +180,73 @@ public class App {
 
 12. 在 NameNode 上执行 `hdfs -namenode format`，把 Hadoop 的文件系统 HDFS 初始化。在你的物理机文件系统上有一个虚拟机文件系统，在虚拟机文件系统上又有一个 HDFS
 
+## 配置虚拟机
+
+### 网络
+
+如果你用的 WSL + 单机伪分布式，只需要修改 `/etc/wsl.conf`：
+
+```conf
+[network]
+hostname=localhost
+```
+
+```sh
+exit
+wsl --shutdown
+wsl
+```
+
+如果你用的 VM + Ubuntu 22.04:
+
+编辑`/etc/netplan`下的`00-installer-config.yaml`文件。[netplan 文档](https://netplan.readthedocs.io/en/stable/netplan-tutorial/)
+
+选择`192.168.78`的依据是：
+
+- 在物理机使用`ipconfig`命令得到的【VMnet8】的 IPv4 地址`192.168.78.1`
+- 查看 `C:\ProgramData\VMware\vmnetnat.conf` 里的 NAT 网关地址`192.168.78.2`
+
+```yaml
+network:
+  version: 2
+  ethernets:
+    ens33:
+      dhcp4: false
+      dhcp6: false
+      addresses:
+        - 192.168.78.101/24 # 每台机器设置成不同的
+      routes:
+        - to: default
+          via: 192.168.78.2
+      nameservers:
+        addresses:
+          - 192.168.78.2
+```
+
+```sh
+sudo netplan try
+```
+
+### SSH
+
+如果你用的 WSL + 单机伪分布式，下面两条命令只用做一次。
+
+如果你搭的分布式：每台机器上都执行：
+
+```sh
+ssh-keygen -t rsa -m PEM
+```
+
+笔者这里的版本是 `OpenSSH_8.9p1 Ubuntu-3ubuntu0.6, OpenSSL 3.0.2 15 Mar 2022`，要加上 `-m PEM`，确保私钥以 -----BEGIN **RSA** PRIVATE KEY----- 开头。[后续错误](https://www.cnblogs.com/simple-li/p/14654812.html)
+
+每台机器上都执行：
+
+```sh
+ssh-copy-id ubuntu101
+ssh-copy-id ubuntu102
+...
+```
+
 ## MR
 
 1. `start-dfs.sh` 再 `jps` 查看 JVM 进程，你会看到 NN、2NN、DN
@@ -323,69 +390,258 @@ export SPARK_MASTER_HOST=localhost
 localhost
 ```
 
-## 网络
+## Flume
 
-如果你用的 WSL + 单机伪分布式，只需要修改 `/etc/wsl.conf`：
+<img src="https://flume.apache.org/_images/DevGuide_image00.png">
+
+Flume 是一个水槽，用于采集、聚合和传输流数据（事件）。对于每一个代理 agent，有源 source、汇 sink、渠道 channel。
+
+https://flume.apache.org/documentation.html
+
+### 启动参数
+
+```sh
+flume-ng agent --conf conf -f <配置文件路径> -n <代理名>
+```
+
+注意：下面的配置不一定对。笔者不小心把配置文件夹删了，但是保留的还有配置内容截图。所以下面的实际是 [OCR](https://web.baimiaoapp.com/) 过来后再修改的。之前是实验成功了的，而之后没有做过实验。
+
+### Hello（netcat 源与 logger 接收器）
 
 ```conf
-[network]
-hostname=localhost
+# 代理名为 a1
+# 以 s 结尾说明可以有多个 source、sink、channel
+a1.sources = r1
+a1.sinks = k1
+a1.channels = c1
+
+# 设置 a1 的渠道 c1 为内存通道
+a1.channels.c1.type = memory
+a1.channels.c1.capacity = 1000
+a1.channels.c1.transactionCapacity = 100
+
+# 把 a1 的源和汇 r1 和 k1 绑定到 a1 的渠道 c1 上
+# source 可以指定多个渠道，sink 只能指定一个
+# 以多种方式流向一个结果
+a1.sources.r1.channels = c1
+a1.sinks.k1.channel = c1
+
+# 设置 a1 的源 r1 为一个 netcat-like source
+# 行为像 nc -lk [host] [port]
+# 它侦听给定端口并将每行文本转换为一个事件
+a1.sources.r1.type = netcat
+a1.sources.r1.bind = localhost
+a1.sources.r1.port = 44444
+
+# 设置 a1 的汇 k1 为 logger 类型，写到 flume.log 里面
+a1.sinks.k1.type = logger
 ```
+
+### 实时监控单个追加文件（exec 源与 hdfs 接收器）
+
+Exec Source 在启动时运行给定的 Unix 命令，并期望该进程在标准输出时连续生成数据。使用 `tail –F <filename>` 命令可以看到文件末尾的实时追加。
+
+这里监控本机的 datanode 日志，并上传到 HDFS。
+
+```conf
+# 代理
+a2.sources = r2
+a2.sinks = k2
+a2.channels = c2
+
+# 渠道
+a2.channels.c2.type = memory
+a2.channels.c2.capacity = 1000
+a2.channels.c2.transactionCapacity = 100
+
+# 源
+a2.sources.r2.type = exec
+a2.sources.r2.command = tail -F /opt/hadoop-ha/hadoop-3.3.6/logs/hadoop-rc-datanode-ubuntu101.log
+a2.sources.r2.channels= c2
+
+# 汇
+a2.sinks.k2.type = hdfs
+a2.sinks.k2.hdfs.path = hdfs://mycluster/flume/%Y%m%d/%H
+a2.sinks.k2.hdfs.filePrefix = logs-
+a2.sinks.k2.hdfs.fileType = DataStream
+# 使用本地事件戳，把时间戳向下舍入，结合上面的配置是以小时作为子文件夹，即按小时分隔a2.sinks.k2.hdfs.useLocalTimeStamp = true
+a2.sinks.k2.hdfs.round = true
+a2.sinks.k2.hdfs.roundValue = 1
+a2.sinks.k2.hdfs.roundUnit = hour
+# 最多积攒多少个事件后，才将文件 flush 到 HDFS
+a2.sinks.k2.hdfs.batchSize = 100
+# 指定多少秒生成一个新的文件（滚动）
+a2.sinks.k2.hdfs.rollInterval = 60
+# 生成的文件最大大小（字节），略小于128M（HDFS的文件分块大小）
+a2.sinks.k2.hdfs.rollSize = 134217700
+# 不指定滚动文件的事件数量
+a2.sinks.k2.hdfs.rollCount = 0
+a2.sinks.k2.channel = c2
+```
+
+### 实时监控多个新文件（spooldir 源与 hdfs 接收器）
+
+Spooling Directory Source 监视指定目录中的新文件，并在新文件出现时解析事件。
+
+这里监控 `/opt/flume-1.11.0/upload` 目录。向目录里添加文件后，上传到 HDFS。
+
+```conf
+# 代理
+a3.sources = r3
+a3.sinks = k3
+a3.channels = c3
+# 渠道
+a3.channels.c3.type = memory
+a3.channels.c3.capacity = 1000
+a3.channels.c3.transactionCapacity = 100
+# 源
+a3.sources.r3.type = spooldir
+a3.sources.r3.spoolDir = /opt/flume-1.11.0/upload
+a3.sources.r3.fileSuffix = .COMPLETED
+# 是否添加存储绝对路径文件名的标头
+a3.sources.r3.fileHeader = true
+# 忽略以.tmp 结尾的文件
+# [^ ]*匹配任意不是空格的字符零次或多次
+a3.sources.r3.ignorePattern = ^([^ ]*\.tmp)$
+
+a3.sources.r3.channels = c3
+
+# 汇
+a3.sinks.k3.type = hdfs
+a3.sinks.k3.hdfs.path = hdfs://mycluster/flume/upload/%Y%m%d/%H
+a3.sinks.k3.hdfs.filePrefix = upload-
+a3.sinks.k3.hdfs.fileType = DataStream
+# 使用本地事件戳，把时间戳向下舍入，结合上面的配置是以小时作为子文件夹，即按小时分隔
+a3.sinks.k3.hdfs.useLocalTimeStamp = true
+a3.sinks.k3.hdfs.round = true
+a3.sinks.k3.hdfs.roundValue = 1
+a3.sinks.k3.hdfs.roundUnit = hour
+# 最多积攒多少个事件后，才将文件 flush 到 HDFS
+a3.sinks.k3.hdfs.batchSize = 100
+# 指定多少秒生成一个新的文件（滚动）
+a3.sinks.k3.hdfs.rollInterval = 60
+# 生成的文件最大大小（字节），略小于128M（HDFS的文件分块大小）
+a3.sinks.k3.hdfs.rollSize = 134217700
+# 不指定滚动文件的事件数量
+a3.sinks.k3.hdfs.rollCount = 0
+
+a3.sinks.k3.channel = c3
+```
+
+### 实时监控多个追加文件（TAILDIR 源与 hdfs 接收器）
+
+Taildir Source：监视指定的文件，并在检测到附加到每个文件的新行后几乎实时地跟踪它们。如果正在写入新行，则此源将重试读取它们，等待写入完成。
+
+监控 flume 目录里的 upload 目录和 upload1 目录。
+
+```conf
+# 代理
+a4.sources = r4
+a4.sinks = k4
+a4.channels = c4
+# 渠道
+a4.channels.c4.type = memory
+a4.channels.c4.capacity = 1000
+a4.channels.c4.transactionCapacity = 100
+# 源
+a4.sources.r4.type = TAILDIR
+# JSON 格式的文件，用于记录每个尾部文件的inode、绝对路径和最后位置
+a4.sources.r4.positionFile = /opt/flume-1.11.0/taildir_position.json
+a4.sources.r4.filegroups = f1 f2
+# 正则表达式只能用于文件名
+a4.sources.r4.filegroups.f1 = /opt/flume-1.11.0/upload/.*
+a4.sources.r4.filegroups.f2 = /opt/flume-1.11.0/upload1/.*
+a4.sources.r4.channels = c4
+
+
+# 汇
+a4.sinks.k4.type = hdfs
+a4.sinks.k4.hdfs.path = hdfs://mycluster/flume/upload/%Y%m%d/%H
+a4.sinks.k4.hdfs.filePrefix = upload-
+a4.sinks.k4.hdfs.fileType = DataStream
+# 使用本地事件戳，把时间戳向下舍入，结合上面的配置是以小时作为子文件夹，即按小时分隔
+a4.sinks.k4.hdfs.useLocalTimeStamp = true
+a4.sinks.k4.hdfs.round = true
+a4.sinks.k4.hdfs.roundValue = 1
+a4.sinks.k4.hdfs.roundUnit = hour
+# 最多积攒多少个事件后，才将文件 flush 到 HDFS
+a4.sinks.k4.hdfs.batchSize = 100
+# 指定多少秒生成一个新的文件（滚动）
+a4.sinks.k4.hdfs.rollInterval = 20
+# 生成的文件最大大小（字节），略小于128M（HDFS的文件分块大小）
+a4.sinks.k4.hdfs.rollSize = 134217700
+# 不指定滚动文件的事件数量
+a4.sinks.k4.hdfs.rollCount = 0
+
+a4.sinks.k4.channel = c4
+```
+
+查看 `taildir_position.json`：其中 inode 号码是操作系统里文件的唯一 id，pos 是 flume 的读取到的最新的文件位置（偏移量）
+
+Taildir source 是存在问题的：如果文件名变了，会重新上传。如果日志的文件名在一天过后变了，它会被重新上传一份。解决方案有修改 flume 的源码，或者修改生成日志文件名部分的源码。
+
+### 监控 MapReduce 结果，上传到 HDFS
+
+（1）使用 Flume 的 spooldir 源递归监控 `/opt/result/` 目录下的文件，汇总到 hdfs 接收器 `hdfs://mycluster/flume/mrresult`。
+
+（2）将文献上传到 HDFS 的 `/wcinput` 目录，执行 MR 输出到本地路径 `file:///opt/result/mrresult`
+
+注意：如果提前建好 MR 的输出目录，MR 会报错。而如果不提前建好 flume 的监控目录，flume 会报错。
+
+所以只提前建好外层目录，用 flume 递归监控外层目录，MR 输出到内层目录。
+
+```conf
+# 代理
+a5.sources = r5
+a5.sinks = k5
+a5.channels = c5
+# 渠道
+a5.channels.c5.type = memory
+a5.channels.c5.capacity = 1000
+a5.channels.c5.transactionCapacity = 100
+# 源
+a5.sources.r5.type = spooldir
+a5.sources.r5.spoolDir = /opt/result
+# 递归监视子目录
+a5.sources.r5.recursiveDirectorySearch = true
+# 指定文件名
+a5.sources.r5.includePattern = ^part-r-00000$
+
+a5.sources.r5.fileSuffix = .COMPLETED
+# 是否添加存储绝对路径文件名的标头
+a5.sources.r5.fileHeader = true
+# 忽略以.tmp 结尾的文件
+# [^ ]*匹配任意不是空格的字符零次或多次
+a5.sources.r5.ignorePattern = ^([^ ]*\.tmp)$
+
+a5.sources.r5.channels = c5
+
+# 汇
+a5.sinks.k5.type = hdfs
+a5.sinks.k5.hdfs.path = hdfs://mycluster/flume/mrresult
+a5.sinks.k5.hdfs.filePrefix = upload-
+a5.sinks.k5.hdfs.fileType = DataStream
+# 使用本地事件戳，把时间戳向下舍入，结合上面的配置是以小时作为子文件夹，即按小时分隔
+a5.sinks.k5.hdfs.useLocalTimeStamp = true
+a5.sinks.k5.hdfs.round = true
+a5.sinks.k5.hdfs.roundValue = 1
+a5.sinks.k5.hdfs.roundUnit = hour
+# 最多积攒多少个事件后，才将文件 flush 到 HDFS
+a5.sinks.k5.hdfs.batchSize = 100
+# 指定多少秒生成一个新的文件（滚动）
+a5.sinks.k5.hdfs.rollInterval = 60
+# 生成的文件最大大小（字节），略小于128M（HDFS的文件分块大小）
+a5.sinks.k5.hdfs.rollSize = 134217700
+# 不指定滚动文件的事件数量
+a5.sinks.k5.hdfs.rollCount = 0
+
+a5.sinks.k5.channel = c5
+```
+
+执行 MR：
 
 ```sh
-exit
-wsl --shutdown
-wsl
-```
-
-如果你用的 VM + Ubuntu 22.04:
-
-编辑`/etc/netplan`下的`00-installer-config.yaml`文件。[netplan 文档](https://netplan.readthedocs.io/en/stable/netplan-tutorial/)
-
-选择`192.168.78`的依据是：
-
-- 在物理机使用`ipconfig`命令得到的【VMnet8】的 IPv4 地址`192.168.78.1`
-- 查看 `C:\ProgramData\VMware\vmnetnat.conf` 里的 NAT 网关地址`192.168.78.2`
-
-```yaml
-network:
-  version: 2
-  ethernets:
-    ens33:
-      dhcp4: false
-      dhcp6: false
-      addresses:
-        - 192.168.78.101/24 # 每台机器设置成不同的
-      routes:
-        - to: default
-          via: 192.168.78.2
-      nameservers:
-        addresses:
-          - 192.168.78.2
-```
-
-```sh
-sudo netplan try
-```
-
-## SSH
-
-如果你用的 WSL + 单机伪分布式，下面两条命令只用做一次。
-
-如果你搭的分布式：每台机器上都执行：
-
-```sh
-ssh-keygen -t rsa -m PEM
-```
-
-笔者这里的版本是 `OpenSSH_8.9p1 Ubuntu-3ubuntu0.6, OpenSSL 3.0.2 15 Mar 2022`，要加上 `-m PEM`，确保私钥以 -----BEGIN **RSA** PRIVATE KEY----- 开头。[后续错误](https://www.cnblogs.com/simple-li/p/14654812.html)
-
-每台机器上都执行：
-
-```sh
-ssh-copy-id ubuntu101
-ssh-copy-id ubuntu102
-...
+hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar wordcount /wcinput file:///opt/result/mrresult
 ```
 
 ## 超链接
@@ -503,3 +759,287 @@ case "$1" in
         ;;
 esac
 ```
+
+## 搭建 Hadoop 高可用集群
+
+HDFS 和 YARN 都是主从架构，当主节点挂了或者系统升级，集群会无法正常工作。高可用是指 7x24 小时系统可用，为此设置多个主节点。
+
+对于 HDFS，主节点是 NameNode，它负责保存文件系统快照、操作日志、处理客户端读写请求，2NN 负责定期合并文件系统快照和操作日志。为实现高可用，设置多个 NameNode 和 JournalNode。同一时间只能有一个 NameNode 为 Active，它负责生成快照文件 FsImage，其他 NameNode 为 Standby，拉取同步 FsImage，还起到 2NN 的作用。JournalNode 负责保证 EditLog 的一致性。Zookeeper 负责监控集群，如果 Active 的 NameNode 挂了，通过 ZKFC 进行故障转移。
+
+对于 YARN，主节点是 ResourceManager，从节点是 NodeManager。为此配置多个 ResourceManager。
+
+https://hadoop.apache.org/docs/r3.3.6/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithQJM.html
+
+## HDFS-HA
+
+把原来的非高可用的 Hadoop 文件夹单独复制一份，重新写配置文件和环境变量、删除 data 和 logs 文件夹。先启动所有 journalnode 服务，再格式化一台机器的 namenode，启动该机器的 namenode 服务，然后在另两台机器上同步 namenode1 的元数据信息，并启动 namenode 服务。
+
+### 配置
+
+三台机器上分别都配一个 NameNode、JournalNode、DataNode
+
+`core-site.xml`:
+
+| name                        | value                                  |
+| --------------------------- | -------------------------------------- |
+| fs.defaultFS                | hdfs://mycluster                       |
+| hadoop.tmp.dir              | /usr/local/hadoop-ha/hadoop-3.3.6/data |
+| hadoop.http.staticuser.user | rc                                     |
+
+`hdfs-site.xml`:
+
+注意 `dfs.journalnode.edits.dir` 不能以 `file://` 开头，前两个要以 `file://` 开头，不然报错。以及小心各种拼写错误。
+
+| name                                          | value                                                                     |
+| --------------------------------------------- | ------------------------------------------------------------------------- |
+| dfs.nameservices                              | mycluster                                                                 |
+| dfs.namenode.name.dir                         | `file://${hadoop.tmp.dir}/name`                                           |
+| dfs.datanode.data.dir                         | `file://${hadoop.tmp.dir}/data`                                           |
+| dfs.journalnode.edits.dir                     | `${hadoop.tmp.dir}/journalnode`                                           |
+| dfs.ha.namenodes.mycluster                    | namenode1,namenode2,namenode3                                             |
+| dfs.namenode.rpc-address.mycluster.namenode1  | ubuntu101:8020                                                            |
+| dfs.namenode.rpc-address.mycluster.namenode2  | ubuntu102:8020                                                            |
+| dfs.namenode.rpc-address.mycluster.namenode3  | ubuntu103:8020                                                            |
+| dfs.namenode.http-address.mycluster.namenode1 | ubuntu101:9870                                                            |
+| dfs.namenode.http-address.mycluster.namenode2 | ubuntu102:9870                                                            |
+| dfs.namenode.http-address.mycluster.namenode3 | ubuntu103:9870                                                            |
+| dfs.namenode.shared.edits.dir                 | qjournal://ubuntu101:8485;ubuntu102:8485;ubuntu103:8485/mycluster         |
+| dfs.client.failover.proxy.provider.mycluster  | org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider |
+| dfs.ha.fencing.methods                        | sshfence                                                                  |
+| dfs.ha.fencing.ssh.private-key-files          | /home/rc/.ssh/id_rsa                                                      |
+
+### 实验
+
+在每一台机器上启动 JournalNode 服务：
+
+```sh
+hdfs --daemon start journalnode
+```
+
+在 101 机器上对 namenode 进行格式化，并启动 namenode：
+
+```sh
+hdfs namenode -format
+hdfs --daemon start namenode
+```
+
+在 Web 界面查看，为 Standby。
+
+在另两台机器上同步 namenode1 的元数据信息，并启动 namenode：
+
+```sh
+hdfs namenode -bootstrapStandby
+hdfs --daemon start namenode
+```
+
+在每一台机器上启动 DataNode：
+
+```sh
+hdfs --daemon start datanode
+```
+
+把 namenode2 切换成 Active 状态：
+
+```sh
+hdfs haadmin -transitionToActive namenode2
+```
+
+模拟 namenode2 挂掉：
+
+```sh
+kill -9 <进程号>
+```
+
+这时 namenode1 和 namenode3 还是 Standby。如果手动激活某一个，会显示 102 拒绝连接。
+
+重启 namenode2 后，三个 namenode 还是 Standby。这时再激活某一个，激活成功。这说明当所有的 namenode 都启动成功时，才可以激活某一个 namenode。这失去了高可用的意义和作用。为什么会这样呢？因为我们前面配置了隔离机制，同一时刻只能有一台 Active 的 namenode 响应客户端。如果有 namenode 挂了，其他 namenode 只是联系不上它，不知道是不是真的挂了。如果它没挂且是 Active，再激活其他机器，会出现两台 Active。为了准确无误地知道它是否挂了，需要配置 ZooKeeper 监控集群。
+
+### 自动故障转移配置
+
+在三台机器上都加一个 Zookeeper 和 ZKFC。
+
+在上面的配置文件基础上增加。
+
+`hdfs-site.xml`:
+
+| name                              | value |
+| --------------------------------- | ----- |
+| dfs.ha.automatic-failover.enabled | true  |
+
+`core-site.xml`:
+
+端口号要与 ZooKeeper 配置文件里的一致。
+
+| name                | value                                        |
+| ------------------- | -------------------------------------------- |
+| ha.zookeeper.quorum | ubuntu101:2181,ubuntu102:2181,ubuntu103:2181 |
+
+### 自动故障转移实验
+
+必须在 stop-dfs 之后，并启动 ZooKeeper 集群成功后，再在任意一台机器上初始化 HA 在 Zookeeper 中状态。
+
+```sh
+hdfs zkfc –formatZK
+```
+
+然后 start-dfs。formatZK 成功后，以后启动集群需要先启动 ZK 服务端，后启动 dfs。如果先启动 dfs，这时会有 ZKFC 进程，再启动 ZK 服务端后，ZKFC 进程被挤掉了，所有 namenode 都是 Standby。
+
+查看当前活跃节点：
+
+```sh
+hdfs haadmin -getAllServiceState
+```
+
+或者在 ZK 客户端查看选举锁：
+
+```sh
+get -s /hadoop-ha/mycluster/ActiveStandbyElectorLock
+```
+
+验证集群会不会进行故障转移：kill 掉 Active 的 namenode
+
+## YARN-HA
+
+### 配置
+
+三台机器上分别都配一个 ResourceManager、NodeManager、ZooKeeper
+
+`yarn-site.xml`:
+
+| name                                              | value                                                                                                                         |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| yarn.nodemanager.aux-services                     | mapreduce_shuffle                                                                                                             |
+| yarn.resourcemanager.ha.enabled                   | true                                                                                                                          |
+| yarn.resourcemanager.recovery.enabled             | true                                                                                                                          |
+| yarn.resourcemanager.store.class                  | org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore                                                         |
+| yarn.resourcemanager.zk-address                   | ubuntu101:2181,ubuntu102:2181,ubuntu103:2181                                                                                  |
+| yarn.resourcemanager.cluster-id                   | cluster-yarn1                                                                                                                 |
+| yarn.resourcemanager.ha.rm-ids                    | rm1,rm2,rm3                                                                                                                   |
+| yarn.resourcemanager.hostname.rm1                 | ubuntu101                                                                                                                     |
+| yarn.resourcemanager.hostname.rm2                 | ubuntu102                                                                                                                     |
+| yarn.resourcemanager.hostname.rm3                 | ubuntu103                                                                                                                     |
+| yarn.resourcemanager.webapp.address.rm1           | ubuntu101:8088                                                                                                                |
+| yarn.resourcemanager.webapp.address.rm2           | ubuntu102:8088                                                                                                                |
+| yarn.resourcemanager.webapp.address.rm3           | ubuntu103:8088                                                                                                                |
+| yarn.resourcemanager.address.rm1                  | ubuntu101:8032                                                                                                                |
+| yarn.resourcemanager.address.rm2                  | ubuntu102:8032                                                                                                                |
+| yarn.resourcemanager.address.rm3                  | ubuntu103:8032                                                                                                                |
+| yarn.resourcemanager.scheduler.address.rm1        | ubuntu101:8030                                                                                                                |
+| yarn.resourcemanager.scheduler.address.rm2        | ubuntu102:8030                                                                                                                |
+| yarn.resourcemanager.scheduler.address.rm3        | ubuntu103:8030                                                                                                                |
+| yarn.resourcemanager.resource-tracker.address.rm1 | ubuntu101:8031                                                                                                                |
+| yarn.resourcemanager.resource-tracker.address.rm2 | ubuntu102:8031                                                                                                                |
+| yarn.resourcemanager.resource-tracker.address.rm3 | ubuntu103:8031                                                                                                                |
+| yarn.nodemanager.env-whitelist                    | JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME |
+
+### 实验
+
+查看当前活跃节点：
+
+```sh
+yarn rmadmin -getAllServiceState
+```
+
+如果浏览器访问 Standby 节点的 8088 端口（RM），会自动跳转到 Active 节点。
+
+## 解决 JSch 认证失败
+
+问题出现在配置 HDFS HA 自动故障转移时。杀掉活跃的 NN 之后，它没有被隔离成功。
+
+JSch 是一个库，它在 Java 程序里建立 SSH 连接。
+
+### 在杀掉 Acitive 的 NN 过程中
+
+被杀的 Acitive 的 NN 上的 ZKFC 日志：
+
+1. [08:38:38,534] hadoop 高可用健康监测者抛出 EOF 异常，进入 SERVICE_NOT_RESPONDING 状态
+2. [08:38:38,615]
+   - org.apache.hadoop.hdfs.tools.DFSZKFailoverController: 获取不到本地 NN 的线程转储，由于连接被拒绝
+   - org.apache.hadoop.ha.ZKFailoverController: 退出 NN 的主选举，并标记需要隔离
+   - hadoop 高可用激活/备用选举者开始重新选举
+3. [08:38:38,636] ZK 客户端不能从服务端读取会话的附加信息，说服务端好像把套接字关闭了
+4. [08:38:38,739] 会话被关闭，ZK 客户端上对应的事件线程被终止
+5. 之后 hadoop 高可用健康监测者一直尝试重新连接 NN，连不上
+
+原来 Standby 的 NN 上的 ZKFC 日志：
+
+1. [08:38:38,719] 选举者检查到了需要被隔离的原活跃节点，ZKFC 找到了隔离目标
+2. [08:38:39,738] org.apache.hadoop.ha.FailoverController 联系不上被杀的 NN
+3. [08:38:39,748] 高可用节点隔离者开始隔离，用 org.apache.hadoop.ha.SshFenceByTcpPort，里面用了 JSch 库建立客户端（本机）与服务端（被杀的）之间的 SSH 连接
+4. [08:38:40,113] SSH 认证失败，隔离方法没有成功，选举失败
+5. 之后选举者一直在重建 ZK 连接，重新连 NN 连不上，重新隔离失败
+
+### 软件版本
+
+客户端（Standby 上的 org.apache.hadoop.ha.SshFenceByTcpPort.jsch）：
+
+- Hadoop 3.3.6 [SshFenceByTcpPort 源码](https://github.com/apache/hadoop/blob/branch-3.3.6/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/ha/SshFenceByTcpPort.java)
+- JSch 0.1.55
+
+服务端（被杀的）：
+
+- OpenSSH_8.9p1 Ubuntu-3ubuntu0.6, OpenSSL 3.0.2 15 Mar 2022 里的 sshd
+
+生成密钥时用的命令：
+
+```sh
+ssh-keygen -t rsa -m PEM
+```
+
+### 关键日志
+
+原来为 Standby 的 NN 上的 ZKFC 日志：
+
+```
+INFO org.apache.hadoop.ha.SshFenceByTcpPort.jsch:
+//...
+Remote version string: SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
+Local version string: SSH-2.0-JSCH-0.1.54
+// JSch 0.1.55 的源码里，写的字符串就是 0.1.54，这个应该不影响
+//...
+Authentications that can continue: publickey,keyboard-interactive,password
+Next authentication method: publickey
+// 这里用公钥认证失败了
+Authentications that can continue: password
+Next authentication method: password
+Disconnecting from ubuntu103 port 22
+WARN org.apache.hadoop.ha.SshFenceByTcpPort: Unable to connect to ubuntu103 as user rc
+com.jcraft.jsch.JSchException: Auth fail
+```
+
+### 解决思路
+
+看 sshd 的日志：
+
+```
+userauth_pubkey: key type ssh-rsa not in PubkeyAcceptedAlgorithms
+error: Received disconnect from 192.168.78.101 port 49968:3: com.jcraft.jsch.JSchException: Auth fail
+Disconnected from authenticating user rc 192.168.78.101 port 49968
+```
+
+```sh
+sudo vi /etc/ssh/sshd_config
+```
+
+```
+PubkeyAuthentication yes
+PubkeyAcceptedAlgorithms +ssh-rsa
+```
+
+```sh
+sudo systemctl restart sshd
+```
+
+## 不是问题的问题
+
+用
+
+```sh
+hdfs haadmin -getAllServiceState
+```
+
+查看 Active 转移成功了，但是联系不上被杀的那一方。
+
+具体地说，转移成功之后，三个方的 DN 都一直在尝试连被杀那一方的 NN，一直在写日志。除此之外上传下载都没问题。
+
+这应该是集群自带的心跳机制，不是问题。
