@@ -5,28 +5,12 @@ categories: 实用系列
 permalink: hadoop.html
 ---
 
-只有当笔者意识到：写教程是在浪费时间的时候，说明笔者是真的学会了。
+1. 在你软件安装的目录里面，通常有一个 doc 文件夹
+2. 在解压软件包之后，什么配置都别写，上来先启动了再说
+3. 找到你软件的日志文件在哪里
+4. 在日志里搜索 `WARN` `ERROR`
 
-理由：这些文档在各个软件的网站上，别人早就写好了。或者<span class="red-text">在你软件安装的目录里面，有一个大大的 doc 文件夹。</span>
-
-回想起来，笔者当初为什么选大数据这个专业？就是它相对于其他计算机专业简单，用的软件都是别人已经写好的，它对于你的数学底子要求不高，没有《编译原理》这种听上去就很吓人的课。笔者想借此把时间倾斜到其他通识的东西上。就过程看来，笔者确实没有做到，因为笔者去纠结软件了。
-
-不作死就不会死。用 Ubuntu + VM Player 的后果是：隔一段时间系统就会卡死（与 Hadoop 无关），挂起再开后，watchdog 说：软锁定，你的 CPU 又卡住了好几十秒。
-
-<style>
-    .red-text {
-        color: red;
-    }
-</style>
-
-1. 改用 WSL（有三层动机，就第一种，笔者还是有点叛逆的想法；第二种，据说它比虚拟机的性能好，实际上，它几秒钟就能开机；第三种，笔者没有自信以看日志的方式解决卡死的问题）
-2. 以后安装各种软件，先看文档。配置文件能不改就不改，能用默认的就用默认的，改了费时费力。有一种心法是：<span class="red-text">在软件安装完之后，什么配置都别写，上来先启动了再说。然后查看日志，搜索 `WARN` `ERROR`。这样做你才能知道，哪些配置是必须有的，而哪些配置是多余的（或者人家默认配置好的）。</span>
-
-真的，笔者有想把软件全部转移到 C 盘的冲动，把 C 盘和 D 盘合并，东西全放在桌面上，这样做比较不反人类。就事实看来，这几年根本没有出现系统崩了导致文件丢了的情况；仅就学术价值看来，没有对笔者来说重要顶过天的文件；就个人价值看来，也没有，因为笔者是一个俗人。
-
-- 使用 https://www.diskgenius.cn/ 可以把你 D 盘的空间向 C 盘匀一点。如果你有多余的恢复分区，可以把它删了，只保留一个。
-- 使用 https://github.com/redtrillix/SpaceSniffer 可以可视化地展示你硬盘的占用情况。
-- 给虚拟机扩容：`https://hrfis.me/blog/linux.html#扩容`
+为什么呢？因为你迟早会遇到报错，没遇到报错才不正常。你把别人的配置文件复制过来，别人的软件不一定和你的版本号相同。没有遇到报错，说明你运气好。
 
 <!--more-->
 
@@ -94,7 +78,7 @@ public class App {
 先回答第四个问题：**IDE 起的是工具人的作用**。如果你用的 IDEA，并且成功连接 HDFS 了，你会在 IDEA 的命令行看到：
 
 ```sh
-/lib/jvm/java-8-openjdk-amd64/bin/java\ -javaagent:/opt/idea-IC-241.15989.150/lib/idea_rt.jar=43273:/opt/idea-IC-241.15989.150/bin\
+/lib/jvm/java-8-openjdk-amd64/bin/java -javaagent:/opt/idea-IC-241.15989.150/lib/idea_rt.jar=43273:/opt/idea-IC-241.15989.150/bin\
                                         -Dfile.encoding=UTF-8\
                                         -classpath /lib/jvm/java-8-openjdk-amd64/jre/lib/charsets.jar:/后面全都是Jar包的路径
 ```
@@ -120,7 +104,7 @@ public class App {
 
 笔者最终的解决方案是：在虚拟机上安装 IDE，把 `$HADOOP_HOME/share/hadoop` 里的 Jar 包导进 IDE 里（这里用的是 IDEA），按播放键运行。如果报找不到类的错误，注意：在 `$HADOOP_HOME/share/hadoop/子文件夹` 下还有一个叫 `lib` 的文件夹。
 
-## 安装 Ubuntu
+## 安装 Ubuntu 22.04.3
 
 1. 下载 Linux 操作系统镜像，可以理解为操作系统的“安装包”。https://launchpad.net/ubuntu/+cdmirrors
 2. 下载一个支持在 Windows 操作系统下运行 Linux 镜像的软件（宿主），它相当于一个没装操作系统的电脑，但是装了引导加载程序 GRUB
@@ -144,43 +128,6 @@ public class App {
 7. 写环境变量
 
 8. 配置 SSH https://wangdoc.com/ssh/
-
-## 安装 Hadoop
-
-9. 下载 Hadoop 软件包
-   - 在虚拟机上直接用 `wget`
-   - 用物理机下载它，从物理机的文件系统上再转移到虚拟机的文件系统上（在你的物理机硬盘上表现为 `.vmdk` 文件）
-     - VM Player 有共享文件夹功能，把你物理机硬盘的某一个文件夹挂载到虚拟机的 `/mnt/hgfs/Shared`
-     - 如果使用 WSL，你的物理机硬盘会被挂载到虚拟机的 `/mnt`
-     - 使用 XFtp 软件，与你的虚拟机进行 SSH 网络协议连接
-10. 在两台虚拟机上都把软件包解压。`/opt` 目录是空的，option 的意思，让你自己选择装不装到这里。
-
-## 配置 Hadoop
-
-11. 修改它们的配置文件，要保证每台机器配置文件内容相同。使用 VSCode 的 Remote-SSH 插件可以直接修改虚拟机内的文件，如果你用的是 WSL 更方便。
-
-<span class="red-text">在 https://hadoop.apache.org/docs/r3.3.6/index.html 左下角有默认的配置文件。
-
-- `hadoop-env.sh` 指定 JAVA_HOME，启动 JVM 时的参数
-- `core-site.xml` 指定 hdfs 的 URI，文件系统存在本地哪个目录
-- `hdfs-site.xml` 指定谁当 NN、2NN，副本个数
-- `mapred-site.xml` 指定 MR 框架，MR 历史服务器
-- `yarn-site.xml` 指定 RM，YARN 历史服务器
-- `workers` 指定谁当 DataNode
-
-勤看日志。当 CPU 占用高，写磁盘不到 1MB/s，可能是出问题了在一直写 log。
-
-- 我们为什么要在 `hadoop-env.sh` 里写 `JAVA_HOME`？因为没写的时候，它会报错： JAVA_HOME is not set and could not be found；
-- 我们为什么要配置 SSH？因为没配置它会报错：Could not resolve hostname xxx: Name or service not known；
-- 我们为什么要在 `core-site.xml` 里配置 `fs.defaultFS` ？因为没配置它会报错：Cannot set priority of namenode process xxx。在日志文件里有：No services to connect, missing NameNode address；
-- 我们为什么要在 `core-site.xml` 里配置 `hadoop.tmp.dir` ？因为它默认存在 `/tmp` 文件夹下，而 `/tmp` 文件夹一重启就没了；
-- 我们为什么要在 `hdfs-site.xml` 里配置 `dfs.namenode.http-address` ？因为我们想用浏览器访问 HDFS；
-- 我们为什么要在 `core-site.xml` 里配置 `hadoop.http.staticuser.user` ？因为如果不配置，只有读的权限，没有写的权限；
-- 我们为什么可以不在 `hadoop-env.sh` 里配置各种用户名？因为还没有遇到报错的时候
-
-12. 在 NameNode 上执行 `hdfs -namenode format`，把 Hadoop 的文件系统 HDFS 初始化。在你的物理机文件系统上有一个虚拟机文件系统，在虚拟机文件系统上又有一个 HDFS
-
-## 配置虚拟机
 
 ### 网络
 
@@ -247,10 +194,55 @@ ssh-copy-id ubuntu102
 ...
 ```
 
-## MR
+### 存储空间
+
+```sh
+sudo du -h --max-depth=1
+```
+
+- 给虚拟机扩容：`https://hrfis.me/blog/linux.html#扩容`
+- 使用 https://www.diskgenius.cn/ 可以把你 D 盘的空间向 C 盘匀一点。如果你有多余的恢复分区，可以把它删了，只保留一个。
+- 使用 https://github.com/redtrillix/SpaceSniffer 可以可视化地展示你硬盘的占用情况。
+
+## Hadoop 3.3.6
+
+9. 下载 Hadoop 软件包
+   - 在虚拟机上直接用 `wget`
+   - 用物理机下载它，从物理机的文件系统上再转移到虚拟机的文件系统上（在你的物理机硬盘上表现为 `.vmdk` 文件）
+     - VM Player 有共享文件夹功能，把你物理机硬盘的某一个文件夹挂载到虚拟机的 `/mnt/hgfs/Shared`
+     - 如果使用 WSL，你的物理机硬盘会被挂载到虚拟机的 `/mnt`
+     - 使用 XFtp 软件，与你的虚拟机进行 SSH 网络协议连接
+10. 在两台虚拟机上都把软件包解压。`/opt` 目录是空的，option 的意思，让你自己选择装不装到这里。
+
+### 配置
+
+11. 修改它们的配置文件，要保证每台机器配置文件内容相同。使用 VSCode 的 Remote-SSH 插件可以直接修改虚拟机内的文件，如果你用的是 WSL 更方便。
+
+<span class="red-text">在 $HADOOP_HOME/share/doc/hadoop/index.html 左下角有默认的配置文件。
+
+- `hadoop-env.sh` 指定 JAVA_HOME，启动 JVM 时的参数
+- `core-site.xml` 指定 hdfs 的 URI，文件系统存在本地哪个目录
+- `hdfs-site.xml` 指定谁当 NN、2NN，副本个数
+- `mapred-site.xml` 指定 MR 框架，MR 历史服务器
+- `yarn-site.xml` 指定 RM，YARN 历史服务器
+- `workers` 指定谁当 DataNode
+
+勤看日志。当 CPU 占用高，写磁盘不到 1MB/s，可能是出问题了在一直写 log。
+
+- 我们为什么要在 `hadoop-env.sh` 里写 `JAVA_HOME`？因为没写的时候，它会报错： JAVA_HOME is not set and could not be found；
+- 我们为什么要配置 SSH？因为没配置它会报错：Could not resolve hostname xxx: Name or service not known；
+- 我们为什么要在 `core-site.xml` 里配置 `fs.defaultFS` ？因为没配置它会报错：Cannot set priority of namenode process xxx。在日志文件里有：No services to connect, missing NameNode address；
+- 我们为什么要在 `core-site.xml` 里配置 `hadoop.tmp.dir` ？因为它默认存在 `/tmp` 文件夹下，而 `/tmp` 文件夹一重启就没了；
+- 我们为什么要在 `hdfs-site.xml` 里配置 `dfs.namenode.http-address` ？因为我们想用浏览器访问 HDFS；
+- 我们为什么要在 `core-site.xml` 里配置 `hadoop.http.staticuser.user` ？因为如果不配置，只有读的权限，没有写的权限；
+- 我们为什么可以不在 `hadoop-env.sh` 里配置各种用户名？因为还没有遇到报错的时候
+
+12. 在 NameNode 上执行 `hdfs -namenode format`，把 Hadoop 的文件系统 HDFS 初始化。在你的物理机文件系统上有一个虚拟机文件系统，在虚拟机文件系统上又有一个 HDFS
+
+### MapReduce
 
 1. `start-dfs.sh` 再 `jps` 查看 JVM 进程，你会看到 NN、2NN、DN
-2. 不需要 `start-yarn.sh`
+2. 不需要 `start-yarn.sh`（如果你没有指定 MR 框架为 YARN，它默认为 local）
 3.
 
 ```sh
@@ -260,11 +252,28 @@ hdfs dfs -put 1.txt /wcinput
 hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar wordcount /wcinput /wcoutput
 ```
 
-```sh
-mapred --daemon start historyserver
+#### 配置
+
+```xml
+<property>
+  <name>mapreduce.framework.name</name>
+  <value>yarn</value>
+</property>
+<property>
+  <name>yarn.app.mapreduce.am.env</name>
+  <value>HADOOP_MAPRED_HOME=/opt/hadoop-3.3.6</value>
+</property>
+<property>
+  <name>mapreduce.map.env</name>
+  <value>HADOOP_MAPRED_HOME=/opt/hadoop-3.3.6</value>
+</property>
+<property>
+  <name>mapreduce.reduce.env</name>
+  <value>HADOOP_MAPRED_HOME=/opt/hadoop-3.3.6</value>
+</property>
 ```
 
-## HDFS
+### HDFS
 
 ```sh
 start-dfs.sh
@@ -283,7 +292,28 @@ EditLog 和 FsImage 在：
 - NN 的 `${hadoop.tmp.dir}/dfs/name/current`
 - 2NN 的 `${hadoop.tmp.dir}/data/dfs/namesecondary/current`
 
+### YARN
+
+```sh
+start-yarn.sh
+```
+
+#### 配置
+
+```xml
+<property>
+  <name>yarn.resourcemanager.hostname</name>
+  <value>localhost</value>
+</property>
+<property>
+  <name>yarn.nodemanager.aux-services</name>
+  <value>mapreduce_shuffle</value>
+</property>
+```
+
 ## ZooKeeper
+
+如果你只用一台机器，应该不用装。
 
 ZooKeeper 特点是只要有半数以上的节点正常工作，整个集群就能正常工作，所以适合装到奇数台服务器上。
 
@@ -297,11 +327,13 @@ server.101=master:2888:3888
 server.102=worker1:2888:3888
 ```
 
-## HBase
+## HBase 2.5.8
 
 https://hbase.apache.org/book.html#standalone_dist
 
 https://hbase.apache.org/book.html#shell_exercises
+
+### 命令
 
 ```sh
 start-dfs.sh
@@ -321,6 +353,8 @@ get 'tablename','rowname'
 describe 'tablename'
 drop 'tablename'
 ```
+
+### 配置
 
 如果你没有在 `hbase-env.sh` 里配置 `JAVA_HOME`，你会看到：
 
@@ -354,12 +388,14 @@ drop 'tablename'
 
 第三个配置项是为了解决：参见 https://hbase.apache.org/book.html#wal.providers
 
-```
+```log
 ERROR [RS-EventLoopGroup-3-2] util.NettyFutureUtils (NettyFutureUtils.java:lambda$addListener$0(58)) - Unexpected error caught when processing netty
 java.lang.IllegalArgumentException: object is not an instance of declaring class
 ```
 
-## Spark
+## Spark 3.5.1
+
+### 命令
 
 ```sh
 start-master.sh
@@ -376,6 +412,8 @@ val textFile = sc.textFile("hdfs://localhost:9820/wcinput")
 textFile.count()
 ```
 
+### 配置
+
 `spark-env.sh`：
 
 ```sh
@@ -390,7 +428,111 @@ export SPARK_MASTER_HOST=localhost
 localhost
 ```
 
-## Flume
+## Hive 4.0.0
+
+https://developer.aliyun.com/article/632261
+
+Hive 的数据默认存在 HDFS 里，元数据可以存在 MySQL 上
+
+### 配置元数据存在 MySQL 上
+
+https://www.mysqltutorial.org/getting-started-with-mysql/install-mysql-ubuntu/
+
+```sh
+sudo systemctl start mysql.service
+mysql -u root -p
+create database hive;
+```
+
+把 MySQL 驱动程序 https://dev.mysql.com/downloads/connector/j/ JAR 包复制到 `$HIVE_HOME/lib`
+
+`hive-site.xml`：
+
+```xml
+  <property>
+    <name>javax.jdo.option.ConnectionURL</name>
+    <value>jdbc:mysql://localhost:3306/hive</value>
+    <description>
+      JDBC connect string for a JDBC metastore.
+      To use SSL to encrypt/authenticate the connection, provide database-specific SSL flag in the connection URL.
+      For example, jdbc:postgresql://myhost/db?ssl=true for postgres database.
+    </description>
+  </property>
+  <property>
+    <name>javax.jdo.option.ConnectionDriverName</name>
+    <value>com.mysql.jdbc.Driver</value>
+    <description>Driver class name for a JDBC metastore</description>
+  </property>
+  <property>
+    <name>javax.jdo.option.ConnectionUserName</name>
+    <value>root</value>
+    <description>Username to use against metastore database</description>
+  </property>
+    <property>
+    <name>javax.jdo.option.ConnectionPassword</name>
+    <value>xxx</value>
+    <description>password to use against metastore database</description>
+  </property>
+```
+
+```sh
+schematool -dbType mysql -initSchema
+```
+
+### 启动 DFS 和 HiveServer2，再用 beeline 连接
+
+它的日志默认在 `${java.io.tmpdir}/yourname/hive.log`
+
+```sh
+java -XshowSettings:properties -version
+start-dfs.sh
+hiveserver2
+beeline -u "jdbc:hive2://localhost:10000/;user=yourname"
+help
+```
+
+运行建表脚本：
+
+```sh
+0: jdbc:hive2://localhost:10000/> !run /path/to/create_table1.hql
+```
+
+执行 HQL：
+
+```sh
+0: jdbc:hive2://localhost:10000/> show tables;
+0: jdbc:hive2://localhost:10000/> select * from table1;
+0: jdbc:hive2://localhost:10000/> drop table table1;
+```
+
+### 配置
+
+```log
+java.lang.RuntimeException: Error applying authorization policy on hive configuration: java.net.URISyntaxException: Relative path in absolute URI: ${system:java.io.tmpdir%7D/$%7Bsystem:user.name%7D
+	at org.apache.hive.service.cli.CLIService.init(CLIService.java:122) ~[hive-service-4.0.0.jar:4.0.0]
+```
+
+在 `hive-site.xml` 里把报错信息里报的开头的 `system` 去了
+
+```log
+java.lang.RuntimeException: java.lang.RuntimeException: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.security.authorize.AuthorizationException): User: xxx is not allowed to impersonate anonymous
+	at org.apache.hive.service.cli.session.HiveSessionProxy.invoke(HiveSessionProxy.java:89) ~[hive-service-4.0.0.jar:4.0.0]
+```
+
+`core-site.xml`：
+
+```xml
+  <property>
+	  <name>hadoop.proxyuser.xxx.hosts</name>
+	  <value>*</value>
+  </property>
+  <property>
+	  <name>hadoop.proxyuser.xxx.groups</name>
+	  <value>*</value>
+  </property>
+```
+
+## Flume 1.11.0
 
 <img src="https://flume.apache.org/_images/DevGuide_image00.png">
 
@@ -990,7 +1132,7 @@ ssh-keygen -t rsa -m PEM
 
 原来为 Standby 的 NN 上的 ZKFC 日志：
 
-```
+```log
 INFO org.apache.hadoop.ha.SshFenceByTcpPort.jsch:
 //...
 Remote version string: SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
