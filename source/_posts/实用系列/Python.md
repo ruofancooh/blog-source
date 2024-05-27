@@ -6,7 +6,7 @@ permalink: python.html
 mathjax: true
 ---
 
-虽然 Python 基础也不牢，但这门语言相对于其他语言是写得最多的，其他语言基本没写过。
+Python 这门语言相对于其他语言是写得最多的（指调过的库）。其他语言基本没写过。
 
 <!--more-->
 

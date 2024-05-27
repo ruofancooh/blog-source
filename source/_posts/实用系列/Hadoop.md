@@ -10,11 +10,21 @@ permalink: hadoop.html
 3. 找到你软件的日志文件在哪里
 4. 在日志里搜索 `WARN` `ERROR`
 
-为什么呢？因为你迟早会遇到报错，没遇到报错才不正常。你把别人的配置文件复制过来，别人的软件不一定和你的版本号相同。没有遇到报错，说明你运气好。
+为什么呢？因为你<span class="red-text">迟早会遇到报错，没遇到报错才不正常</span>。你把别人的配置文件复制过来，别人的软件不一定和你的版本号相同。如果你一次报错都没遇到，你可以去买彩票了，还上什么大学。
+
+<style>
+    .red-text {
+        color: red;
+    }
+</style>
 
 <!--more-->
 
----
+<style>
+    .main{
+        width:100%
+    }
+</style>
 
 Hadoop 是一个软件，它是用 Java 写的，需要运行在 Java 虚拟机上。你以后还要通过写 Java 代码来连接它其中的一个组件，叫 HDFS。所有 Java 代码都得过一道 Java 编译器，然后在 JVM（Java 虚拟机）上运行。
 
@@ -329,6 +339,8 @@ server.102=worker1:2888:3888
 
 ## HBase 2.5.8
 
+它的数据可以存在本地或 HDFS 上，这里配置存在 HDFS 上。
+
 https://hbase.apache.org/book.html#standalone_dist
 
 https://hbase.apache.org/book.html#shell_exercises
@@ -432,7 +444,9 @@ localhost
 
 https://developer.aliyun.com/article/632261
 
-Hive 的数据默认存在 HDFS 里，元数据可以存在 MySQL 上
+Hive 的数据默认存在 HDFS 里，元数据可以存在 MySQL 上。
+
+分外部表和内部表。内部表默认存在 HDFS，外部表可以存在 HBase 里。
 
 ### 配置元数据存在 MySQL 上
 
@@ -479,13 +493,22 @@ create database hive;
 schematool -dbType mysql -initSchema
 ```
 
-### 启动 DFS 和 HiveServer2，再用 beeline 连接
+```sh
+mysql -u root -p
+use hive;
+show tables;
+select * from DBS;
+```
+
+### 启动 MySQL、DFS、YARN 和 HiveServer2，再用 beeline 连接 HS2
 
 它的日志默认在 `${java.io.tmpdir}/yourname/hive.log`
 
 ```sh
 java -XshowSettings:properties -version
+sudo systemctl start mysql.service
 start-dfs.sh
+start-yarn.sh
 hiveserver2
 beeline -u "jdbc:hive2://localhost:10000/;user=yourname"
 help
@@ -504,6 +527,118 @@ help
 0: jdbc:hive2://localhost:10000/> select * from table1;
 0: jdbc:hive2://localhost:10000/> drop table table1;
 ```
+
+### 创建内部分区表
+
+它的 LOAD DATA INTO TABLE 操作会调用 MapReduce
+
+加 LOCAL 是本地的，不加是 HDFS 的（？）
+
+HQL 示例：
+
+```sql
+CREATE TABLE table1 (
+  id STRING,
+  name STRING,
+  age INT,
+  department STRING
+)
+PARTITIONED BY (city STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE;
+
+ALTER TABLE table1 ADD PARTITION (city='nanjing');
+ALTER TABLE table1 ADD PARTITION (city='wuhan');
+ALTER TABLE table1 ADD PARTITION (city='shanghai');
+ALTER TABLE table1 ADD PARTITION (city='beijing');
+
+LOAD DATA LOCAL INPATH '/home/rc/hive_test/data1.txt' INTO TABLE table1;
+
+SELECT * FROM table1;
+```
+
+文本文件示例：
+
+```
+1	Alice	25	HR	nanjing
+2	Bob	30	Finance	wuhan
+3	Charlie	28	Sales	shanghai
+4	David	35	Marketing	beijing
+5	Eve	32	IT	nanjing
+6	Frank	27	HR	wuhan
+```
+
+### 创建有结构列的内部分区表
+
+```sql
+CREATE TABLE table2 (
+  id INT,
+  name STRING,
+  hobbies ARRAY<STRING>,
+  address_map MAP<STRING, STRING>
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+COLLECTION ITEMS TERMINATED BY ';'
+MAP KEYS TERMINATED BY ':';
+
+LOAD DATA LOCAL INPATH '/home/rc/hive_test/data2.txt' INTO TABLE table2;
+
+SELECT * FROM table2;
+```
+
+```
+1,Lilei,book;tv;code,beijing:chaoyang;shanghai:pudong
+2,Hanmeimei,book;Lilei;code;basketball,beijing:haidian;shanghai:huangpu
+```
+
+### 创建外部分桶表，用临时表数据覆写
+
+```sql
+CREATE EXTERNAL TABLE table3 (
+    rowid STRING,
+    name STRING,
+    sex STRING,
+    age INT
+)
+CLUSTERED BY (rowid) INTO 5 BUCKETS
+STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+WITH SERDEPROPERTIES (
+    "hbase.columns.mapping" = ":key,cf:name,cf:sex,cf:age"
+)
+TBLPROPERTIES (
+    "hbase.table.name" = "table3"
+);
+```
+
+```
+CREATE TEMPORARY TABLE table4 (
+  rowid STRING,
+  name STRING,
+  department STRING,
+  age INT
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ':';
+
+LOAD DATA LOCAL INPATH '/home/rc/hive_test/data3.txt' INTO TABLE table4;
+
+INSERT OVERWRITE TABLE table3
+SELECT * FROM table4;
+
+SELECT * FROM table3;
+```
+
+```
+1:John:Male:25
+2:Smith:Female:30
+3:Bob:Male:40
+4:Alice:Female:22
+5:Michael:Male:35
+6:Emily:Female:28
+```
+
 
 ### 配置
 
