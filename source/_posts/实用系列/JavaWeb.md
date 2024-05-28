@@ -40,10 +40,12 @@ flowchart LR
         Beans
     end
     subgraph "View"
+        index[index.jsp]
         input[input.jsp]
         result[result.jsp]
     end
 
+    index-->|请求转发|input
     input-->selectShape-.->input
     input-->compute-.->result
     compute--oBeans
@@ -89,9 +91,11 @@ flowchart LR
 
 ## 新建工程
 
-据笔者测试，用 VSCode 和最新的 IDEA 社区版都没办法格式化 JSP 代码，或者是暂时没找到解决方法。
+笔者测试，用 VSCode 和 IDEA 社区版（2024.1）都没办法格式化 JSP 代码，或者是暂时没找到解决方法。
 
-**用 VSCode 或 IDEA**
+或者你可以用 CSDN 网友分享的 IDEA 破解版（不是用蓝绿修改器破解的） https://blog.csdn.net/hlizoo/article/details/137562771
+
+**用 VSCode 或 IDEA 社区版**
 
 ```bat
 mvn archetype:generate "-DgroupId=com.example" "-DartifactId=demo" "-DarchetypeArtifactId=maven-archetype-webapp" "-DinteractiveMode=true"
@@ -135,7 +139,7 @@ New -> Dynamic Web Project
 
 1. 客户向 Tomcat 服务器发送 HTTP 请求
 
-你可以使用 Fiddler 来抓包。在 Eclipse 里按“播放键”之后，Eclipse 向 `localhost:8080` 发送了一个 GET 请求。
+你可以使用 Fiddler 来抓包（或者直接用浏览器控制台抓，这是最方便的）。在 Eclipse 里按“播放键”之后，Eclipse 向 `localhost:8080` 发送了一个 GET 请求。
 
 使用
 
@@ -168,9 +172,109 @@ jcmd
 
 `com.opensymphony.xwork2.ActionSupport` 这个类的子类充当 MVC 架构中的控制器，jsp 充当视图，JavaBean 充当模型。
 
-> 视图表单怎么写？
+#### 视图表单怎么写？
 
-> Action 怎么获取视图传过来的表单？
+```jsp
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<s:form action="user/selectShape" method="post">
+    <s:radio list="{'圆形','矩形'}" name="shapeSelected" label="请选择处理的图形">
+    </s:radio>
+    <s:submit value="确定"/>
+</s:form>
+
+<s:if test="%{#request['shapeSelected'] == '圆形'}">
+    <s:form action="user/compute" method="post">
+        <s:textfield label="圆形的半径" name="circle.radius" type="number"/>
+        <s:submit value="计算面积" name="calcType"/>
+        <s:submit value="计算周长" name="calcType"/>
+    </s:form>
+</s:if>
+<s:elseif test="%{#request['shapeSelected'] == '矩形'}">
+    <s:form action="user/compute" method="post">
+        <s:textfield label="矩形的宽度" name="rectangle.width" type="number" />
+        <s:textfield label="矩形的高度" name="rectangle.height" type="number"/>
+        <s:submit value="计算面积" name="calcType"/>
+        <s:submit value="计算周长" name="calcType"/>
+    </s:form>
+</s:elseif>
+```
+
+#### Action 怎么获取视图传过来的表单？
+
+设置与传过来的表单里同名的属性，并设置 getter 和 setter 方法
+
+- selectShape Action
+  - 覆写 validate 方法处理异常
+  ```java
+  @Override
+  public void validate() {
+      if (shapeSelected == null || shapeSelected.isEmpty()) {
+          addFieldError("shapeSelected", "选择不能为空");
+      }
+  }
+  ```
+  - 覆写 execute 方法返回逻辑视图 input
+  ```java
+  @Override
+  public String execute() {
+      return "input";
+  }
+  ```
+- compute Action
+  ```java
+  @Override
+  public String execute() {
+      //...
+      shapeInfo = sb.toString();
+      return "result";
+  }
+  ```
+
+#### result.jsp
+
+```jsp
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<s:property value="shapeInfo" />
+```
+
+#### struts.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd" >
+<struts>
+    <package name="webexp6" namespace="/user" extends="struts-default">
+        <action name="selectShape" class="action.SelectShape">
+            <result name="input">/input.jsp</result>
+        </action>
+        <action name="compute" class="action.Compute">
+            <result name="result">/result.jsp</result>
+        </action>
+    </package>
+</struts>
+```
+
+#### web.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         id="WebApp_ID" version="3.1">
+    <display-name>webexp6</display-name>
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+        </filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>
+```
 
 ### jsp 指令与 jsp 动作？
 

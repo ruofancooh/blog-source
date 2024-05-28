@@ -132,8 +132,8 @@ if __name__ == "__main__":
 
 ```bat
 cd /d d:\repo\blog-source
-start http://localhost:4000/
-call npx hexo s
+start http://localhost:54321/
+call npx hexo s -p 54321
 ```
 
 ## bg.bat
