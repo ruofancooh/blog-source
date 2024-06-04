@@ -10,7 +10,7 @@ permalink: hadoop.html
 3. 找到你软件的日志文件在哪里
 4. 在日志里搜索 `WARN` `ERROR`
 
-为什么呢？因为你<span class="red-text">迟早会遇到报错，没遇到报错才不正常</span>。你把别人的配置文件复制过来，别人的软件不一定和你的版本号相同。如果你一次报错都没遇到，你可以去买彩票了，还上什么大学。
+为什么呢？因为你<span class="red-text">迟早会遇到报错，没遇到报错才不正常</span>。如果你一次报错都没遇到，你可以去买彩票了。
 
 <style>
     .red-text {
@@ -593,7 +593,7 @@ SELECT * FROM table2;
 2,Hanmeimei,book;Lilei;code;basketball,beijing:haidian;shanghai:huangpu
 ```
 
-### 创建外部分桶表，用临时表数据覆写
+### 创建外部分桶表到 HBase，用临时表数据覆写
 
 ```sql
 CREATE EXTERNAL TABLE table3 (
@@ -630,6 +630,8 @@ SELECT * FROM table4;
 SELECT * FROM table3;
 ```
 
+重启 Hive 客户端后，临时表 table4 会消失
+
 ```
 1:John:Male:25
 2:Smith:Female:30
@@ -638,7 +640,6 @@ SELECT * FROM table3;
 5:Michael:Male:35
 6:Emily:Female:28
 ```
-
 
 ### 配置
 
