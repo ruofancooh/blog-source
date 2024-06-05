@@ -5,7 +5,22 @@ date: 2023-05-27 14:48:35
 
 ## 软件
 
-[右键菜单管理](https://github.com/BluePointLilac/ContextMenuManager)
+大模型就是搜索引擎的升级版，它并不可怕。
+
+[通义千问](https://tongyi.aliyun.com/qianwen/)
+| [右键菜单管理](https://github.com/BluePointLilac/ContextMenuManager)
+| [沉浸式翻译](https://immersivetranslate.com/docs/)
+| [Pot](https://github.com/pot-app/pot-desktop)
+| [看懂 UML 类图和时序图](https://design-patterns.readthedocs.io/zh-cn/latest/read_uml.html)
+| [重构大师](https://refactoringguru.cn/)
+
+RELEASE / GA > RC > M > SNAPSHOT，正式版 / 通用可用版 > 发布候选版 > 里程碑版 > 快照版
+
+## Java
+
+[Maven 仓库](https://mvnrepository.com/)
+| [阿里云 Maven 仓库](https://developer.aliyun.com/mvn/guide)
+| [Spring Boot 文档](https://docs.spring.io/spring-boot/docs/)
 
 ## Python
 
@@ -13,7 +28,6 @@ date: 2023-05-27 14:48:35
 | [Anaconda](https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/)
 | [PyPI](https://pypi.org/)
 | [pipreqs](https://github.com/bndr/pipreqs)
-
 
 ```sh
 conda list

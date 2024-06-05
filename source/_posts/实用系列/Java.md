@@ -9,101 +9,11 @@ permalink: java.html
 
 <!--more-->
 
-## 开始
-
-1. https://dlcdn.apache.org/maven/
-2. https://developer.aliyun.com/mvn/guide
-3. 配置 Maven
-4. VSCode `Extension Pack for Java` 扩展，设置 JDK 路径，Maven 路径。
-5. 类名要与文件名相同
-6. https://code.visualstudio.com/docs/java/java-debugging
-7. https://mvnrepository.com/
-
-```sh
-java -jar myapp.jar
-```
-
-```xml
-  <properties>
-      <maven.compiler.source>1.8</maven.compiler.source>
-      <maven.compiler.target>1.8</maven.compiler.target>
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-
-
-  <build>
-    <plugins>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.2.0</version>
-        <configuration>
-          <archive>
-            <manifest>
-              <mainClass>com.example.App</mainClass>
-            </manifest>
-          </archive>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>3.3.0</version>
-        <configuration>
-          <archive>
-            <manifest>
-              <mainClass>com.example.MainClass</mainClass>
-            </manifest>
-          </archive>
-          <descriptorRefs>
-            <descriptorRef>jar-with-dependencies</descriptorRef>
-          </descriptorRefs>
-        </configuration>
-        <executions>
-          <execution>
-            <id>make-assembly</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-    </plugins>
-  </build>
-```
-
-## VSCode 扩展
-
-`@ext:vscjava.vscode-maven`：
-
-```json
-"maven.settingsFile": "D:\\ProgramData\\apache-maven-3.9.4\\conf\\settings.xml",
-"maven.executable.path": "D:\\ProgramData\\apache-maven-3.9.4\\bin\\mvn.cmd",
-"maven.executable.preferMavenWrapper": false,
-"java.configuration.maven.globalSettings": "D:\\ProgramData\\apache-maven-3.9.4\\conf\\settings.xml"
-```
-
-## 特色
-
-### 关键字
+## 关键字
 
 没有 `unsigned` 关键字
 
-### 运算符
+## 运算符
 
 无符号右移 `>>>`，前面直接补零。
 
@@ -113,7 +23,7 @@ java -jar myapp.jar
   - 无符号整数前面全补 `0`
   - 作用相当于除以 2
 
-### 数据类型
+## 数据类型
 
 布尔 `boolean`，值为 `true` 或者 `false`。可以直接用，占一个字节。
 
@@ -137,7 +47,7 @@ java -jar myapp.jar
 - `int`：四个字节
 - `long`：八个字节
 
-### 语法
+## 语法
 
 ```java
 Type[] arr = ...
@@ -154,9 +64,9 @@ int Arrays.binarySearch(arr, elm);
 // 二分查找，返回的不一定是第一个。
 ```
 
-### 接口
+## 接口
 
-接口是一种特殊的类。
+接口是一种特殊的类。写出来就是用来被继承的——不用 `extends`（扩展），用 `implements`（实现）。
 
 ```java
 public interface USB {
@@ -164,8 +74,6 @@ public interface USB {
     void stop();
 }
 ```
-
-写出来就是用来被继承的——不用 `extends`（扩展），用 `implements`（实现）。
 
 一个类只能 `extends` 自一个父类，但可以 `implements` 多个接口。
 
