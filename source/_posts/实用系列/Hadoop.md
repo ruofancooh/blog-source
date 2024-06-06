@@ -10,7 +10,7 @@ permalink: hadoop.html
 3. 找到你软件的日志文件在哪里
 4. 在日志里搜索 `WARN` `ERROR`
 
-为什么呢？因为你<span class="red-text">迟早会遇到报错，没遇到报错才不正常</span>。如果你一次报错都没遇到，你可以去买彩票了。
+为什么呢。因为你<span class="red-text">迟早会遇到报错，没遇到报错才不正常</span>。如果你一次报错都没遇到，你可以去买彩票了。
 
 <style>
     .red-text {
@@ -214,6 +214,19 @@ sudo du -h --max-depth=1
 - 使用 https://www.diskgenius.cn/ 可以把你 D 盘的空间向 C 盘匀一点。如果你有多余的恢复分区，可以把它删了，只保留一个。
 - 使用 https://github.com/redtrillix/SpaceSniffer 可以可视化地展示你硬盘的占用情况。
 
+### 中文字体
+
+```sh
+sudo apt install language-pack-zh-hans
+sudo vi /etc/default/locale
+sudo mv /mnt/c/path/to/font ~ /usr/share/fonts
+```
+
+```conf
+LANG=zh_CN.UTF-8
+LANGUAGE="zh_CN:zh:en_US:en"
+```
+
 ## Hadoop 3.3.6
 
 9. 下载 Hadoop 软件包
@@ -339,6 +352,8 @@ server.102=worker1:2888:3888
 
 ## HBase 2.5.8
 
+它自带 ZooKeeper 3.8.3，StandAlone 模式下只有一个 HMaster 进程：其中包括 HMaster，单个 HRegionServer 和 ZooKeeper 守护进程。
+
 它的数据可以存在本地或 HDFS 上，这里配置存在 HDFS 上。
 
 https://hbase.apache.org/book.html#standalone_dist
@@ -357,11 +372,11 @@ hbase shell
 help
 list
 create 'tablename','cfname1','cfname2'
-put 'tablename','rowname','cfname1:qualifiername1','value'
-put 'tablename','rowname','cfname2:','value'
+put 'tablename','rowkey','cfname1:qualifiername1','value'
+put 'tablename','rowkey','cfname2:','value'
 scan 'tablename'
 scan 'tablename',{COLUMNS=>'cfname1'}
-get 'tablename','rowname'
+get 'tablename','rowkey'
 describe 'tablename'
 drop 'tablename'
 ```
@@ -397,6 +412,8 @@ drop 'tablename'
     <value>filesystem</value>
   </property>
 ```
+
+如果不设置 zkData 目录，它会在 `/tmp/hbase-yourname` 下。
 
 第三个配置项是为了解决：参见 https://hbase.apache.org/book.html#wal.providers
 
@@ -944,7 +961,7 @@ hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.j
 
 你可以使用 `which xxx` 或 `readlink -f $(which xxx)` 找你的命令源文件在哪里；使用 `which which` 找你的 `which` 在哪里。
 
-查看虚拟机的 IP 地址：`ifconfig` `ip -a`
+查看虚拟机的 IP 地址：`ifconfig` `ip addr`
 
 ### 集群脚本
 

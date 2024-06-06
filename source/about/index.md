@@ -16,11 +16,14 @@ date: 2023-05-27 14:48:35
 
 RELEASE / GA > RC > M > SNAPSHOT，正式版 / 通用可用版 > 发布候选版 > 里程碑版 > 快照版
 
+x64 == x86_64 == AMD64 != ARM64 == AARCH64
+
 ## Java
 
 [Maven 仓库](https://mvnrepository.com/)
 | [阿里云 Maven 仓库](https://developer.aliyun.com/mvn/guide)
 | [Spring Boot 文档](https://docs.spring.io/spring-boot/docs/)
+| [Spring Boot 支持的 Java 版本](https://endoflife.date/spring-boot)
 
 ## Python
 
