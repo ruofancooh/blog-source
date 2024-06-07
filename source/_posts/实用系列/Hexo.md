@@ -39,95 +39,70 @@ permalink: CN/02/
 
 - 在每次渲染前，要设置文章的标题，分类和 `permalink`。
 - 在每次渲染后：
-  1. 把 `/blog/categories/` 里各个子文件夹里的文件复制到 `/blog/缩写分类名/`。
-  2. 删除 `/blog/categories/` 里各个子文件夹。
-  3. 删除 `/blog/archives/` 里的多余的年份文件夹。
-  4. 修改**站点所有（可以跳转到 `/blog/categories/分类名/` 的）** `.html` 文件里的链接为 `/blog/缩写分类名/`。
-- 在所有操作之前，且只用做一次的：
-  - 修改所有已经写的 `.md` 文件里的站内链接
+
+  1. 把 `/blog/categories/` 里各个子文件夹里的文件复制到 `/blog/缩写分类名/`
+  2. 删除 `/blog/categories/` 里各个子文件夹
+  3. 用 `/blog/archives/index.html` 覆盖 `/blog/index.html`
+  4. 删除 `/blog/archives/` 文件夹
+  5. 修改**站点所有（可以跳转到 `/blog/categories/分类名/` 的）** `.html` 文件里的链接为 `/blog/缩写分类名/`
 
 ## bm.py
 
 ```py
 import os
+import shutil
+from pathlib import Path
 from urllib.parse import quote  # 转换汉字为 "%XX%YY%ZZ" 的 url 类型
 
 from bs4 import BeautifulSoup
 
+SITE_ROOT = Path(r"D:\repo\blog")
+CATEGORIES_DIR = SITE_ROOT / "categories"
+ARCHIVES_DIR = SITE_ROOT / "archives"
 
-ROOT = r"D:\repo\blog"  # 站点的本地根目录
-CATEGORIES = rf"{ROOT}\categories"  # 分类的目录
-YEARS = (2023, 2024)  # 所有文章的年份
+CATEGORY_MAP = {
+    "牢骚系列": "m",
+    "实用系列": "p",
+    "永远不看系列": "u",
+}
 
-# 分类的全名和缩写名
-FULL_NAMES = ("牢骚系列", "实用系列", "永远不看系列")
-ABBR_NAMES = ("m", "p", "u")
-# 生成替换字典
-ABBR_DICT = dict(zip(FULL_NAMES, ABBR_NAMES))
-ABBR_DICT1 = {quote(full_name): abbr_name for full_name, abbr_name in ABBR_DICT.items()}
+ABBREVIATED_MAP = {quote(full): abbrev for full, abbrev in CATEGORY_MAP.items()}
 
 
-def replace_link(html_file_path: str) -> None:
-    """
-    把 <a> 标签里 href 的 "categories/分类全名" 替换成 "分类缩写名"
-    """
-    with open(html_file_path, "r+", encoding="utf-8") as file:
-        html_doc = file.read()
-        soup = BeautifulSoup(html_doc, "html.parser")
+def update_links_in_html(html_path: Path):
+    with html_path.open("r+", encoding="utf-8") as file:
+        content = file.read()
+        soup = BeautifulSoup(content, "html.parser")
 
-        jump_links = soup.find_all("a")
-        for a in jump_links:
-            for full_name, abbr_name in ABBR_DICT1.items():
-                target = f"categories/{full_name}"
-                try:
-                    if target in a["href"]:
-                        a["href"] = a["href"].replace(target, abbr_name)
-                        print(a["href"])
-                except KeyError:
-                    pass
+        for a_tag in soup.find_all("a"):
+            href = a_tag.get("href")
+            if href:
+                if "archives" in href:
+                    href = href.replace(f"/archives", "")
+                for full_name in ABBREVIATED_MAP.keys():
+                    if full_name in href:
+                        abbreviated = ABBREVIATED_MAP[full_name]
+                        href = href.replace(f"categories/{full_name}", abbreviated)
+                a_tag["href"] = href
 
         file.seek(0)
         file.write(str(soup))
         file.truncate()
 
 
-def replace_all_link() -> None:
-    """
-    替换 ROOT 及其子目录下所有 html 文件里的链接
-    """
-    for root, dirs, files in os.walk(ROOT):
-        for file in files:
-            if file.endswith(".html") and file != "404.html":
-                file = rf"{root}\{file}"
-                replace_link(file)
-
-
-def move_categories() -> None:
-    """
-    把 CATEGORIES/分类全名/ 里的文件移动（先复制再删除）到 CATEGORIES/分类缩写名/
-    """
-    for full_name, abbr_name in ABBR_DICT.items():
-        src_folder = rf"{CATEGORIES}\{full_name}"
-        dst_folder = rf"{ROOT}\{abbr_name}"
-        os.chdir(src_folder)
-        os.system(f"xcopy . {dst_folder} /s")
-        os.chdir("..")
-        os.system(f"rmdir /s /q {full_name}")
-
-
-def del_redundant_files() -> None:
-    """
-    删除 ROOT/archives/ 下的年份文件夹
-    """
-    os.chdir(rf"{ROOT}\archives")
-    for year in YEARS:
-        os.system(f"rmdir /s /q {year}")
-
-
 if __name__ == "__main__":
-    move_categories()
-    del_redundant_files()
-    replace_all_link()
+    for full_name, abbrev in CATEGORY_MAP.items():
+        src_folder = CATEGORIES_DIR / full_name
+        dst_folder = SITE_ROOT / abbrev
+        shutil.move(src_folder, dst_folder)
+
+    shutil.move(ARCHIVES_DIR / "index.html", SITE_ROOT / "index.html")
+    shutil.rmtree(ARCHIVES_DIR)
+
+    for root, _, files in os.walk(SITE_ROOT):
+        for filename in files:
+            if filename.endswith(".html") and filename != "404.html":
+                update_links_in_html(Path(root) / filename)
 ```
 
 ## bs.bat

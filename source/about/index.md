@@ -68,7 +68,6 @@ pipreqs --encoding "utf-8" --force ./
 ## 收藏了等于我会了
 
 [分类页](/blog/categories)
-| [归档页](/blog/archives)
 | [笔记修改历史](https://github.com/ruofancooh/blog-source/commits/main)
 | [汉典](https://www.zdic.net/)
 | [JavaScript 艺术之旅](https://github.com/tanpero/JavaScript-Art-Tour)
