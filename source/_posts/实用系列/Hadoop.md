@@ -378,6 +378,7 @@ scan 'tablename'
 scan 'tablename',{COLUMNS=>'cfname1'}
 get 'tablename','rowkey'
 describe 'tablename'
+truncate 'tablename'
 drop 'tablename'
 ```
 
