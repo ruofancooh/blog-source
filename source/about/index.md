@@ -75,7 +75,7 @@ pipreqs --encoding "utf-8" --force ./
 | [涟波词集](https://kevinz.cn/lyricbook/?a=Kevinz)
 | [Hexo-NexT 文档](https://hexo-next.readthedocs.io/zh_CN/latest/)
 | [Hexo 博客 NexT 主题的安装使用](http://home.ustc.edu.cn/~liujunyan/blog/hexo-next-theme-config/)
-| [MDN Web 文档](https://developer.mozilla.org/zh-CN/docs/MDN)
+| [MDN Web 文档](https://developer.mozilla.org/zh-CN/docs/Web)
 | [OI-Wiki](https://oi-wiki.org/)
 | [阮一峰的博客](https://www.ruanyifeng.com/blog/)
 | [SYMBL](https://symbl.cc/cn/)

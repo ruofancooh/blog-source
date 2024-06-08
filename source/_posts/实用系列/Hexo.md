@@ -74,15 +74,20 @@ def update_links_in_html(html_path: Path):
         content = file.read()
         soup = BeautifulSoup(content, "html.parser")
 
+        replace_rules = {
+            f"/archives": "",
+            **{
+                f"categories/{full_name}": abbreviated
+                for full_name, abbreviated in ABBREVIATED_MAP.items()
+            },
+        }
+
         for a_tag in soup.find_all("a"):
             href = a_tag.get("href")
             if href:
-                if "archives" in href:
-                    href = href.replace(f"/archives", "")
-                for full_name in ABBREVIATED_MAP.keys():
-                    if full_name in href:
-                        abbreviated = ABBREVIATED_MAP[full_name]
-                        href = href.replace(f"categories/{full_name}", abbreviated)
+                for old, new in replace_rules.items():
+                    if old in href:
+                        href = href.replace(old, new)
                 a_tag["href"] = href
 
         file.seek(0)
