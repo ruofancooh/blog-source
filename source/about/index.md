@@ -11,8 +11,8 @@ date: 2023-05-27 14:48:35
 | [右键菜单管理](https://github.com/BluePointLilac/ContextMenuManager)
 | [沉浸式翻译](https://immersivetranslate.com/docs/)
 | [Pot](https://github.com/pot-app/pot-desktop)
-| [看懂 UML 类图和时序图](https://design-patterns.readthedocs.io/zh-cn/latest/read_uml.html)
-| [重构大师](https://refactoringguru.cn/)
+| [Mermaid 中文网](https://mermaid.nodejs.cn/)
+| [Mermaid 在线编辑器](https://www.min2k.com/tools/mermaid/)
 
 RELEASE / GA > RC > M > SNAPSHOT，正式版 / 通用可用版 > 发布候选版 > 里程碑版 > 快照版
 
@@ -78,6 +78,8 @@ pipreqs --encoding "utf-8" --force ./
 | [MDN Web 文档](https://developer.mozilla.org/zh-CN/docs/Web)
 | [OI-Wiki](https://oi-wiki.org/)
 | [阮一峰的博客](https://www.ruanyifeng.com/blog/)
+| [看懂 UML 类图和时序图](https://design-patterns.readthedocs.io/zh-cn/latest/read_uml.html)
+| [重构大师](https://refactoringguru.cn/)
 | [SYMBL](https://symbl.cc/cn/)
 | [VisuAlgo](https://visualgo.net/zh/)
 | [sort.js](https://github.com/zhaosaisai/sort.js)
