@@ -80,6 +80,7 @@ pipreqs --encoding "utf-8" --force ./
 | [阮一峰的博客](https://www.ruanyifeng.com/blog/)
 | [SYMBL](https://symbl.cc/cn/)
 | [VisuAlgo](https://visualgo.net/zh/)
+| [sort.js](https://github.com/zhaosaisai/sort.js)
 | [小时百科](https://wuli.wiki/online/index.html)
 | [写作只能塑造真实的自己](https://github.com/Macin20/why-we-write)
 | [网道](https://wangdoc.com/)
