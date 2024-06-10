@@ -91,9 +91,7 @@ flowchart LR
 
 ## 新建工程
 
-笔者测试，用 VSCode 和 IDEA 社区版（2024.1）都没办法格式化 JSP 代码，或者是暂时没找到解决方法。
-
-或者你可以用 CSDN 网友分享的 IDEA 破解版（不是用蓝绿修改器破解的） https://blog.csdn.net/hlizoo/article/details/137562771
+笔者测试，用 VSCode 和 IDEA 社区版（2024.1）都没办法格式化 JSP 代码，或者是暂时没找到解决方法。或者你可以用 CSDN 网友分享的 IDEA 破解版（不是用蓝绿修改器破解的） https://blog.csdn.net/hlizoo/article/details/137562771
 
 **用 VSCode 或 IDEA 社区版**
 
@@ -101,9 +99,7 @@ flowchart LR
 mvn archetype:generate "-DgroupId=com.example" "-DartifactId=demo" "-DarchetypeArtifactId=maven-archetype-webapp" "-DinteractiveMode=true"
 ```
 
-VSCode 使用 Community Server Connectors 插件
-
-IDEA 使用 Smart Tomcat 插件
+VSCode 使用 Community Server Connectors 插件、IDEA 使用 Smart Tomcat 插件
 
 **用 Eclipse 2020-03 (4.15.0)**
 
