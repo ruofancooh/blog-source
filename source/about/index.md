@@ -12,7 +12,7 @@ date: 2023-05-27 14:48:35
 | [沉浸式翻译](https://immersivetranslate.com/docs/)
 | [Pot](https://github.com/pot-app/pot-desktop)
 | [Mermaid 中文网](https://mermaid.nodejs.cn/)
-| [Mermaid 在线编辑器](https://www.min2k.com/tools/mermaid/)
+| [Mermaid 在线编辑器](https://www.min2k.com/intro/online-mermaid.html)
 
 RELEASE / GA > RC > M > SNAPSHOT，正式版 / 通用可用版 > 发布候选版 > 里程碑版 > 快照版
 
