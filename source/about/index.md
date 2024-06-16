@@ -3,6 +3,17 @@ title: 关于
 date: 2023-05-27 14:48:35
 ---
 
+## 论文
+
+[查重](https://chachongwang.wf.paper880.com/)
+| [汉斯](https://www.hanspub.org/)
+| [知网](https://www.cnki.net/)
+| [NLC](https://www.nlc.cn/web/index.shtml)
+| [COAA](https://coaa.istic.ac.cn/)
+| [CCF 推荐国际学术会议和期刊目录](https://www.ccf.org.cn/Academic_Evaluation/By_category/)
+| [easyScholar](https://www.easyscholar.cc/)
+| [bibtex2gbt7714](https://github.com/FDscend/bibtex2gbt7714)
+
 ## 软件
 
 大模型就是搜索引擎的升级版，它并不可怕。
@@ -64,6 +75,8 @@ pipreqs --encoding "utf-8" --force ./
 [Github Pages](https://docs.github.com/zh/pages/getting-started-with-github-pages) 用于托管静态网页，就是放在上面就不能动了，没有数据库，更新页面要重新上传。创建一个名为 `yourusername.github.io` 的仓库，分支为 `gh-pages`。然后可以访问 `yourusername.github.io`。之后再创建的名为 `sample` 且分支为 `gh-pages` 的仓库，为 `yourusername.github.io/sample`。
 
 [Dynadot](https://www.dynadot.com/) 是一个域名提供商，买一个域名。设置 DNS 为 Dynadot DNS。域名记录，A 记录指向 `185.199.109.153`，AAAA 记录指向 `2606:50c0:8001::153`。这两个是 Github Pages 的公共 IP，可以通过 ping `yourusername.github.io`。子域名 www 的 CNAME 记录指向 `yourusername.github.io`。对应仓库（根仓库）的根目录加一个 `CNAME` 文件，内容为购买的域名。仓库设置 -> pages -> Custom domain -> Enforce HTTPS。然后等 Github 检查 DNS，排队从 Let's Encrypt 获取 SSL 证书。
+
+你可以使用[Whois](https://www.whois.com/whois)来查询这些一键生成的页面背后的操作者是谁。
 
 ## 收藏了等于我会了
 
