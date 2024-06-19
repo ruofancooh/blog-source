@@ -24,6 +24,7 @@ date: 2023-05-27 14:48:35
 | [Pot](https://github.com/pot-app/pot-desktop)
 | [Mermaid 中文网](https://mermaid.nodejs.cn/)
 | [Mermaid 在线编辑器](https://www.min2k.com/intro/online-mermaid.html)
+| [PlantUML](https://www.plantuml.com/)
 
 RELEASE / GA > RC > M > SNAPSHOT，正式版 / 通用可用版 > 发布候选版 > 里程碑版 > 快照版
 
@@ -59,7 +60,7 @@ pipreqs --encoding "utf-8" --force ./
 | [pandas](https://pandas.pydata.org/docs/user_guide/index.html)
 | [ppadb](https://pypi.org/project/pure-python-adb/)
 | [pyautogui](https://pyautogui.readthedocs.io)
-| [pyecharts](https://05x-docs.pyecharts.org/#/zh-cn/prepare)
+| [pyecharts](https://pyecharts.org/#/zh-cn/intro)
 | [requests](https://requests.readthedocs.io/projects/cn/zh-cn/latest/)
 | [scipy](https://docs.scipy.org/doc/scipy/tutorial/index.html#user-guide)
 | [scrapy](https://docs.scrapy.org)
