@@ -77,13 +77,7 @@ pipreqs --encoding "utf-8" --force ./
 
 [Dynadot](https://www.dynadot.com/) 是一个域名提供商，买一个域名。设置 DNS 为 Dynadot DNS。域名记录，A 记录指向 `185.199.109.153`，AAAA 记录指向 `2606:50c0:8001::153`。这两个是 Github Pages 的公共 IP，可以通过 ping `yourusername.github.io`。子域名 www 的 CNAME 记录指向 `yourusername.github.io`。对应仓库（根仓库）的根目录加一个 `CNAME` 文件，内容为购买的域名。仓库设置 -> pages -> Custom domain -> Enforce HTTPS。然后等 Github 检查 DNS，排队从 Let's Encrypt 获取 SSL 证书。
 
-你可以使用[Whois](https://www.whois.com/whois)来查询这些一键生成的页面背后的操作者是谁。浏览器右击“检查”，在“控制台”里输入：
-
-```js
-alert(document.lastModified);
-```
-
-查询页面的最后修改时间。
+你可以使用[Whois](https://www.whois.com/whois)来查询这些一键生成的页面背后的操作者是谁。
 
 ## 收藏了等于我会了
 
