@@ -1,7 +1,7 @@
 ---
 title: JavaWeb
 date: 2024-04-15 16:32:00
-categories: 实用系列
+categories: 永远不看系列
 permalink: java-web.html
 mermaid: true
 ---
