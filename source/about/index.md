@@ -3,6 +3,13 @@ title: 关于
 date: 2023-05-27 14:48:35
 ---
 
+## 健康
+
+[中国居民膳食指南 2022](http://dg.cnsoc.org/article/04/x8zaxCk7QQ2wXw9UnNXJ_A.html)
+| [BMI](https://cn.onlinebmicalculator.com/)
+
+每天 7000 步。推荐喝白水或茶水，每天 1700ml
+
 ## 论文
 
 [查重](https://chachongwang.wf.paper880.com/)
@@ -16,7 +23,7 @@ date: 2023-05-27 14:48:35
 
 ## 软件
 
-大模型就是搜索引擎的升级版，它并不可怕。
+大模型就是搜索引擎的升级版。
 
 [通义千问](https://tongyi.aliyun.com/qianwen/)
 | [右键菜单管理](https://github.com/BluePointLilac/ContextMenuManager)
