@@ -8,7 +8,7 @@ date: 2023-05-27 14:48:35
 [中国居民膳食指南 2022](http://dg.cnsoc.org/article/04/x8zaxCk7QQ2wXw9UnNXJ_A.html)
 | [BMI](https://cn.onlinebmicalculator.com/)
 
-每天 7000 步。推荐喝白水或茶水，每天 1700ml
+睡 8 小时，中午眯一会。每天 7000 步。推荐喝白水或茶水，每天 1700ml
 
 ## 论文
 
@@ -116,5 +116,6 @@ pipreqs --encoding "utf-8" --force ./
 | [PVZ](http://www.lonelystar.org/download.htm)
 | [扫雷网](http://saolei.wang)
 | [北大侠客行](https://pkuxkx.net/)
+| [超吧网盘](http://opengl106.ysepan.com/)
 | [纪念碑谷](https://www.taptap.cn/app/18356)
 | [艾希](https://www.taptap.cn/app/11190)
