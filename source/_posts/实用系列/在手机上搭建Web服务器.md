@@ -5,6 +5,10 @@ categories: 实用系列
 permalink: termux-flask-ngrok.html
 ---
 
+好奇心旺盛。
+
+<!--more-->
+
 使用的主要工具：
 
 - Termux——模拟 Linux 环境
@@ -15,8 +19,6 @@ permalink: termux-flask-ngrok.html
 
 - 能够正常运行以上软件的安卓手机
 - 最好有一台电脑
-
-<!--more-->
 
 在模拟的 Linux 环境下运行 Ngrok **需要手机有 root 权限，仅用于解决[这个问题](#在开始之前解决-dns-问题)**。如果没有更好的，不使用 root 权限的方法的话，可以尝试[在 Termux 上安装 Linux 发行版](#另外)。
 

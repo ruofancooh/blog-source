@@ -5,7 +5,7 @@ categories: 实用系列
 permalink: linux.html
 ---
 
-基础不牢，工具没用明白
+基础不牢，工具没用明白。
 
 ```sh
 top

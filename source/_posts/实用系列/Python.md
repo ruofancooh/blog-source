@@ -6,13 +6,19 @@ permalink: python.html
 mathjax: true
 ---
 
-Python 这门语言相对于其他语言是写得最多的（指调过的库）。其他语言基本没写过。
+Python 基础不牢。
 
 <!--more-->
 
 ## 报菜名
 
-Python 的标准库有上百个。用 `import` 还是 `from ... import ...`，后面加不加 `as` ，以易读为主。因为代码是给人看的。不要使用 `from xxx import *`。这种行为类似于：你在搭积木的时候，闭着眼睛把一整个塑料袋的积木全倒出来，然后闭着眼睛摸一个、闭着眼睛摸一个。`import` 语句的顺序是：标准库、第三方库、自定义库。可通过 VSCode 插件 isort 解决，按 Ctrl + Shift + O 排序。在你的工程目录下面，使用 https://github.com/bndr/pipreqs 可以把你用到的所有第三方库写到依赖文件 `requirements.txt` 里。
+Python 的标准库有上百个。用 `import` 还是 `from ... import ...`，后面加不加 `as` ，以易读为主。因为代码是给人看的。
+
+使用 `from xxx import *` 类似于：你在搭积木的时候，闭着眼睛把一整个塑料袋的积木全倒出来，然后闭着眼睛摸一个、闭着眼睛摸一个。
+
+`import` 语句的顺序是：标准库、第三方库、自定义库。可通过 VSCode 插件 isort 解决，按 Ctrl + Shift + O 排序。
+
+在你的工程目录下面，使用 https://github.com/bndr/pipreqs 可以把你用到的所有第三方库写到依赖文件 `requirements.txt` 里。
 
 虽然 Python 的一个变量名可以赋多个类型，但在有必要的情况下，还是加上类型注解。这对 VSCode 的代码补全也有帮助：把鼠标移到一个变量名上边，如果你想要它是某一个类的对象，但是它显示为 `Any`，这时候你在它后面加 `.`，VSCode 没法给你列出它的方法。这时候你需要显式标注它的类型，比如 `foo: Bar`。或者 `assert isinstance(foo, Bar)`
 
@@ -55,8 +61,6 @@ logging.info(...)
 logging.warning(...)
 logging.error(...)
 ```
-
-你只要写一个稍微像样的项目，都不可能不用模块/库，不拆分文件。这只能说明笔者代码写得实在太少了。
 
 日志有五个等级：DEBUG 调试诊断用的；INFO 确认正常运行；WARNING 是不影响正常运行的错误，如向数据库里插入一条已经存在的记录，然后忽略它；ERROR 是影响正常运行的错误，如数据库连接失败（但是你系统的其他功能可用）；CRITICAL 是你的系统的关键功能不可用（如果你的系统必须要用数据库）。
 

@@ -5,6 +5,8 @@ categories: 牢骚系列
 permalink: idea.html
 ---
 
+基础不牢，工具没用明白。
+
 VSCode 它是一个轻型软件，是一个壳子。是一个代码编辑器，不是一个集成开发环境。
 
 <!--more-->

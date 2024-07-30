@@ -5,6 +5,10 @@ categories: 永远不看系列
 permalink: mongodb.html
 ---
 
+NoSQL 基础不牢。
+
+<!--more-->
+
 官方文档
 
 - [总](https://www.mongodb.com/docs/manual/)
@@ -12,8 +16,6 @@ permalink: mongodb.html
 - [在 Ubuntu 上安装](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/)
 - [部署副本集](https://www.mongodb.com/docs/manual/tutorial/deploy-replica-set/)
 - [聚合管道操作符](https://www.mongodb.com/docs/v7.0/reference/operator/aggregation-pipeline/)
-
-<!--more-->
 
 ## Windows 10 环境配置
 

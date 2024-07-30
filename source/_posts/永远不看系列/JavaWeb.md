@@ -6,6 +6,10 @@ permalink: java-web.html
 mermaid: true
 ---
 
+Web 基础不牢。
+
+<!--more-->
+
 > Web 是一种分布式的应用框架。基于 Web 的应用是典型的浏览器/服务器（B/S）架构。
 
 ——ISBN 9787302438090
@@ -13,8 +17,6 @@ mermaid: true
 > JSP 技术是以 Java 语言作为脚本语言的，JSP 网页为整个服务器端的 Java 库单元提供了一个接口来服务于 HTTP 的应用程序。
 
 ——菜鸟教程
-
-<!--more-->
 
 <style>
     .main{

@@ -5,7 +5,7 @@ categories: 实用系列
 permalink: java.html
 ---
 
-笔者已经被知识诅咒，所以删了很多没有用的话。
+Java 基础不牢。
 
 <!--more-->
 
