@@ -5,7 +5,7 @@ categories: 实用系列
 permalink: gimp-make-words-on-the-photographed-paper-clearer.html
 ---
 
-拍照技术不行。
+拍照技术不强。
 
 <!--more-->
 
@@ -16,10 +16,12 @@ permalink: gimp-make-words-on-the-photographed-paper-clearer.html
 4. **白平衡**
 5. 导出图片
 
-6. 首先要拍清晰，手不抖。
+---
+
+1. 首先要拍清晰，手不抖。
    <img src="/blog/images/hw-0.webp">
-7. 在拍完之后适当裁剪。
-8. - GIMP -> 文件 -> 打开 -> 选择图片
+2. 在拍完之后适当裁剪。
+3. - GIMP -> 文件 -> 打开 -> 选择图片
    - GIMP -> 颜色 -> 去色 -> 彩色到灰度
      <img src="/blog/images/hw-1.webp">
 

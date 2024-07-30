@@ -5,7 +5,7 @@ categories: 永远不看系列
 permalink: json.html
 ---
 
-写作能力不行。
+写作能力不强。
 
 <!--more-->
 
