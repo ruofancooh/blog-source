@@ -1,7 +1,7 @@
 ---
 title: 用C语言模拟一个像素时钟
 date: 2024-05-08 14:00:00
-categories: 牢骚系列
+categories: 永远不看系列
 permalink: myclock.html
 ---
 

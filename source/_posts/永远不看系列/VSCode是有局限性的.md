@@ -1,7 +1,7 @@
 ---
 title: VSCode是有局限性的
 date: 2024-4-11 21:11:00
-categories: 牢骚系列
+categories: 永远不看系列
 permalink: idea.html
 ---
 
