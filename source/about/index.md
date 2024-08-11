@@ -8,8 +8,6 @@ date: 2023-05-27 14:48:35
 [中国居民膳食指南 2022](http://dg.cnsoc.org/article/04/x8zaxCk7QQ2wXw9UnNXJ_A.html)
 | [BMI](https://cn.onlinebmicalculator.com/)
 
-睡 8 小时，中午眯一会。每天 7000 步。推荐喝白水或茶水，每天 1700ml
-
 ## 论文
 
 [查重](https://chachongwang.wf.paper880.com/)
@@ -85,12 +83,10 @@ pipreqs --encoding "utf-8" --force ./
 
 [Dynadot](https://www.dynadot.com/) 是一个域名提供商，买一个域名。设置 DNS 为 Dynadot DNS。域名记录，A 记录指向 `185.199.109.153`，AAAA 记录指向 `2606:50c0:8001::153`。这两个是 Github Pages 的公共 IP，可以通过 ping `yourusername.github.io`。子域名 www 的 CNAME 记录指向 `yourusername.github.io`。对应仓库（根仓库）的根目录加一个 `CNAME` 文件，内容为购买的域名。仓库设置 -> pages -> Custom domain -> Enforce HTTPS。然后等 Github 检查 DNS，排队从 Let's Encrypt 获取 SSL 证书。
 
-你可以使用[Whois](https://www.whois.com/whois)来查询这些一键生成的页面背后的操作者是谁。
+你可以使用[Whois](https://www.whois.com/whois)来查询这些一键生成的页面背后的操作者是谁。在 Github 查看[笔记修改历史](https://github.com/ruofancooh/blog-source/commits/main)。[分类页](/blog/categories)
 
-## 收藏了等于我会了
+## 他山
 
-[分类页](/blog/categories)
-| [笔记修改历史](https://github.com/ruofancooh/blog-source/commits/main)
 | [汉典](https://www.zdic.net/)
 | [JavaScript 艺术之旅](https://github.com/tanpero/JavaScript-Art-Tour)
 | [老生常谈](https://Laosheng.top/)
