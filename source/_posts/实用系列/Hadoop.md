@@ -5,7 +5,7 @@ categories: 实用系列
 permalink: hadoop.html
 ---
 
-Hadoop 基础不牢（发自内心地）。
+Hadoop 基础不牢。
 
 <!--more-->
 

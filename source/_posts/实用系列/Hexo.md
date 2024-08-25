@@ -5,7 +5,7 @@ categories: 实用系列
 permalink: hexo.html
 ---
 
-Hexo 基础不牢。
+一键生成的背后。
 
 <!--more-->
 
