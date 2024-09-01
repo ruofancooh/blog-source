@@ -116,3 +116,4 @@ pipreqs --encoding "utf-8" --force ./
 | [超吧网盘](http://opengl106.ysepan.com/)
 | [纪念碑谷](https://www.taptap.cn/app/18356)
 | [艾希](https://www.taptap.cn/app/11190)
+| [老男人游戏网](https://www.oldmantvg.net/)

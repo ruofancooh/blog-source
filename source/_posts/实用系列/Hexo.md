@@ -9,6 +9,19 @@ permalink: hexo.html
 
 <!--more-->
 
+## 随机背景
+
+`themes/next/source/_data/styles.styl` 里加上：
+
+```css
+body {
+    background-image: url("https://bing.img.run/rand.php");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+```
+
 ## md
 
 ```md
