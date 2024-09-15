@@ -1,6 +1,7 @@
 ---
 title: 关于
 date: 2023-05-27 14:48:35
+mathjax: true
 ---
 
 ## 健康
@@ -85,9 +86,37 @@ pipreqs --encoding "utf-8" --force ./
 
 你可以使用[Whois](https://www.whois.com/whois)来查询这些一键生成的页面背后的操作者是谁。在 Github 查看[笔记修改历史](https://github.com/ruofancooh/blog-source/commits/main)。[分类页](/blog/categories)
 
+## 电磁波
+
+$$
+\lambda = \frac{3 \times 10^8 \mathrm{m/s}}{f}
+$$
+
+| 名字/描述                | 频率约（Hz）   |
+| ------------------------ | -------------- |
+| 心电                     | 0.5 ~ 40       |
+| 脑电波 δ：深睡           | 1 ~ 4          |
+| 脑电波 θ：浅睡/抑郁      | 4 ~ 8          |
+| 脑电波 α：放松           | 8 ~ 12         |
+| 脑电波 β：集中注意力     | 13 ~ 30        |
+| 脑电波 γ：高度集中注意力 | 30 ~ 100       |
+| AM 广播                  | 535K ~ 1606K   |
+| FM 广播                  | 87M ~ 108M     |
+| 手机移动数据和通话       | 700M ~ 4900M   |
+| 卫星定位（GPS L1 频段）  | 1575.42M       |
+| 蓝牙、Wi-Fi              | 2.4G ~ 2.4835G |
+| 微波炉                   | 2.45G          |
+| Wi-Fi （5GHz 频段）      | 5.15G ~ 5.825G |
+| 红外线                   | 300G ~ 400T    |
+| 可见光                   | 390T ~ 750T    |
+| 紫外线                   | 750T ~ 30P     |
+| X 射线                   | 30P ~ 30E      |
+| γ 射线                   | 30E 以上       |
+
 ## 他山
 
-[汉典](https://www.zdic.net/)
+[蓝或者绿](https://ismy.blue)
+| [汉典](https://www.zdic.net/)
 | [JavaScript 艺术之旅](https://github.com/tanpero/JavaScript-Art-Tour)
 | [老生常谈](https://Laosheng.top/)
 | [涟波词集](https://kevinz.cn/lyricbook/?a=Kevinz)
