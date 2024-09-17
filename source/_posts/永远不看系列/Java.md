@@ -1,7 +1,7 @@
 ---
 title: Java
 date: 2023-09-04 21:31:47
-categories: 实用系列
+categories: 永远不看系列
 permalink: java.html
 ---
 

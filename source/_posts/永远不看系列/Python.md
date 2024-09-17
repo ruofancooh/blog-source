@@ -1,7 +1,7 @@
 ---
 title: Python
 date: 2024-04-23 20:24:00
-categories: 实用系列
+categories: 永远不看系列
 permalink: python.html
 mathjax: true
 ---
