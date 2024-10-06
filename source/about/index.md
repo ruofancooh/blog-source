@@ -117,7 +117,7 @@ $$
 
 [蓝或者绿](https://ismy.blue)
 | [汉典](https://www.zdic.net/)
-| [小鹤音形](https://flypy.cc/#/xyx)
+| [小鹤音形](https://flypy.cc/)
 | [JavaScript 艺术之旅](https://github.com/tanpero/JavaScript-Art-Tour)
 | [老生常谈](https://Laosheng.top/)
 | [涟波词集](https://kevinz.cn/lyricbook/?a=Kevinz)
