@@ -15,7 +15,8 @@ mathjax: true
 | [汉斯](https://www.hanspub.org/)
 | [知网](https://www.cnki.net/)
 | [NLC](https://www.nlc.cn/web/index.shtml)
-| [COAA](https://coaa.istic.ac.cn/)
+| [NSTL](https://coaa.istic.ac.cn/)
+| [ChinaXiv](https://www.chinaxiv.org/home.htm)
 | [CCF 推荐国际学术会议和期刊目录](https://www.ccf.org.cn/Academic_Evaluation/By_category/)
 | [easyScholar](https://www.easyscholar.cc/)
 | [bibtex2gbt7714](https://github.com/FDscend/bibtex2gbt7714)
@@ -93,13 +94,6 @@ $$
 $$
 
 | 名字/描述                | 频率约（Hz）   |
-| ------------------------ | -------------- |
-| 心电                     | 0.5 ~ 40       |
-| 脑电波 δ：深睡           | 1 ~ 4          |
-| 脑电波 θ：浅睡/抑郁      | 4 ~ 8          |
-| 脑电波 α：放松           | 8 ~ 12         |
-| 脑电波 β：集中注意力     | 13 ~ 30        |
-| 脑电波 γ：高度集中注意力 | 30 ~ 100       |
 | AM 广播                  | 535K ~ 1606K   |
 | FM 广播                  | 87M ~ 108M     |
 | 手机移动数据和通话       | 700M ~ 4900M   |
