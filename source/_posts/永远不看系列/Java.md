@@ -7,6 +7,11 @@ permalink: java.html
 
 Java 基础不牢。
 
+[Maven 仓库](https://mvnrepository.com/)
+| [阿里云 Maven 仓库](https://developer.aliyun.com/mvn/guide)
+| [Spring Boot 文档](https://docs.spring.io/spring-boot/docs/)
+| [Spring Boot 支持的 Java 版本](https://endoflife.date/spring-boot)
+
 <!--more-->
 
 ## 关键字

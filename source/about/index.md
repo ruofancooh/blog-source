@@ -38,45 +38,6 @@ RELEASE / GA > RC > M > SNAPSHOT，正式版 / 通用可用版 > 发布候选版
 
 x64 == x86_64 == AMD64 != ARM64 == AARCH64
 
-## Java
-
-[Maven 仓库](https://mvnrepository.com/)
-| [阿里云 Maven 仓库](https://developer.aliyun.com/mvn/guide)
-| [Spring Boot 文档](https://docs.spring.io/spring-boot/docs/)
-| [Spring Boot 支持的 Java 版本](https://endoflife.date/spring-boot)
-
-## Python
-
-[本体](https://docs.python.org/zh-cn/3/tutorial/whatnow.html)
-| [Anaconda](https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/)
-| [PyPI](https://pypi.org/)
-| [pipreqs](https://github.com/bndr/pipreqs)
-
-```sh
-conda list
-conda list numpy
-pip list
-pip show numpy
-pipreqs --encoding "utf-8" --force ./
-```
-
-[flask](https://flask.palletsprojects.com)
-| [geopandas](https://geopandas.org/en/stable/getting_started/introduction.html)
-| [matplotlib](https://matplotlib.org/stable/users/index.html)
-| [numpy](https://numpy.org/doc/stable/user/index.html)
-| [opencv](https://docs.opencv.org/4.9.0/d6/d00/tutorial_py_root.html)
-| [pandas](https://pandas.pydata.org/docs/user_guide/index.html)
-| [ppadb](https://pypi.org/project/pure-python-adb/)
-| [pyautogui](https://pyautogui.readthedocs.io)
-| [pyecharts](https://pyecharts.org/#/zh-cn/intro)
-| [requests](https://requests.readthedocs.io/projects/cn/zh-cn/latest/)
-| [scipy](https://docs.scipy.org/doc/scipy/tutorial/index.html#user-guide)
-| [scrapy](https://docs.scrapy.org)
-| [seaborn](https://seaborn.pydata.org/api.html)
-| [selenium](https://www.selenium.dev/selenium/docs/api/py/api.html)
-| [shapely](https://shapely.readthedocs.io/en/stable/manual.html)
-| [sklearn](https://scikit-learn.org/stable/user_guide.html)
-
 ## 怎么把这个网站搞出来的
 
 [Hexo](https://hexo.io/zh-cn/docs/) 是一个博客框架，它把带 [YAML Front matter](https://jekyllrb.com/docs/front-matter/) 的 [Markdown](https://markdown.com.cn/) 文件通过 [Node.js](https://nodejs.org) 和 [Pandoc](https://pandoc.org/) 渲染成静态的 html 文件。[NexT](https://theme-next.js.org/)是针对 Hexo 的主题，可以理解为 CSS。
