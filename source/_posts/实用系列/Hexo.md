@@ -15,14 +15,14 @@ permalink: hexo.html
 
 1. 设置 npm 镜像源
 
-```js
+```sh
 npm get registry
 npm config set registry https://registry.npmmirror.com/
 ```
 
 2. 安装 Hexo 并初始化之后，安装本地预览服务器，先跑
 
-```js
+```sh
 npm install hexo-server
 hexo server
 ```
@@ -30,10 +30,8 @@ hexo server
 ## NexT 主题
 
 [渲染数学公式](https://theme-next.js.org/docs/third-party-services/math-equations)
-
-[Mermaid](https://theme-next.js.org/docs/tag-plugins/mermaid)
-
-[随机背景](https://theme-next.js.org/docs/advanced-settings/custom-files)
+| [Mermaid](https://theme-next.js.org/docs/tag-plugins/mermaid)
+| [随机背景](https://theme-next.js.org/docs/advanced-settings/custom-files)
 
 ```css
 body {
