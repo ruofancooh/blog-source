@@ -29,3 +29,9 @@ permalink: win10-dolphin-wii.html
 8. Dolphin 模拟器-控制器
 
 <img src="/blog/images/dolphin.png">
+
+## 手柄离灯条的距离
+
+据笔者并不怎么精确的测量，手柄前端相对于灯条的正对距离在 80cm 处，竖直方向向下 30cm 处为宜，手柄从下往上对着灯条照。
+
+<img src="/blog/images/wii-remote.webp">
