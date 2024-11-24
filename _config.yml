@@ -339,7 +339,7 @@ theme_config:
     copyright: false
 
     # Powered by Hexo & NexT
-    powered: false
+    powered: true
 
     # Beian ICP and gongan information for Chinese users. See: https://beian.miit.gov.cn, https://beian.mps.gov.cn
     beian:
