@@ -5,10 +5,6 @@ categories: 实用系列
 permalink: gimp-make-words-on-the-photographed-paper-clearer.html
 ---
 
-拍照技术不强。
-
-<!--more-->
-
 0. [GIMP](https://www.gimp.org/downloads/)
 1. 拍摄
 2. 裁剪

@@ -6,14 +6,9 @@ permalink: python.html
 mathjax: true
 ---
 
-Python 基础不牢。
-
 [本体](https://docs.python.org/zh-cn/3/tutorial/whatnow.html)
 | [Anaconda](https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/)
 | [PyPI](https://pypi.org/)
-| [pipreqs](https://github.com/bndr/pipreqs)
-
-<!--more-->
 
 ## Anaconda
 

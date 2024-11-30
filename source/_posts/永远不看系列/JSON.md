@@ -5,11 +5,9 @@ categories: 永远不看系列
 permalink: json.html
 ---
 
-写作能力不强。
+JSON（JavaScript Object Notation，JavaScript 对象表示法）是一种轻量级的数据交换格式，可以看成是字符串。和 JavaScript 没什么关系，就像 JavaScript 和 Java 没什么关系一样。从 Python 的角度来看，一个 JSON 文件是一系列列表和字典的嵌套。
 
 <!--more-->
-
-JSON（JavaScript Object Notation，JavaScript 对象表示法）是一种轻量级的数据交换格式，可以看成是字符串。和 JavaScript 没什么关系，就像 JavaScript 和 Java 没什么关系一样。从 Python 的角度来看，一个 JSON 文件是一系列列表和字典的嵌套。
 
 ## JS
 

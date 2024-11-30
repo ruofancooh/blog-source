@@ -5,17 +5,10 @@ categories: 实用系列
 permalink: win10-dolphin-wii.html
 ---
 
-虽然各种原理都不知道，但是最后还是连上了。由于笔者不是第一次连，所以不确定这套操作适不适用第一次。
-
-<!--more-->
-
 ## 环境
 
 - Windows 10
 - Dolphin 5.0-15099
-- 使用 [Zadig](https://zadig.akeo.ie/) 查看 Options -> List All Devices
-  - 蓝牙适配器为：英特尔(R)无线 Bluetooth(R)
-  - 驱动为：BTHUSB(v22.0.0.2)
 
 ## 步骤
 

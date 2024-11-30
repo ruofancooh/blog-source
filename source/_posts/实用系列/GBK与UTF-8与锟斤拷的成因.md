@@ -5,15 +5,11 @@ categories: 实用系列
 permalink: gbk-utf8.html
 ---
 
-参考：[字符编码/解码](https://www.toolhelper.cn/EncodeDecode/EncodeDecode) | [SYMBL](https://symbl.cc/) | [HexED.it](https://hexed.it/)
-
-<!--more-->
-
-## 前提知识
-
 一位十六进制数表示四位二进制数，两位十六进制数表示一个字节。
 
 ASCII 有 128 个符号，使用一个字节表示，范围是 00000000-01111111 即 00-7F
+
+参考：[字符编码/解码](https://www.toolhelper.cn/EncodeDecode/EncodeDecode) | [SYMBL](https://symbl.cc/) | [HexED.it](https://hexed.it/)
 
 ## GBK
 

@@ -5,10 +5,6 @@ categories: 实用系列
 permalink: hexo.html
 ---
 
-一键生成的背后。
-
-<!--more-->
-
 ## 建站
 
 除了 Hexo 官网文档之外的操作：

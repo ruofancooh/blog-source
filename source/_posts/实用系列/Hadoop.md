@@ -5,36 +5,13 @@ categories: 实用系列
 permalink: hadoop.html
 ---
 
-Hadoop 基础不牢。
+一种不看完整教程安装软件的方法：
 
-<!--more-->
-
-分享一种不看完整教程把集群搭起来的方法：
-
-1. 在你软件安装的目录里面，通常有一个 doc 文件夹
+1. 在软件安装的目录里面，通常有一个 doc 文件夹
 2. 在解压软件包之后，什么配置都别写，上来先启动了再说
-3. 找到你软件的日志文件在哪里
+3. 找到软件的日志文件在哪里
 4. 在日志里搜索 `WARN` `ERROR`
 5. 在网上搜索或者问 GPT 为什么会出现这个错误
-
-<style>
-    .main{
-        width:100%
-    }
-</style>
-
-Hadoop 是一个软件，它是用 Java 写的，需要运行在 Java 虚拟机上。你以后还要通过写 Java 代码来连接它其中的一个组件，叫 HDFS。所有 Java 代码都得过一道 Java 编译器，然后在 JVM（Java 虚拟机）上运行。
-
-我们为什么要装 Linux 虚拟机？
-
-1. 模拟分布式集群
-2. 生产环境都用 Linux
-
-按理来说：
-
-1. Hadoop 需要 JVM 去运行
-2. 在 Windows 上照样可以运行 JVM
-3. Hadoop 可以运行在 Windows 上
 
 ## Java 代码运行环境的问题
 
@@ -104,20 +81,6 @@ public class App {
 - 在物理机上运行客户端，通过 winutils 这个中间人与虚拟机上的 NameNode 通信
 
 笔者最终的解决方案是：在虚拟机上安装 IDE，把 `$HADOOP_HOME/share/hadoop` 里的 Jar 包导进 IDE 里（这里用的是 IDEA），按播放键运行。如果报找不到类的错误，注意：在 `$HADOOP_HOME/share/hadoop/子文件夹` 下还有一个叫 `lib` 的文件夹。
-
-但是这种方法存在一个潜在的问题：<b>Jar 包冲突</span></b>。如果你新建了一个 Scala 2.12.15 的工程，用到 Spark 和 HDFS，并且在 `build.sbt` 里什么依赖都没写，只是把 Hadoop 3.3.6 和 Spark 3.5.1 自带的 Jar 包导进去了，你会遇到这样一个错误：
-
-```log
-Scala module 2.15.2 requires Jackson Databind version >= 2.15.0 and < 2.16.0
-- Found jackson-databind version 2.12.7
-```
-
-这又是几个问题：
-
-1. Scala module 2.15.2 是怎么回事？不是 2.12.15 吗？
-2. Found jackson-databind version 2.12.7 是哪里来的？是 Hadoop 的 Share 文件夹里的：common 目录下一个，hdfs 目录下一个。如果把它们删了，上面的报错问题可以解决，但是 NameNode 会起不起来了。
-
-幸运的是：在笔者重建了一次工程之后，这个问题就没有出现了。所以可能是 IDEA 的锅。
 
 ## 安装 Ubuntu 22.04.3
 
