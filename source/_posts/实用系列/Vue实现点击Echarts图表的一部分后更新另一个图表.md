@@ -23,10 +23,10 @@ permalink: vue-echarts-update.html
 
 图表的数据从何而来：
 
-1. 准备图表的 JSON 格式为一个计算属性，把 data 字段设置为 Ref 对象
-2. 给 v-chart 标签的 :option 绑定这个计算属性
-3. 写一个更新图表的函数，fetch 一个文件，转换成图表需要的格式，赋值给那个 Ref.value
-4. 在 onMounted() 里面调用更新图表的函数
+1. 在清洗和导出数据的时候直接导出为 Echarts 所需要的 JSON 格式的文件
+2. 准备图表的 option 的 JSON 格式为一个计算属性，把 data 字段设置为 Ref 对象的 value
+3. 给 v-chart 标签的 :option 绑定这个计算属性
+4. 写一个更新图表的函数，fetch 一个文件，转换成图表需要的格式，赋值给那个 Ref.value
 
 点击子组件图表后的事件和参数如何传递给父组件：
 
@@ -67,4 +67,4 @@ watch(
 );
 ```
 
-5. 在更新图表的方法里，根据接收到的参数，fetch 不同的文件或者 filter 不同的数据，赋给 data 的 Ref.value
+5. 在更新图表的方法里，根据接收到的参数，fetch 不同的文件，赋给 data 的 Ref.value
