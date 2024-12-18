@@ -48,7 +48,6 @@ permalink: meme.html
 <img src="/blog/images/meme/身份证掉了.webp">
 <img src="/blog/images/meme/和我做朋友能得到的好处.webp">
 <img src="/blog/images/meme/WHO关心你.webp">
-<img src="/blog/images/meme/上海关心你.webp">
 
 ### 我的特长和兴趣
 
@@ -74,7 +73,7 @@ permalink: meme.html
 <img src="/blog/images/meme/眼泪的成分.webp">
 <img src="/blog/images/meme/不是浪费时间.webp">
 <img src="/blog/images/meme/活着没意义.webp">
-<img src="/blog/images/meme/阅读字幕.webp">
+<img src="/blog/images/meme/一辈子不关心哲学.webp">
 
 ### 敢问路在何方
 
@@ -88,7 +87,6 @@ permalink: meme.html
 
 <img src="/blog/images/meme/平凡的世界.webp">
 <img src="/blog/images/meme/无症状快乐.webp">
-<img src="/blog/images/meme/白铅笔.webp">
 <img src="/blog/images/meme/白鸟过河滩.webp">
 
 ## 能量篇
@@ -121,3 +119,59 @@ permalink: meme.html
 
 <img src="/blog/images/meme/海鸥为我停留吧.webp">
 <img src="/blog/images/meme/请勿投喂.webp">
+
+## 爱情篇
+
+### 高情商发言
+
+<img src="/blog/images/meme/暖她一整天.webp">
+<img src="/blog/images/meme/甜上心尖.webp">
+<img src="/blog/images/meme/好多了.webp">
+<img src="/blog/images/meme/毕姥爷的说话之道.webp">
+
+### 那一夜
+
+<img src="/blog/images/meme/那一夜.webp">
+<img src="/blog/images/meme/我接了.webp">
+<img src="/blog/images/meme/25个未接电话.webp">
+
+### 幻想时间
+
+<img src="/blog/images/meme/眉眼弯弯.webp">
+<img src="/blog/images/meme/白铅笔.webp">
+<img src="/blog/images/meme/合适的人.webp">
+<img src="/blog/images/meme/注定孤独一生.webp">
+
+### 转生之
+
+<img src="/blog/images/meme/半人马.webp">
+<img src="/blog/images/meme/小光板.webp">
+<img src="/blog/images/meme/撞大运.webp">
+<img src="/blog/images/meme/漫画是假的.webp">
+
+## 社会篇
+
+### 入大海
+
+<img src="/blog/images/meme/打工不仅能致富.webp">
+<img src="/blog/images/meme/一条船.webp">
+<img src="/blog/images/meme/猫猫碰拳.webp">
+
+### 一日为师
+
+<img src="/blog/images/meme/师傅你是做什么工作的.webp">
+<img src="/blog/images/meme/猫猫工作.webp">
+
+### 时间给我答案
+
+<img src="/blog/images/meme/时间到了.webp">
+<img src="/blog/images/meme/生活点滴.webp">
+<img src="/blog/images/meme/喜欢星期五.webp">
+<img src="/blog/images/meme/一周.webp">
+
+### 小心路滑
+
+<img src="/blog/images/meme/小心地滑.webp">
+<img src="/blog/images/meme/滑.webp">
+<img src="/blog/images/meme/一看二慢三通过.webp">
+<img src="/blog/images/meme/烧.webp">
