@@ -5,7 +5,7 @@ categories: 牢骚系列
 permalink: meme.html
 ---
 
-一点都不好笑。
+小清一波库存。
 
 ## 自嘲篇
 
