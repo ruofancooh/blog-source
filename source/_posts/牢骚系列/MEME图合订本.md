@@ -70,7 +70,6 @@ permalink: meme.html
 
 ### 说的道理
 
-<img src="/blog/images/meme/眼泪的成分.webp">
 <img src="/blog/images/meme/不是浪费时间.webp">
 <img src="/blog/images/meme/活着没意义.webp">
 <img src="/blog/images/meme/一辈子不关心哲学.webp">
@@ -175,3 +174,60 @@ permalink: meme.html
 <img src="/blog/images/meme/滑.webp">
 <img src="/blog/images/meme/一看二慢三通过.webp">
 <img src="/blog/images/meme/烧.webp">
+<img src="/blog/images/meme/灭烟台.webp">
+
+## 小孩篇
+
+### 儿童节
+
+<img src="/blog/images/meme/转盘.webp">
+
+### 东阳马生
+
+<img src="/blog/images/meme/余幼时即厌学.webp">
+<img src="/blog/images/meme/写12个解.webp">
+<img src="/blog/images/meme/考试一点也不难.webp">
+<img src="/blog/images/meme/大括号.webp">
+<img src="/blog/images/meme/水下无法呼吸.webp">
+<img src="/blog/images/meme/田忌赛马.webp">
+<img src="/blog/images/meme/青龙帮.webp">
+<img src="/blog/images/meme/江湖义气.webp">
+
+### 反方向的爹
+
+<img src="/blog/images/meme/到了我这个年纪.webp">
+<img src="/blog/images/meme/梳了最帅的发型.webp">
+
+### 老小子
+
+<img src="/blog/images/meme/现在的小孩.webp">
+<img src="/blog/images/meme/年龄真的大了.webp">
+<img src="/blog/images/meme/打BOOS.webp">
+<img src="/blog/images/meme/好吃就行.jpg">
+
+## 历史篇
+
+### 往者不谏
+
+<img src="/blog/images/meme/重力.webp">
+<img src="/blog/images/meme/摩托车.webp">
+<img src="/blog/images/meme/抑郁症.webp">
+<img src="/blog/images/meme/垃圾桶.webp">
+
+### 关键时刻
+
+<img src="/blog/images/meme/关键时刻.webp">
+
+### 天下大势
+
+<img src="/blog/images/meme/涂历史书.webp">
+<img src="/blog/images/meme/祖上都是富人.webp">
+<img src="/blog/images/meme/眼泪的成分.webp">
+<img src="/blog/images/meme/我爱我家.webp">
+
+### 来者可追
+
+<img src="/blog/images/meme/分支.webp">
+<img src="/blog/images/meme/王八蛋.webp">
+
+## 破壁篇
