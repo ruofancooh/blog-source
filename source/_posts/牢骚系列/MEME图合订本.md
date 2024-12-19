@@ -5,7 +5,7 @@ categories: 牢骚系列
 permalink: meme.html
 ---
 
-小清一波库存。
+一点都不好笑。
 
 ## 自嘲篇
 
@@ -38,6 +38,7 @@ permalink: meme.html
 ### 我的过去
 
 <img src="/blog/images/meme/内向仔的一生.webp">
+<img src="/blog/images/meme/从刚出生说起.webp">
 <img src="/blog/images/meme/改变与得过且过.webp">
 <img src="/blog/images/meme/懒惰与创意.webp">
 <img src="/blog/images/meme/内向者联合起来.webp">
@@ -94,7 +95,6 @@ permalink: meme.html
 
 <img src="/blog/images/meme/蒜泥猫.webp">
 <img src="/blog/images/meme/芬达海.webp">
-<img src="/blog/images/meme/给你薯条.webp">
 
 ### 饭还是要吃
 
@@ -172,7 +172,10 @@ permalink: meme.html
 
 <img src="/blog/images/meme/小心地滑.webp">
 <img src="/blog/images/meme/滑.webp">
+<img src="/blog/images/meme/SB110.webp">
+<img src="/blog/images/meme/蓝移.webp">
 <img src="/blog/images/meme/一看二慢三通过.webp">
+<img src="/blog/images/meme/谁让你开得那么快.webp">
 <img src="/blog/images/meme/烧.webp">
 <img src="/blog/images/meme/灭烟台.webp">
 
@@ -180,17 +183,18 @@ permalink: meme.html
 
 ### 儿童节
 
+<img src="/blog/images/meme/超人.webp">
 <img src="/blog/images/meme/转盘.webp">
 
 ### 东阳马生
 
 <img src="/blog/images/meme/余幼时即厌学.webp">
-<img src="/blog/images/meme/写12个解.webp">
 <img src="/blog/images/meme/考试一点也不难.webp">
-<img src="/blog/images/meme/大括号.webp">
+<img src="/blog/images/meme/写12个解.webp">
 <img src="/blog/images/meme/水下无法呼吸.webp">
-<img src="/blog/images/meme/田忌赛马.webp">
+<img src="/blog/images/meme/大括号.webp">
 <img src="/blog/images/meme/青龙帮.webp">
+<img src="/blog/images/meme/田忌赛马.webp">
 <img src="/blog/images/meme/江湖义气.webp">
 
 ### 反方向的爹
@@ -200,19 +204,20 @@ permalink: meme.html
 
 ### 老小子
 
-<img src="/blog/images/meme/现在的小孩.webp">
-<img src="/blog/images/meme/年龄真的大了.webp">
-<img src="/blog/images/meme/打BOOS.webp">
 <img src="/blog/images/meme/好吃就行.jpg">
+<img src="/blog/images/meme/打BOOS.webp">
+<img src="/blog/images/meme/年龄真的大了.webp">
 
 ## 历史篇
 
 ### 往者不谏
 
+<img src="/blog/images/meme/现在的小孩.webp">
 <img src="/blog/images/meme/重力.webp">
 <img src="/blog/images/meme/摩托车.webp">
 <img src="/blog/images/meme/抑郁症.webp">
 <img src="/blog/images/meme/垃圾桶.webp">
+<img src="/blog/images/meme/弓箭.webp">
 
 ### 关键时刻
 
@@ -220,8 +225,8 @@ permalink: meme.html
 
 ### 天下大势
 
-<img src="/blog/images/meme/眼泪的成分.webp">
 <img src="/blog/images/meme/祖上都是富人.webp">
+<img src="/blog/images/meme/眼泪的成分.webp">
 <img src="/blog/images/meme/我爱我家.webp">
 
 ### 来者可追
@@ -230,3 +235,39 @@ permalink: meme.html
 <img src="/blog/images/meme/王八蛋.webp">
 
 ## 破壁篇
+
+### 对话
+
+<img src="/blog/images/meme/互联网的尽头.webp">
+<img src="/blog/images/meme/给你薯条.webp">
+<img src="/blog/images/meme/笑容.webp">
+
+### 独立思考
+
+<img src="/blog/images/meme/没人知道你是一条狗.webp">
+<img src="/blog/images/meme/字幕没有加描边.webp">
+<img src="/blog/images/meme/摆拍.webp">
+<img src="/blog/images/meme/大熊猫吃火锅.webp">
+
+### 辩证
+
+<img src="/blog/images/meme/墨菲定律.webp">
+
+### 这
+
+<p style="text-align:right">不</p>
+<img src="/blog/images/meme/排版.webp">
+<style>
+.demo{
+    display:-webkit-box;
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-pack:justify;
+    -webkit-justify-content:space-between;
+    -ms-flex-pack:justify;
+    justify-content:space-between;
+}
+</style>
+<div class="demo">会<p></p>弄<p></p>乱<p></p>我<p></p>的<p></p>排<p></p>版<p></p>对<p></p>吧<p></p>？</div>
+
