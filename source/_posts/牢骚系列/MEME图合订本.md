@@ -220,9 +220,8 @@ permalink: meme.html
 
 ### 天下大势
 
-<img src="/blog/images/meme/涂历史书.webp">
-<img src="/blog/images/meme/祖上都是富人.webp">
 <img src="/blog/images/meme/眼泪的成分.webp">
+<img src="/blog/images/meme/祖上都是富人.webp">
 <img src="/blog/images/meme/我爱我家.webp">
 
 ### 来者可追
