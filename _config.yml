@@ -115,6 +115,15 @@ sitemap:
   tags: false
   categories: false
 
+symbols_count_time:
+    symbols: true
+    time: true
+    total_symbols: true
+    total_time: true
+    exclude_codeblock: false
+    wpm: 300
+    suffix: "mins."
+
 theme_config:
   # ===============================================================
   # It's recommended to use Alternate Theme Config to configure NexT

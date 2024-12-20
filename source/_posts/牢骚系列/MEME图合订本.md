@@ -7,6 +7,25 @@ permalink: meme.html
 
 小清一波库存。
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let imgElements = document.querySelectorAll('img');
+    let post_meta = document.querySelector('.post-meta');
+        
+    let meme_count = post_meta.children[3];
+    meme_count.title = "MEME图数：";
+    let word_icon = meme_count.querySelector('i.far.fa-file-word');
+    word_icon.classList.replace('fa-file-word', "fa-images");
+    meme_count.children[1].innerText = "MEME图数：";
+    meme_count.children[2].innerText = imgElements.length;
+
+    let read_time = post_meta.children[4];
+    let clock_icon = read_time.querySelector('i.far.fa-clock');
+    clock_icon.classList.replace('fa-clock', "fa-smile");
+    read_time.children[2].innerText = "随你";
+});
+</script>
+
 ## 自嘲篇
 
 ### 下好生活这盘棋
@@ -112,6 +131,7 @@ permalink: meme.html
 <img src="/blog/images/meme/是不是哥们.webp">
 <img src="/blog/images/meme/非也兄台.webp">
 <img src="/blog/images/meme/虾射手.webp">
+<img src="/blog/images/meme/如此包装.webp">
 <img src="/blog/images/meme/虾转.webp">
 
 ### 请勿投喂
@@ -255,7 +275,7 @@ permalink: meme.html
 
 ### 这
 
-<p style="text-align:right">不</p>
+<p style="text-align:right;font-size:1.25em;font-weight:bold;">不</p>
 <img src="/blog/images/meme/排版.webp">
 <style>
 .demo{
@@ -267,7 +287,8 @@ permalink: meme.html
     -webkit-justify-content:space-between;
     -ms-flex-pack:justify;
     justify-content:space-between;
+    font-size:1.25em;
+    font-weight:bold;
 }
 </style>
 <div class="demo">会<p></p>弄<p></p>乱<p></p>我<p></p>的<p></p>排<p></p>版<p></p>对<p></p>吧<p></p>？</div>
-
