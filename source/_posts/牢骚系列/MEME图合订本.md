@@ -1,5 +1,5 @@
 ---
-title: MEME图合订本
+title: Meme图合订本
 date: 2024-12-16 09:00:00
 categories: 牢骚系列
 permalink: meme.html

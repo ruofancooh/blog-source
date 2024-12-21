@@ -61,7 +61,7 @@ UTF-8：使用 1 到 4 个字节表示一个 Unicode 码。其中用 1 个字节
 ## 锟斤拷的成因
 
 1. 有一个 GBK 编码的文本文件 A
-2. 用 UTF-8 编码读 A，其中不符合 UTF-8 规范的十六进制值被解析为字符 �
+2. 用 UTF-8 编码读 A，其中不符合 UTF-8 规范的十六进制值被解析为字符 �（Replacement Character）
 3. 把 A 保存为 UTF-8 格式的新文件 B，则 � 被记录为 EFBFBD
 4. 再用 GBK 编码读文件 B，如果有相邻的两个 �，即 EFBFBDEFBFBD，则读为 EFBF BDEF BFBD
 5. 在 GBK 里，EFBF = 锟，BDEF = 斤，BFBD = 拷

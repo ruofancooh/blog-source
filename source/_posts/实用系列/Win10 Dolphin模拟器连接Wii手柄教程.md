@@ -18,10 +18,11 @@ permalink: win10-dolphin-wii.html
 4. 点击“添加设备”，同时按手柄的 1 和 2 键，这时手柄的四个灯会一起闪
 5. 扫描上的标志是“添加设备”对话框里出现 Nintendo RVL-CNT-01
 6. 选择 Nintendo RVL-CNT-01 连接，弹出让你填写 PIN 的对话框，不用管直接下一步
-7. 连上的标志是手柄会震动一下，之后变成只有第一个灯亮
-8. Dolphin 模拟器-控制器
+7. Dolphin 模拟器-控制器
 
 <img src="/blog/images/dolphin.png">
+
+8. 连上的标志是手柄会震动一下，之后变成只有第一个灯亮
 
 ## 手柄离灯条的距离
 
