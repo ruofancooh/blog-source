@@ -91,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
 ### 说的道理
 
 <img src="/blog/images/meme/不是浪费时间.webp">
-<img src="/blog/images/meme/活着没意义.webp">
 <img src="/blog/images/meme/一辈子不关心哲学.webp">
 
 ### 敢问路在何方
