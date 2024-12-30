@@ -329,6 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src="/blog/images/meme/我可以休息吗.webp">
 <img src="/blog/images/meme/老虎卷.webp">
 <img src="/blog/images/meme/睡5个小时.webp">
+<img src="/blog/images/meme/12点之前睡着.webp">
 <img src="/blog/images/meme/Sleeping.webp">
 
 ### 世纪大和解
