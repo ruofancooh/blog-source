@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src="/blog/images/meme/内向仔的一生.webp">
 <img src="/blog/images/meme/从刚出生说起.webp">
 <img src="/blog/images/meme/改变与得过且过.webp">
-<img src="/blog/images/meme/懒惰与创意.webp">
 <img src="/blog/images/meme/内向者联合起来.webp">
 
 ### 我的朋友
