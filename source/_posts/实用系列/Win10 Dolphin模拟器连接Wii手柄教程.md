@@ -29,3 +29,21 @@ permalink: win10-dolphin-wii.html
 据笔者并不怎么精确的测量，手柄前端相对于灯条的水平方向向前 80cm 处，竖直方向向下 30cm 处为宜，手柄从下往上对着灯条照。
 
 <img src="/blog/images/wii-remote.webp">
+
+## 存档转移
+
+- Win
+  - 查看游戏 ID：右键属性 -> 信息，如 RNVW01 (00010000524e5657)
+  - 导入导出：工具
+- 安卓
+  - 导入存档：右上角三个点 -> Import Wii Save
+  - 导出：设置 -> Config -> User Data
+- 手动导入导出
+  - Win 的存档路径在：
+  ```
+  C:\Users\yourname\Documents\Dolphin Emulator\Wii\title
+  ```
+  - 安卓的存档路径在：
+  ```
+  /sdcard/Android/data/org.dolphinemu.dolphinemu/files/Wii/title/
+  ```
