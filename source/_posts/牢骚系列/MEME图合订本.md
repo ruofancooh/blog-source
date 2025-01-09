@@ -212,7 +212,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <img src="/blog/images/meme/成熟的大人.webp">
 <img src="/blog/images/meme/成熟点.webp">
-<img src="/blog/images/meme/转盘.webp">
 
 ### 东阳马生
 
