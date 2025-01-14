@@ -5,19 +5,16 @@ categories: 实用系列
 permalink: win10-dolphin-wii.html
 ---
 
-## 环境
+手柄 --> 蓝牙适配器 --> 蓝牙驱动 --> 操作系统 --> 模拟器
 
-- Windows 10
-- Dolphin 2412
-- 看你具体的蓝牙适配器型号
+- 第一个箭头：同时按手柄的 1 和 2 键，或者后盖里面的 SYNC 按钮。
+- 蓝牙适配器：
+  - 使用 [Zadig](https://zadig.akeo.ie/) 查看蓝牙适配器的 USB ID 和驱动程序版本
+  - 在[Bluetooth Passthrough](https://wiki.dolphin-emu.org/index.php?title=Bluetooth_Passthrough)的 Adapter test results 表格查看硬件测试结果。
 
-Dolphin 连接游戏控制器有两种模式：直通模式和模拟模式。前者可以连接多个真实手柄；后者只能连接一个真实的手柄（存疑），但可以手柄和电脑键盘混用。
+## 直通模式
 
-参考[Dolphin Emulator Wiki 的蓝牙直通模式](https://wiki.dolphin-emu.org/index.php?title=Bluetooth_Passthrough)。
-
-## 步骤
-
-1. 使用[Zadig](https://zadig.akeo.ie/)把蓝牙适配器的驱动改成 libusbK
+1. 使用 Zadig 把蓝牙适配器的驱动改成 libusbK
    - Options -> List All Devices
    - Replace Driver
 2. 打开一个游戏
@@ -25,8 +22,12 @@ Dolphin 连接游戏控制器有两种模式：直通模式和模拟模式。前
 
 <img src="/blog/images/wii-remote.webp">
 
-4. 点击“同步”，同时按手柄的 1 和 2 键，这时手柄的四个灯会一起闪
+4. 点击“同步”，这时手柄的四个灯会一起闪
 5. 连上的标志是手柄变成只有一个灯亮，按连接的顺序，第一个连接的手柄是 1P，亮第一个灯
+
+## 模拟模式
+
+参考：[Configuring Controllers](https://wiki.dolphin-emu.org/index.php?title=Configuring_Controllers#Real_Wii_Remote)
 
 ## 手柄离灯条的距离
 
