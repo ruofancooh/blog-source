@@ -7,22 +7,22 @@ permalink: win10-dolphin-wii.html
 
 手柄 --> 蓝牙适配器 --> 蓝牙驱动 --> 操作系统 --> 模拟器
 
-- 第一个箭头：同时按手柄的 1 和 2 键，或者后盖里面的 SYNC 按钮。
-- 蓝牙适配器：
-  - 使用 [Zadig](https://zadig.akeo.ie/) 查看蓝牙适配器的 USB ID 和驱动程序版本
-  - 在[Bluetooth Passthrough](https://wiki.dolphin-emu.org/index.php?title=Bluetooth_Passthrough)的 Adapter test results 表格查看硬件测试结果。
+- 第一个箭头：同时按手柄的 1 和 2 键，或者后盖里面的 SYNC 按钮。这时手柄的四个灯会一起闪
+- 蓝牙适配器：使用 [Zadig](https://zadig.akeo.ie/) 查看蓝牙适配器的 USB ID 和驱动程序版本，Options -> List All Devices
 
 ## 直通模式
 
+0. 在[Bluetooth Passthrough](https://wiki.dolphin-emu.org/index.php?title=Bluetooth_Passthrough#Adapter_test_results)的 Adapter test results 表格查看硬件测试结果，需要一个型号匹配的蓝牙适配器
 1. 使用 Zadig 把蓝牙适配器的驱动改成 libusbK
-   - Options -> List All Devices
-   - Replace Driver
+   - 如果想要恢复原来的驱动：
+     1. 右击开始图标 -> 设备管理器 -> libusbK USB Devices -> 卸载设备
+     2. 操作 -> 扫描检测硬件改动
 2. 打开一个游戏
 3. Dolphin 模拟器 -> 控制器
 
 <img src="/blog/images/wii-remote.webp">
 
-4. 点击“同步”，这时手柄的四个灯会一起闪
+4. 点击“同步”，再同时按手柄的 1 和 2 键
 5. 连上的标志是手柄变成只有一个灯亮，按连接的顺序，第一个连接的手柄是 1P，亮第一个灯
 
 ## 模拟模式
