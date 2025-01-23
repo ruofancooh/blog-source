@@ -83,3 +83,10 @@ public interface USB {
 一个类只能 `extends` 自一个父类，但可以 `implements` 多个接口。
 
 实现接口的子类必须得实现接口里声明的方法。
+
+## JavaBean
+
+规则：
+
+- 必须有一个无参构造方法
+- 所有属性私有，且对其提供 public 的 `getXxx()` 与 `setXxx()` 方法
