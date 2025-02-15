@@ -64,8 +64,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ### 我的朋友
 
+<img src="/blog/images/meme/社恐如何交朋友.webp">
+<img src="/blog/images/meme/社恐如何打招呼.webp">
+<img src="/blog/images/meme/非我也图也.webp">
 <img src="/blog/images/meme/双人游戏.webp">
-<img src="/blog/images/meme/身份证掉了.webp">
 <img src="/blog/images/meme/和我做朋友能得到的好处.webp">
 <img src="/blog/images/meme/WHO关心你.webp">
 
@@ -228,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function() {
 ### 反方向的爹
 
 <img src="/blog/images/meme/到了我这个年纪.webp">
-<img src="/blog/images/meme/梳了最帅的发型.webp">
+<img src="/blog/images/meme/自愿开学.webp">
 
 ### 老小子
 
@@ -328,22 +330,22 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src="/blog/images/meme/蔬菜去农药残留.webp">
 <img src="/blog/images/meme/从不运动的我.webp">
 <img src="/blog/images/meme/离你家超级远.webp">
-<img src="/blog/images/meme/什么都不用担心.webp">
+
+### 修养生息
+
 <img src="/blog/images/meme/我可以休息吗.webp">
+<img src="/blog/images/meme/Sleeping.webp">
 <img src="/blog/images/meme/老虎卷.webp">
 <img src="/blog/images/meme/睡5个小时.webp">
-<img src="/blog/images/meme/12点之前睡着.webp">
-<img src="/blog/images/meme/Sleeping.webp">
 <img src="/blog/images/meme/最美好的四个小时.webp">
-
-### 世纪大和解
-
-<img src="/blog/images/meme/大和解.webp">
+<img src="/blog/images/meme/12点之前睡着.webp">
 
 ### 辞旧迎新
 
+<img src="/blog/images/meme/大和解.webp">
 <img src="/blog/images/meme/解冻.webp">
 <img src="/blog/images/meme/四个星期后的超市.webp">
 <img src="/blog/images/meme/几个星期后我的家.webp">
 <img src="/blog/images/meme/随500.webp">
 <img src="/blog/images/meme/随6500.webp">
+<img src="/blog/images/meme/中式恐怖.webp">
