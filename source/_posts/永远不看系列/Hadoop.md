@@ -1,7 +1,7 @@
 ---
 title: Hadoop
 date: 2024-04-26 17:45:00
-categories: 实用系列
+categories: 永远不看系列
 permalink: hadoop.html
 ---
 
@@ -12,6 +12,31 @@ permalink: hadoop.html
 3. 找到软件的日志文件在哪里
 4. 在日志里搜索 `WARN` `ERROR`
 5. 在网上搜索或者问 GPT 为什么会出现这个错误
+
+## VSCode 远程附加调试
+
+hadoop-env.sh
+
+```sh
+export 某某_OPTS="-agentlib:jdwp=transport=dt_socket,address=8888,server=y,suspend=n"
+```
+
+launch.json
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Hadoop 某某",
+      "request": "attach",
+      "hostName": "ubuntu101",
+      "port": 8888
+    }
+  ]
+}
+```
 
 ## Java 代码运行环境的问题
 
@@ -263,6 +288,92 @@ hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.j
   <value>HADOOP_MAPRED_HOME=/opt/hadoop-3.3.6</value>
 </property>
 ```
+
+#### MapReduce 编程入门
+
+[官方教程](https://github.com/apache/hadoop/blob/branch-3.3.6/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core/src/site/markdown/MapReduceTutorial.md)
+
+<img src="/blog/images/MapReduce.webp">
+
+我们想统计一篇英文文章里的单词，每个都出现了多少次。假设这个文本文件只有英文单词、空格和换行符（LF 或者 CRLF）。
+
+需要继承 Mapper 类，重写它的 map() 方法。这个方法里传了三个参数：该行的偏移量、该行的文本内容、环境上下文。在这个方法里，对每一行按空格进行分割，形成一个 String[]，遍历这个 String[]，把它写到上下文里，这样写的就是一系列 `<word,1>`。
+
+```java
+public class WordCountMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
+    // KEYIN（偏移量），VALUEIN（每一行的文本），KEYOUT（单词），VALUEOUT（1）
+    // 对每一行进行分割
+    private Text wordText = new Text();// 向 context 里写的 KEYOUT。Text 相当于一个盒子
+
+    @Override
+    protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+        String line = value.toString();
+        String[] words = line.split(" ");
+
+        int i = 1;
+        System.out.println(i++ + " | " + key + " | " + value + " | " + line);
+        // input 有三行文本
+        // 输出了三次，每次为：1 | 偏移量 | 该行内容（不带换行符） | 该行内容（不带换行符）
+        // 其中 1 没有变，说明是分布执行的
+        // 第一次偏移量为 0，第一行有 35 个英文字母 + 空格，UTF-8 编码，加上 CRLF，第二次偏移量是 37
+
+        for (String word : words) {
+            wordText.set(word);
+            context.write(wordText, new IntWritable(1));
+            System.out.println(context.getCurrentKey() + " | " + context.getCurrentValue());
+            // 这行语句每次输出的 key 和 value 和当前 map() 传的参相同
+        }
+    }
+}
+```
+
+继承 Reducer 类，重写 reduce() 方法。
+
+```java
+public class WordCountReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
+    // KEYIN 和 VALUEIN 来自 WordCountMapper.map() 里向 context 里写的
+    // 每一个 reducer 处理的是 【相同的KEYIN】 的 【VALUEIN集合】
+    IntWritable outV = new IntWritable();// VALUEOUT
+
+    @Override
+    protected void reduce(Text key, Iterable<IntWritable> values, Context context)
+            throws IOException, InterruptedException {
+        int sum = 0;// 单词计数
+
+        for (IntWritable count : values) {
+            sum += count.get();
+            System.out.println(count.get());// values 的每一个 count 都是 1
+        }
+
+        outV.set(sum);
+        context.write(key, outV);
+    }
+}
+```
+
+继承 Driver 类，进行一些配置。
+
+```java
+public class WordCountDriver {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
+        Configuration conf = new Configuration();
+        Job job = Job.getInstance(conf);
+        job.setJarByClass(WordCountDriver.class);
+        job.setMapperClass(WordCountMapper.class);
+        job.setReducerClass(WordCountReducer.class);
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(IntWritable.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(IntWritable.class);
+        FileInputFormat.setInputPaths(job, new Path("input.txt"));
+        FileOutputFormat.setOutputPath(job, new Path("output"));
+        boolean result = job.waitForCompletion(true);
+        System.exit(result ? 0 : 1);
+    }
+}
+```
+
+`FileAlreadyExistsException`：不要提前建好输出文件夹
 
 ### HDFS
 
