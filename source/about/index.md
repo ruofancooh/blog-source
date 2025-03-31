@@ -4,29 +4,12 @@ date: 2023-05-27 14:48:35
 mathjax: true
 ---
 
-## 健康
-
 [中国居民膳食指南 2022](http://dg.cnsoc.org/article/04/x8zaxCk7QQ2wXw9UnNXJ_A.html)
 | [BMI](https://cn.onlinebmicalculator.com/)
 
-## 论文
-
-[查重](https://chachongwang.wf.paper880.com/)
-| [汉斯](https://www.hanspub.org/)
-| [知网](https://www.cnki.net/)
-| [NLC](https://www.nlc.cn/web/index.shtml)
-| [NSTL](https://www.nstl.gov.cn/)
-| [ChinaXiv](https://www.chinaxiv.org/home.htm)
-| [CCF 推荐国际学术会议和期刊目录](https://www.ccf.org.cn/Academic_Evaluation/By_category/)
-| [easyScholar](https://www.easyscholar.cc/)
-| [bibtex2gbt7714](https://github.com/FDscend/bibtex2gbt7714)
-
 ## 软件
 
-大模型就是搜索引擎的升级版。
-
-[通义千问](https://tongyi.aliyun.com/qianwen/)
-| [右键菜单管理](https://github.com/BluePointLilac/ContextMenuManager)
+[右键菜单管理](https://github.com/BluePointLilac/ContextMenuManager)
 | [沉浸式翻译](https://immersivetranslate.com/docs/)
 | [Pot](https://github.com/pot-app/pot-desktop)
 | [Mermaid 中文网](https://mermaid.nodejs.cn/)
