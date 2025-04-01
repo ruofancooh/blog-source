@@ -88,37 +88,32 @@ from bs4 import BeautifulSoup
 SITE_ROOT = Path(r"D:\repo\blog")
 CATEGORIES_DIR = SITE_ROOT / "categories"
 ARCHIVES_DIR = SITE_ROOT / "archives"
-
 CATEGORY_MAP = {
     "牢骚系列": "m",
     "实用系列": "p",
     "永远不看系列": "u",
 }
-
 ABBREVIATED_MAP = {quote(full): abbrev for full, abbrev in CATEGORY_MAP.items()}
+REPLACE_RULES = {
+    f"/archives": "",
+    **{
+        f"categories/{full_name}": abbreviated
+        for full_name, abbreviated in ABBREVIATED_MAP.items()
+    },
+}
 
 
 def update_links_in_html(html_path: Path):
     with html_path.open("r+", encoding="utf-8") as file:
         content = file.read()
         soup = BeautifulSoup(content, "html.parser")
-
-        replace_rules = {
-            f"/archives": "",
-            **{
-                f"categories/{full_name}": abbreviated
-                for full_name, abbreviated in ABBREVIATED_MAP.items()
-            },
-        }
-
         for a_tag in soup.find_all("a"):
             href = a_tag.get("href")
             if href:
-                for old, new in replace_rules.items():
+                for old, new in REPLACE_RULES.items():
                     if old in href:
                         href = href.replace(old, new)
                 a_tag["href"] = href
-
         file.seek(0)
         file.write(str(soup))
         file.truncate()
@@ -129,10 +124,8 @@ if __name__ == "__main__":
         src_folder = CATEGORIES_DIR / full_name
         dst_folder = SITE_ROOT / abbrev
         shutil.move(src_folder, dst_folder)
-
     shutil.move(ARCHIVES_DIR / "index.html", SITE_ROOT / "index.html")
     shutil.rmtree(ARCHIVES_DIR)
-
     for root, _, files in os.walk(SITE_ROOT):
         for filename in files:
             if filename.endswith(".html") and filename != "404.html":
