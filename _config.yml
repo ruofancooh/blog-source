@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 若凡的笔记
+title: ​若凡的笔记
 subtitle: 一个伪善的人
 description: ''
 keywords:
@@ -146,7 +146,7 @@ theme_config:
   # Define custom file paths.
   # Create your custom files in site directory `source/_data` and uncomment needed files below.
   custom_file_path:
-    #head: source/_data/head.njk
+    head: source/_data/head.njk
     #header: source/_data/header.njk
     #sidebar: source/_data/sidebar.njk
     #postMeta: source/_data/post-meta.njk
@@ -178,11 +178,11 @@ theme_config:
   # ---------------------------------------------------------------
 
   favicon:
-    small: favicon.png
-    medium: favicon.png
-    apple_touch_icon: favicon.png
-    safari_pinned_tab: favicon.png
-    #android_manifest: /manifest.json
+    small: favicon.ico
+    medium: favicon.ico
+    apple_touch_icon: favicon.ico
+    safari_pinned_tab: favicon.ico
+    # android_manifest: /manifest.json
 
   # Custom Logo (Warning: Do not support scheme Mist)
   custom_logo: #/uploads/custom-logo.png
