@@ -31,8 +31,6 @@ permalink: amap-poi-search.html
 
 ## 示例代码
 
-虽然写得不好看，但是当前还可以跑
-
 ### amap_poi_spider.py
 
 ```py
