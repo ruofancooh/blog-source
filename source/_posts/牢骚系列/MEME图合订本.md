@@ -68,8 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src="/blog/images/meme/社恐如何打招呼.webp">
 <img src="/blog/images/meme/非我也图也.webp">
 <img src="/blog/images/meme/双人游戏.webp">
-<img src="/blog/images/meme/和我做朋友能得到的好处.webp">
-<img src="/blog/images/meme/WHO关心你.webp">
 
 ### 我的特长和兴趣
 
@@ -84,17 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
 ### 哲学格言
 
 <img src="/blog/images/meme/过去和未来不存在.webp">
-<img src="/blog/images/meme/金鱼骑哪种自行车.webp">
-<img src="/blog/images/meme/未加反思的判断不可信.webp">
 <img src="/blog/images/meme/哲学格言生成器.webp">
-<img src="/blog/images/meme/自找的.webp">
 <img src="/blog/images/meme/朋友像雪花.webp">
 
 ### 说的道理
 
 <img src="/blog/images/meme/不是浪费时间.webp">
 <img src="/blog/images/meme/一辈子不关心哲学.webp">
-<img src="/blog/images/meme/少跟妈妈说难过的事.webp">
 
 ### 敢问路在何方
 
@@ -109,7 +103,6 @@ document.addEventListener('DOMContentLoaded', function() {
 ### 我和我
 
 <img src="/blog/images/meme/平凡的世界.webp">
-<img src="/blog/images/meme/无症状快乐.webp">
 <img src="/blog/images/meme/白鸟过河滩.webp">
 
 ## 能量篇
@@ -137,7 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src="/blog/images/meme/非也兄台.webp">
 <img src="/blog/images/meme/虾射手.webp">
 <img src="/blog/images/meme/如此包装.webp">
-<img src="/blog/images/meme/虾转.webp">
 
 ### 请勿投喂
 
@@ -283,7 +275,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src="/blog/images/meme/没人知道你是一条狗.webp">
 <img src="/blog/images/meme/脑控.webp">
 <img src="/blog/images/meme/字幕没有加描边.webp">
-<img src="/blog/images/meme/摆拍.webp">
 <img src="/blog/images/meme/大熊猫吃火锅.webp">
 
 ### 辩证
@@ -342,7 +333,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ### 辞旧迎新
 
-<img src="/blog/images/meme/大和解.webp">
 <img src="/blog/images/meme/解冻.webp">
 <img src="/blog/images/meme/四个星期后的超市.webp">
 <img src="/blog/images/meme/几个星期后我的家.webp">
