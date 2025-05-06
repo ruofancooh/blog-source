@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
 ### 我的朋友
 
 <img src="/blog/images/meme/社恐如何交朋友.webp">
-<img src="/blog/images/meme/社恐如何打招呼.webp">
 <img src="/blog/images/meme/非我也图也.webp">
 <img src="/blog/images/meme/双人游戏.webp">
 
@@ -239,6 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <img src="/blog/images/meme/重力.webp">
 <img src="/blog/images/meme/摩托车.webp">
 <img src="/blog/images/meme/抑郁症.webp">
+<img src="/blog/images/meme/机械电锯.webp">
 <img src="/blog/images/meme/垃圾桶.webp">
 <img src="/blog/images/meme/弓箭.webp">
 
@@ -324,12 +324,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ### 修养生息
 
-<img src="/blog/images/meme/我可以休息吗.webp">
-<img src="/blog/images/meme/Sleeping.webp">
 <img src="/blog/images/meme/老虎卷.webp">
 <img src="/blog/images/meme/睡5个小时.webp">
-<img src="/blog/images/meme/最美好的四个小时.webp">
 <img src="/blog/images/meme/12点之前睡着.webp">
+<img src="/blog/images/meme/熬夜的原因.webp">
+<img src="/blog/images/meme/最美好的四个小时.webp">
 
 ### 辞旧迎新
 
