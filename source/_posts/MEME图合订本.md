@@ -1,30 +1,10 @@
 ---
 title: Meme图合订本
 date: 2024-12-16 09:00:00
-categories: 牢骚系列
 permalink: meme.html
 ---
 
 小清一波库存。
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    let imgElements = document.querySelectorAll('img');
-    let post_meta = document.querySelector('.post-meta');
-        
-    let meme_count = post_meta.children[3];
-    meme_count.title = "Meme图数：";
-    let word_icon = meme_count.querySelector('i.far.fa-file-word');
-    word_icon.classList.replace('fa-file-word', "fa-images");
-    meme_count.children[1].innerText = "Meme图数：";
-    meme_count.children[2].innerText = imgElements.length;
-
-    let read_time = post_meta.children[4];
-    let clock_icon = read_time.querySelector('i.far.fa-clock');
-    clock_icon.classList.replace('fa-clock', "fa-smile");
-    read_time.children[2].innerText = "随你";
-});
-</script>
 
 ## 自嘲篇
 

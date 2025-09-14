@@ -116,10 +116,10 @@ sitemap:
   categories: false
 
 symbols_count_time:
-    symbols: true
-    time: true
-    total_symbols: true
-    total_time: true
+    symbols: false
+    time: false
+    total_symbols: false
+    total_time: false
     exclude_codeblock: false
     wpm: 300
     suffix: "mins."
@@ -165,8 +165,8 @@ theme_config:
 
   # Schemes
   # scheme: Muse
-  #scheme: Mist
-  #scheme: Pisces
+  # scheme: Mist
+  # scheme: Pisces
   scheme: Gemini
 
   # Dark Mode

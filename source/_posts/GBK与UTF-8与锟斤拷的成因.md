@@ -1,7 +1,6 @@
 ---
 title: GBK与UTF-8与锟斤拷的成因
 date: 2024-11-15 19:00:00
-categories: 实用系列
 permalink: gbk-utf8.html
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Hadoop
 date: 2024-04-26 17:45:00
-categories: 永远不看系列
 permalink: hadoop.html
 ---
 

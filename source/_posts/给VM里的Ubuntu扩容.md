@@ -1,7 +1,6 @@
 ---
 title: 给 VM 里的 Ubuntu 扩容
 date: 2024-1-14 10:30:00
-categories: 实用系列
 permalink: Expand-the-Ubuntu-capacity-in-the-VM.html
 ---
 

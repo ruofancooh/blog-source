@@ -1,7 +1,6 @@
 ---
 title: Win10 Dolphin模拟器连接Wii手柄教程
 date: 2024-10-13 19:00:00
-categories: 实用系列
 permalink: win10-dolphin-wii.html
 ---
 

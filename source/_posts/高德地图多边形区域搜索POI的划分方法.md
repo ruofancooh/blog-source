@@ -1,7 +1,6 @@
 ---
 title: 高德地图多边形区域搜索POI的划分方法
 date: 2024-11-30 19:00:00
-categories: 实用系列
 permalink: amap-poi-search.html
 ---
 
