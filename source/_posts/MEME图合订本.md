@@ -228,7 +228,6 @@ permalink: meme.html
 
 ### 天下大势
 
-<img src="/blog/images/meme/眼泪的成分.webp">
 <img src="/blog/images/meme/你最害怕什么.webp">
 <img src="/blog/images/meme/永远的家.webp">
 <img src="/blog/images/meme/我爱我家.webp">
