@@ -27,6 +27,8 @@ permalink: meme.html
 <img src="/blog/images/meme/为什么活.webp">
 <img src="/blog/images/meme/号卖不掉.webp">
 <img src="/blog/images/meme/了不起.webp">
+<img src="/blog/images/meme/向死而生.jpg">
+<img src="/blog/images/meme/做一个对社会有副作用的人.webp">
 
 ### 我的现在
 
@@ -52,7 +54,6 @@ permalink: meme.html
 
 <img src="/blog/images/meme/我的画笔和颜料.webp">
 <img src="/blog/images/meme/超级摇滚迷.webp">
-<img src="/blog/images/meme/做一个对社会有副作用的人.webp">
 <img src="/blog/images/meme/鲁南精神.webp">
 <img src="/blog/images/meme/最讨厌懒人.webp">
 
@@ -161,7 +162,6 @@ permalink: meme.html
 
 <img src="/blog/images/meme/时间到了.webp">
 <img src="/blog/images/meme/生活点滴.webp">
-<img src="/blog/images/meme/喜欢星期五.webp">
 <img src="/blog/images/meme/一周.webp">
 
 ### 小心路滑
