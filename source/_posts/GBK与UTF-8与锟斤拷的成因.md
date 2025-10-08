@@ -8,6 +8,8 @@ permalink: gbk-utf8.html
 
 ASCII 有 128 个符号，使用一个字节表示，范围是 00000000-01111111 即 00-7F
 
+<!--more-->
+
 参考：[字符编码/解码](https://www.toolhelper.cn/EncodeDecode/EncodeDecode) | [SYMBL](https://symbl.cc/) | [HexED.it](https://hexed.it/)
 
 ## GBK

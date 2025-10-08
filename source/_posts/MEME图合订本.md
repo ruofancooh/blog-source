@@ -13,6 +13,8 @@ permalink: meme.html
 <img src="/blog/images/meme/我不会下国际象棋.webp">
 <img src="/blog/images/meme/下大棋.webp">
 
+<!--more-->
+
 ### 我的未来
 
 <img src="/blog/images/meme/我的未来全是禁止通行.webp">
@@ -293,7 +295,9 @@ permalink: meme.html
 
 ### 地平论
 
-<img src="/blog/images/meme/穿越.webp">
+<img src="/blog/images/meme/原核家庭.jpg">
+<img src="/blog/images/meme/摘不拿拿.jpg">
+<img src="/blog/images/meme/你醒啦.webp">
 
 ### 健康之路
 
@@ -316,4 +320,3 @@ permalink: meme.html
 <img src="/blog/images/meme/几个星期后我的家.webp">
 <img src="/blog/images/meme/随500.webp">
 <img src="/blog/images/meme/随6500.webp">
-<img src="/blog/images/meme/中式恐怖.webp">

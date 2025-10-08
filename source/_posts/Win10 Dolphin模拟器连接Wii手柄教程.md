@@ -9,6 +9,8 @@ permalink: win10-dolphin-wii.html
 - 第一个箭头：同时按手柄的 1 和 2 键，或者后盖里面的 SYNC 按钮。这时手柄的四个灯会一起闪
 - 蓝牙适配器：使用 [Zadig](https://zadig.akeo.ie/) 查看蓝牙适配器的 USB ID 和驱动程序版本，Options -> List All Devices
 
+<!--more-->
+
 ## 直通模式
 
 0. 在[Bluetooth Passthrough](https://wiki.dolphin-emu.org/index.php?title=Bluetooth_Passthrough#Adapter_test_results)的 Adapter test results 表格查看硬件测试结果，需要一个型号匹配的蓝牙适配器

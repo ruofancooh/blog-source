@@ -22,6 +22,8 @@ npm install hexo-server
 hexo server
 ```
 
+<!--more-->
+
 ## 如何在新设备上推送
 
 安装 nodejs，pandoc，python，bs4，ssh，git

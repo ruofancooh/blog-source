@@ -6,14 +6,14 @@ permalink: magisk.html
 
 好奇心旺盛。
 
-<!--more-->
-
 你需要：
 
 - 一台系统为 Android 6.0 以上的手机
 - 一台能够正常使用 [Android SDK Platform-Tools](https://developer.android.google.cn/studio/releases/platform-tools?hl=zh-cn) 的电脑
 
 另外，如果你手机的 Android kernel 版本在 5.10 以上，你也可以使用[KernelSU](https://kernelsu.org/zh_CN/)——这不属于此教程的范围。
+
+<!--more-->
 
 ## 背景知识
 

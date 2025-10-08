@@ -13,6 +13,8 @@ permalink: Expand-the-Ubuntu-capacity-in-the-VM.html
 - `pvs` `pvdisplay`：物理卷信息（Physical volume）
 - `lvs` `lvdisplay`：逻辑卷信息（Logical Volume）
 
+<!--more-->
+
 ## 层次（空间缝隙）
 
 - `/dev/sda`：大概是 VM 设置里分配的硬盘空间大小

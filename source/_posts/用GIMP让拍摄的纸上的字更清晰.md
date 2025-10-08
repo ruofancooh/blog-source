@@ -11,7 +11,7 @@ permalink: gimp-make-words-on-the-photographed-paper-clearer.html
 4. **白平衡**
 5. 导出图片
 
----
+<!--more-->
 
 1. 首先要拍清晰，手不抖。
    <img src="/blog/images/hw-0.webp">
