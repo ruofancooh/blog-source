@@ -61,17 +61,6 @@ permalink: meme.html
 
 ## 哲学篇
 
-### 哲学格言
-
-<img src="/blog/images/meme/过去和未来不存在.webp">
-<img src="/blog/images/meme/哲学格言生成器.webp">
-<img src="/blog/images/meme/朋友像雪花.webp">
-
-### 说的道理
-
-<img src="/blog/images/meme/不是浪费时间.webp">
-<img src="/blog/images/meme/一辈子不关心哲学.webp">
-
 ### 敢问路在何方
 
 <img src="/blog/images/meme/事儿在哪.webp">
@@ -85,6 +74,7 @@ permalink: meme.html
 ### 我和我
 
 <img src="/blog/images/meme/平凡的世界.webp">
+<img src="/blog/images/meme/过去和未来不存在.webp">
 <img src="/blog/images/meme/白鸟过河滩.webp">
 
 ## 能量篇
@@ -307,6 +297,7 @@ permalink: meme.html
 
 ### 修养生息
 
+<img src="/blog/images/meme/不是浪费时间.webp">
 <img src="/blog/images/meme/老虎卷.webp">
 <img src="/blog/images/meme/睡5个小时.webp">
 <img src="/blog/images/meme/12点之前睡着.webp">
