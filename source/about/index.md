@@ -4,18 +4,11 @@ date: 2023-05-27 14:48:35
 mathjax: true
 ---
 
-[中国居民膳食指南 2022](http://dg.cnsoc.org/article/04/x8zaxCk7QQ2wXw9UnNXJ_A.html)
-| [BMI](https://cn.onlinebmicalculator.com/)
-
 ## 软件
 
 [右键菜单管理](https://github.com/BluePointLilac/ContextMenuManager)
 | [沉浸式翻译](https://immersivetranslate.com/docs/)
 | [Pot](https://github.com/pot-app/pot-desktop)
-| [Mermaid 中文网](https://mermaid.nodejs.cn/)
-| [Mermaid 在线编辑器](https://www.min2k.com/intro/online-mermaid.html)
-| [PlantUML](https://www.plantuml.com/)
-| [Geogebra](https://www.geogebra.org/calculator)
 
 RELEASE / GA > RC > M > SNAPSHOT，正式版 / 通用可用版 > 发布候选版 > 里程碑版 > 快照版
 
@@ -29,7 +22,7 @@ x64 == x86_64 == AMD64 != ARM64 == AARCH64
 
 [Dynadot](https://www.dynadot.com/) 是一个域名提供商，买一个域名。设置 DNS 为 Dynadot DNS。域名记录，A 记录指向 `185.199.109.153`，AAAA 记录指向 `2606:50c0:8001::153`。这两个是 Github Pages 的公共 IP，可以通过 ping `yourusername.github.io`。子域名 www 的 CNAME 记录指向 `yourusername.github.io`。对应仓库（根仓库）的根目录加一个 `CNAME` 文件，内容为购买的域名。仓库设置 -> pages -> Custom domain -> Enforce HTTPS。然后等 Github 检查 DNS，排队从 Let's Encrypt 获取 SSL 证书。
 
-你可以使用[Whois](https://www.whois.com/whois)来查询这些一键生成的页面背后的操作者是谁。在 Github 查看[笔记修改历史](https://github.com/ruofancooh/blog-source/commits/main)。[分类页](/blog/categories)
+你可以使用[Whois](https://www.whois.com/whois)来查询这些一键生成的页面背后的操作者是谁。在 Github 查看[笔记修改历史](https://github.com/ruofancooh/blog-source/commits/main)。
 
 ## 电磁波
 
@@ -55,35 +48,10 @@ $$
 ## 他山
 
 [蓝或者绿](https://ismy.blue)
-| [汉典](https://www.zdic.net/)
-| [小鹤音形](https://flypy.cc/)
-| [JavaScript 艺术之旅](https://github.com/tanpero/JavaScript-Art-Tour)
 | [老生常谈](https://Laosheng.top/)
-| [涟波词集](https://kevinz.cn/lyricbook/?a=Kevinz)
-| [Hexo-NexT 文档](https://hexo-next.readthedocs.io/zh_CN/latest/)
-| [Hexo 博客 NexT 主题的安装使用](http://home.ustc.edu.cn/~liujunyan/blog/hexo-next-theme-config/)
-| [MDN Web 文档](https://developer.mozilla.org/zh-CN/docs/Web)
-| [OI-Wiki](https://oi-wiki.org/)
+| [素问](https://sooon.ai/)
 | [WHO](https://www.who.int/zh/news-room/fact-sheets/detail/mental-disorders)
-| [阮一峰的博客](https://www.ruanyifeng.com/blog/)
-| [看懂 UML 类图和时序图](https://design-patterns.readthedocs.io/zh-cn/latest/read_uml.html)
-| [重构大师](https://refactoringguru.cn/)
 | [SYMBL](https://symbl.cc/cn/)
-| [VisuAlgo](https://visualgo.net/zh/)
-| [sort.js](https://github.com/zhaosaisai/sort.js)
-| [小时百科](https://wuli.wiki/online/index.html)
-| [写作只能塑造真实的自己](https://github.com/Macin20/why-we-write)
-| [网道](https://wangdoc.com/)
-| [永远森林](https://永远森林.com/)
-| [语文](http://www.dzkbw.com/books/rjb/yuwen/xs1s_2016/)
 | [主义主义](https://www.processon.com/view/link/6081a821e401fd45d70436af)
-| [幻想西游](https://github.com/zither/xiyou)
-| [QQ 家园](https://3gqqjy.com/)
-| [轨道理论](https://tieba.baidu.com/p/7991674588)
-| [PVZ](http://www.lonelystar.org/download.htm)
-| [扫雷网](http://saolei.wang)
-| [北大侠客行](https://pkuxkx.net/)
-| [超吧网盘](http://opengl106.ysepan.com/)
-| [纪念碑谷](https://www.taptap.cn/app/18356)
-| [艾希](https://www.taptap.cn/app/11190)
+| [涟波词集](https://kevinz.cn/lyricbook/?a=Kevinz)]
 | [老男人游戏网](https://www.oldmantvg.net/)

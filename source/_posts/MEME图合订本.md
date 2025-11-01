@@ -73,7 +73,6 @@ permalink: meme.html
 
 ### 我和我
 
-<img src="/blog/images/meme/平凡的世界.webp">
 <img src="/blog/images/meme/过去和未来不存在.webp">
 <img src="/blog/images/meme/白鸟过河滩.webp">
 
