@@ -238,7 +238,6 @@ permalink: meme.html
 <img src="/blog/images/meme/wifi.webp">
 <img src="/blog/images/meme/给你薯条.webp">
 <img src="/blog/images/meme/笑容.webp">
-<img src="/blog/images/meme/你也值得被爱.webp">
 
 ### 独立思考
 
