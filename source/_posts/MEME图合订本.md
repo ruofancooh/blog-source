@@ -57,7 +57,7 @@ permalink: meme.html
 <img src="/blog/images/meme/我的画笔和颜料.webp">
 <img src="/blog/images/meme/超级摇滚迷.webp">
 <img src="/blog/images/meme/鲁南精神.webp">
-<img src="/blog/images/meme/最讨厌懒人.webp">
+<img src="/blog/images/meme/犬道.webp">
 
 ## 哲学篇
 
@@ -98,8 +98,6 @@ permalink: meme.html
 <img src="/blog/images/meme/番茄炒你儿子.webp">
 <img src="/blog/images/meme/不不不是是是.webp">
 <img src="/blog/images/meme/是不是哥们.webp">
-<img src="/blog/images/meme/非也兄台.webp">
-<img src="/blog/images/meme/虾射手.webp">
 <img src="/blog/images/meme/如此包装.webp">
 
 ### 请勿投喂
@@ -180,10 +178,10 @@ permalink: meme.html
 ### 东阳马生
 
 <img src="/blog/images/meme/余幼时即厌学.webp">
-<img src="/blog/images/meme/充电.webp">
-<img src="/blog/images/meme/考试一点也不难.webp">
+<img src="/blog/images/meme/充电宝.webp">
+<img src="/blog/images/meme/薛定谔的狗.webp">
 <img src="/blog/images/meme/写12个解.webp">
-<img src="/blog/images/meme/水下无法呼吸.webp">
+<img src="/blog/images/meme/拓扑氧气瓶.webp">
 <img src="/blog/images/meme/大括号.webp">
 <img src="/blog/images/meme/我是猴子.webp">
 <img src="/blog/images/meme/青龙帮.webp">
