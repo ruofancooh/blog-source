@@ -63,7 +63,7 @@ permalink: meme.html
 
 ### 敢问路在何方
 
-<img src="/blog/images/meme/事儿在哪.webp">
+<img src="/blog/images/meme/不知者.webp">
 <img src="/blog/images/meme/罗马空军基地.webp">
 <img src="/blog/images/meme/欧洲用电量.webp">
 <img src="/blog/images/meme/南极洲交通路线图.webp">
@@ -298,7 +298,7 @@ permalink: meme.html
 <img src="/blog/images/meme/睡5个小时.webp">
 <img src="/blog/images/meme/12点之前睡着.webp">
 <img src="/blog/images/meme/熬夜的原因.webp">
-<img src="/blog/images/meme/最美好的四个小时.webp">
+<img src="/blog/images/meme/生命流.webp">
 
 ### 辞旧迎新
 
