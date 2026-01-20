@@ -55,7 +55,6 @@ permalink: meme.html
 ### 我的特长和兴趣
 
 <img src="/blog/images/meme/我的画笔和颜料.webp">
-<img src="/blog/images/meme/超级摇滚迷.webp">
 <img src="/blog/images/meme/鲁南精神.webp">
 <img src="/blog/images/meme/犬道.webp">
 
