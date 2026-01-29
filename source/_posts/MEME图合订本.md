@@ -19,17 +19,17 @@ permalink: meme.html
 
 <img src="/blog/images/meme/我的未来全是禁止通行.webp">
 <img src="/blog/images/meme/没有转角的人生.webp">
-<img src="/blog/images/meme/找得到出路的魔方脸.webp">
-<img src="/blog/images/meme/找不到出路的魔方脸.webp">
+<img src="/blog/images/meme/结局三.webp">
+<img src="/blog/images/meme/结局二.webp">
 <img src="/blog/images/meme/收集大半辈子表情包.webp">
 <img src="/blog/images/meme/100级的一事无成.webp">
 
 ### 为什么活着
 
-<img src="/blog/images/meme/为什么活.webp">
+<img src="/blog/images/meme/向死而生.webp">
 <img src="/blog/images/meme/号卖不掉.webp">
 <img src="/blog/images/meme/了不起.webp">
-<img src="/blog/images/meme/向死而生.jpg">
+<img src="/blog/images/meme/9.jpg">
 <img src="/blog/images/meme/做一个对社会有副作用的人.webp">
 
 ### 我的现在
@@ -148,7 +148,7 @@ permalink: meme.html
 
 ### 时间给我答案
 
-<img src="/blog/images/meme/时间到了.webp">
+<img src="/blog/images/meme/时间没了.webp">
 <img src="/blog/images/meme/生活点滴.webp">
 <img src="/blog/images/meme/一周.webp">
 
@@ -194,7 +194,7 @@ permalink: meme.html
 ### 老小子
 
 <img src="/blog/images/meme/好吃就行.jpg">
-<img src="/blog/images/meme/打BOOS.webp">
+<img src="/blog/images/meme/游戏结束.webp">
 <img src="/blog/images/meme/峰会改成自习.webp">
 <img src="/blog/images/meme/年龄真的大了.webp">
 
@@ -255,11 +255,6 @@ permalink: meme.html
 </div>
 <div class="demo"></p>对<p></p>吧<p></p>？</div>
 <style>
-#pb {
-  display: flex;
-  align-items: center;
-  justify-content:space-between;
-}
 .demo{
     display:-webkit-box;
     display:-webkit-flex;
