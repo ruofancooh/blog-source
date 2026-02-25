@@ -14,7 +14,30 @@ permalink: hexo.html
 
 你可以使用[Whois](https://www.whois.com/whois)来查询这些一键生成的页面背后的操作者是谁。在 Github 查看[笔记修改历史](https://github.com/ruofancooh/blog-source/commits/main)。
 
-## 建站
+1. 写笔记的源文件，md格式
+2. 用npx hexo g生成文件到public目录
+3. 用python敷写目录里的系列文件，并用rsync把目录移动到另一个仓库
+4. 用git推送仓库到Github
+
+## 概念
+
+网页：网页文件的后缀一般是.html，超文本标记语言。它是一个文本文件，超的地方在于，比如在两个<p></p>标签之间表示一个段落，我们可以给这个标签单独设置样式如字体字号，并和其他段落标签排版。我们也可以点一个按钮后删除一个段落。HTML有两个兄弟，CSS管样式和排版，JavaScript管人机交互和计算。
+
+代码和环境：写代码就是人指挥电脑该如何做事，编程语言介于人话和机器话之间，首先保证人能看懂，还要一个翻译官把它翻译成机器能听懂，这个翻译官称为环境。JavaScript就是一种编程语言，它的环境可以是浏览器内核，也可以是Node.js。
+
+浏览器：用浏览器打开网页就像用播放器打开视频，得先把网页从别人的服务器上下载到本地。当然自己也可以当自己的服务器，客户端和服务端占localhost的不同端口号。
+
+Markdown：用标记符号给通常的文本做了扩展，如用##表示二级标题，用一个空行表示换行，这样撰写者可以不管排版只写内容。它和html都是文本文件，且写它比写html文件容易。它还可以内嵌html标签。
+
+Hexo：把Markdown文件转码成html文件，并生成有特定目录结构的文件夹，这个文件夹称为网站。它是Node.js环境下的一个软件。
+
+npm：Node.js环境的包管理器，即应用商店。用它来下载安装Hexo
+
+git：
+
+签名与身份验证：git push给远程仓库时，github会根据发送者提前提交的公钥来生成一个挑战，发送者用私钥对挑战进行签名并发回github，github再用公钥验证签名，如果通过，说明确实是这个用户。
+
+## 操作
 
 除了 Hexo 官网文档之外的操作：
 
@@ -32,7 +55,7 @@ npm install hexo-server
 hexo server
 ```
 
-## 如何在新设备上推送
+## 在新设备上推仓库
 
 安装 nodejs，pandoc，python，bs4，ssh，git
 
@@ -57,73 +80,8 @@ cat ~/.ssh/id_ed25519.pub
 
 ```sh
 git remote set-url origin git@github.com:ruofancooh/blog.git
-```
-
-用三个脚本生成网页：
-
-### bm.py
-
-```py
-import os
-import shutil
-from pathlib import Path
-
-from bs4 import BeautifulSoup
-
-SITE_ROOT = Path(r"blog")
-ARCHIVES_DIR = SITE_ROOT / "archives"
-REPLACE_RULES = {
-    f"/archives": "",
-}
-
-def update_links_in_html(html_path: Path):
-    with html_path.open("r+", encoding="utf-8") as file:
-        content = file.read()
-        soup = BeautifulSoup(content, "html.parser")
-        for a_tag in soup.find_all("a"):
-            href = a_tag.get("href")
-            if href:
-                for old, new in REPLACE_RULES.items():
-                    if old in href:
-                        href = href.replace(old, new)
-                a_tag["href"] = href
-        file.seek(0)
-        file.write(str(soup))
-        file.truncate()
-
-if __name__ == "__main__":
-    shutil.move(ARCHIVES_DIR / "index.html", SITE_ROOT / "index.html")
-    shutil.rmtree(ARCHIVES_DIR)
-    for root, _, files in os.walk(SITE_ROOT):
-        for filename in files:
-            if filename.endswith(".html") and filename != "404.html":
-               update_links_in_html(Path(root) / filename)
-```
-
-### bs.bat
-
-```bat
-cd /d d:\repo\blog-source
-start http://localhost:54321/
-call npx hexo s -p 54321
-```
-
-### bg.bat
-
-```bat
-:: 删除旧文件
-cd /d d:\repo\blog
-git rm -r *
-:: 渲染新文件
-cd ..\blog-source
-call npx hexo g
-:: 转移新文件
-xcopy public ..\blog /s /e
-call npx hexo clean
-:: 二次处理文件
-cd /d d:\scripts
-call D:/ProgramData/anaconda3/Scripts/activate
-call python bm.py
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
 ```
 
 推：
@@ -162,19 +120,9 @@ body {
 ## md
 
 ```md
----
 title: CN02 - 概述 - 体系结构
 date: 2023-09-09 17:00:00
 permalink: CN/02/
----
-
-- OSI 七层协议：参考模型
-- TCP/IP 四层协议：即 Internet protocol suite，实际用到的
-- 五层协议：教学模型
-
-<!--more-->
-
-（正文）
 ```
 
 `permalink:` 告诉框架就按这个链接渲染。没有这个字段时，就按站点配置文件里设置的渲染（年/月/日/文章名之类的）。
@@ -183,4 +131,6 @@ permalink: CN/02/
 - 在每次渲染后：
   1. 用 `/blog/archives/index.html` 覆盖 `/blog/index.html`
   2. 删除 `/blog/archives/` 文件夹
+
+
 

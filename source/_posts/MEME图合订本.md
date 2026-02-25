@@ -301,3 +301,4 @@ permalink: meme.html
 <img src="/blog/images/meme/几个星期后我的家.webp">
 <img src="/blog/images/meme/随500.webp">
 <img src="/blog/images/meme/随6500.webp">
+<img src="/blog/images/meme/种朵花.jpg">
