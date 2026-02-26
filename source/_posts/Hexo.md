@@ -10,7 +10,7 @@ permalink: hexo.html
 
 [Github Pages](https://docs.github.com/zh/pages/getting-started-with-github-pages) 用于托管静态网页，就是放在上面就不能动了，没有数据库，更新页面要重新上传。创建一个名为 `yourusername.github.io` 的仓库，分支为 `gh-pages`。然后可以访问 `yourusername.github.io`。之后再创建的名为 `sample` 且分支为 `gh-pages` 的仓库，为 `yourusername.github.io/sample`。
 
-[Dynadot](https://www.dynadot.com/) 是一个域名提供商，买一个域名。设置 DNS 为 Dynadot DNS。域名记录，A 记录指向 `185.199.109.153`，AAAA 记录指向 `2606:50c0:8001::153`。这两个是 Github Pages 的公共 IP，可以通过 ping `yourusername.github.io`。子域名 www 的 CNAME 记录指向 `yourusername.github.io`。对应仓库（根仓库）的根目录加一个 `CNAME` 文件，内容为购买的域名。仓库设置 -> pages -> Custom domain -> Enforce HTTPS。然后等 Github 检查 DNS，排队从 Let's Encrypt 获取 SSL 证书。
+[Dynadot](https://www.dynadot.com/) 是一个域名注册商，买一个域名。设置 DNS 为 Dynadot DNS。域名记录，A 记录指向 `185.199.109.153`，AAAA 记录指向 `2606:50c0:8001::153`。这两个是 Github Pages 的公共 IP，可以通过 ping `yourusername.github.io`。子域名 www 的 CNAME 记录指向 `yourusername.github.io`。对应仓库（根仓库）的根目录加一个 `CNAME` 文件，内容为购买的域名。仓库设置 -> pages -> Custom domain -> Enforce HTTPS。然后等 Github 检查 DNS，排队从 Let's Encrypt 获取 SSL 证书。
 
 你可以使用[Whois](https://www.whois.com/whois)来查询这些一键生成的页面背后的操作者是谁。在 Github 查看[笔记修改历史](https://github.com/ruofancooh/blog-source/commits/main)。
 
@@ -39,23 +39,18 @@ git：
 
 ## 操作
 
-除了 Hexo 官网文档之外的操作：
-
-1. 设置 npm 镜像源
+更换 npm 镜像源
 
 ```sh
 npm get registry
 npm config set registry https://registry.npmmirror.com/
 ```
 
-2. 安装 Hexo 并初始化之后，安装本地预览服务器，先跑
+禁用对非 ASCII 字符的转义，让 git status 输出中文字符。
 
 ```sh
-npm install hexo-server
-hexo server
+git config --global core.quotepath false
 ```
-
-## 在新设备上推仓库
 
 安装 nodejs，pandoc，python，bs4，ssh，git
 
@@ -67,7 +62,7 @@ cd blog-source
 npm install
 ```
 
-用ssh生成一个公钥
+用ssh生成一对密钥
 
 ```sh
 ssh-keygen -t ed25519 -C "your_email@example.com"
@@ -88,6 +83,7 @@ git config --global user.name "Your Name"
 
 ```sh
 git add .
+git status
 git commit -m "text"
 git push
 ```
@@ -116,21 +112,6 @@ body {
     background-position: center;
 }
 ```
-
-## md
-
-```md
-title: CN02 - 概述 - 体系结构
-date: 2023-09-09 17:00:00
-permalink: CN/02/
-```
-
-`permalink:` 告诉框架就按这个链接渲染。没有这个字段时，就按站点配置文件里设置的渲染（年/月/日/文章名之类的）。
-
-- 在每次渲染前，要设置文章的标题和 `permalink`。
-- 在每次渲染后：
-  1. 用 `/blog/archives/index.html` 覆盖 `/blog/index.html`
-  2. 删除 `/blog/archives/` 文件夹
 
 
 

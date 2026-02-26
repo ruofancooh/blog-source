@@ -1,9 +1,7 @@
 import shutil
+import sys
 from pathlib import Path
 from bs4 import BeautifulSoup
-
-SITE_ROOT = Path("blog")
-ARCHIVES_DIR = SITE_ROOT / "archives"
 
 def update_links_in_html(html_path: Path):
     """更新 HTML 文件中所有包含 '/archives' 的链接，将其替换为空字符串"""
@@ -14,11 +12,8 @@ def update_links_in_html(html_path: Path):
         print(f"无法读取文件 {html_path}: {e}")
         return
 
-    # 尝试使用 lxml 解析器加速，若不可用则用默认解析器
-    try:
-        soup = BeautifulSoup(content, "lxml")
-    except ImportError:
-        soup = BeautifulSoup(content, "html.parser")
+
+    soup = BeautifulSoup(content, "html.parser")
 
     modified = False
     for a_tag in soup.find_all("a"):
@@ -37,6 +32,10 @@ def update_links_in_html(html_path: Path):
             print(f"无法写入文件 {html_path}: {e}")
 
 if __name__ == "__main__":
+    print(sys.argv)
+    SITE_ROOT = Path(sys.argv[1])
+    ARCHIVES_DIR = SITE_ROOT / "archives"
+    
     # 移动归档首页到站点根目录
     source = ARCHIVES_DIR / "index.html"
     target = SITE_ROOT / "index.html"

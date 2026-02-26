@@ -4,7 +4,7 @@ date: 2023-05-27 14:48:35
 mathjax: true
 ---
 
-[建站方法](/blog/hexo.html)
+[建站思路](/blog/hexo.html)
 
 ## 软件
 

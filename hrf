@@ -1,0 +1,41 @@
+#!/bin/bash
+set -e  # 遇到错误立即退出
+
+SOURCE_DIR="$HOME/blog-source"
+OUTSIDE_SOURCE_DIR="$HOME/storage/downloads/blog-source/"
+BLOG_DIR="$HOME/blog"
+PORT=5432
+
+case "$1" in
+    sb)
+        echo "本地预览里面的源"
+        cd "$SOURCE_DIR"
+        (sleep 5 && xdg-open "http://localhost:$PORT/") &
+        npx hexo s -p "$PORT"
+        ;;
+    gb)
+        echo "渲染里面的源"
+        cd "$SOURCE_DIR"
+        npx hexo g
+        echo "同步 public/ 到博客部署目录，删除多余文件，但保留 .git"
+        rsync -av --delete --exclude=.git public/ "$BLOG_DIR/"
+        npx hexo clean
+        echo "覆写部署目录"
+        python3 modify-hexo-output.py "$BLOG_DIR"
+        cd "$BLOG_DIR"
+        git add .
+        git status
+        ;;
+    oti)
+        cd "$SOURCE_DIR"
+        echo "把外面的源同步到里面"
+        rsync -av --delete --exclude '.git' --exclude 'node_modules' "$OUTSIDE_SOURCE_DIR" "$SOURCE_DIR"
+        chmod +x hrf
+        cp hrf "$HOME/bin/"
+        git add .
+        git status
+        ;;
+    *)
+        exit 1
+        ;;
+esac
