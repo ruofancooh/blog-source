@@ -16,7 +16,7 @@ permalink: hexo.html
 
 1. 写笔记的源文件，md格式
 2. 用npx hexo g生成文件到public目录
-3. 用python敷写目录里的系列文件，并用rsync把目录移动到另一个仓库
+3. 用rsync把目录移动到另一个仓库，再用python敷写目录里的系列文件
 4. 用git推送仓库到Github
 
 ## 概念
@@ -46,11 +46,6 @@ npm get registry
 npm config set registry https://registry.npmmirror.com/
 ```
 
-禁用对非 ASCII 字符的转义，让 git status 输出中文字符。
-
-```sh
-git config --global core.quotepath false
-```
 
 安装 nodejs，pandoc，python，bs4，ssh，git
 
@@ -78,6 +73,8 @@ git remote set-url origin git@github.com:ruofancooh/blog.git
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 ```
+
+脚本。
 
 推：
 
@@ -111,7 +108,40 @@ body {
     background-size: cover;
     background-position: center;
 }
+
 ```
 
+## Git
 
+工作区：除.git目录本身所在的文件夹，当前能直接编辑的所有文件。
+
+暂存区：使用git add. 把当前所有修改写到.git/index 文件里。
+
+版本库：岁月史书，历史的所有修改记录。
+
+禁用对非 ASCII 字符的转义，让 git status 输出中文字符。
+
+```sh
+git config --global core.quotepath false
+```
+
+撤销上一次commit
+
+- 撤销 commit，保留暂存区修改	git reset --soft HEAD~1
+- 撤销 commit，保留工作区修改	git reset HEAD~1
+- 彻底撤销 commit 并丢弃所有修改	git reset --hard HEAD~1
+- 已推送到远程，安全撤销	git revert HEAD
+- 修改上一次 commit 信息/补充文件	git commit --amend
+
+从 Git 历史记录中删除已经不在当前工作区的大文件以减少 .git 文件夹的大小
+
+## Termux
+
+在安卓手机上模拟Linux环境的app。
+
+hexo需要node.js环境，还要用到ssh和git。根据笔者已有的知识，这些软件在liunx或Windows命令行下运行成功过。所以如何在手机上运行这些软件？最容易想到的是在手机上找一个命令行环境。
+
+termux和linux的本质区别：
+
+安卓手机的文件系统是exfat，Linux的文件系统是ext4。前者没有权限、符号链接一说。所以如果在
 
