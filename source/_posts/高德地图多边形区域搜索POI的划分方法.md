@@ -30,4 +30,5 @@ permalink: amap-poi-search.html
 
 每轮搜索的结束条件：没有状态为 C 的区域了。这时候需要把状态为 B 的区域导出，进行下一步的划分，如划分成 0.01 的经纬度网。
 
-[示例代码](https://github.com/ruofancooh/blog-source/blob/main/code/amap_poi_spider)。虽然写得不好看，但是当时还可以跑。
+[示例代码](https://github.com/ruofancooh/blog-source/tree/main/source/code/amap_poi_spider)。虽然写得不好看，但是当时还可以跑。
+
