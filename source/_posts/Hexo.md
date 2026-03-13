@@ -16,7 +16,7 @@ permalink: hexo.html
 
 1. 写笔记的源文件，md格式
 2. 用npx hexo g生成文件到public目录
-3. 用rsync把目录移动到另一个仓库，再用python敷写目录里的系列文件
+3. 把目录移动到另一个仓库，再修改目录里的文件。因为我不喜欢它生成的主页，想用归档页做主页。
 4. 用git推送仓库到Github
 
 ## 概念
@@ -115,7 +115,7 @@ body {
 
 工作区：除.git目录本身所在的文件夹，当前能直接编辑的所有文件。
 
-暂存区：使用git add. 把当前所有修改写到.git/index 文件里。
+暂存区：使用git add. 把当前所有修改写到.git/index 文件里。下次从这里commit
 
 版本库：岁月史书，历史的所有修改记录。
 
@@ -137,11 +137,11 @@ git config --global core.quotepath false
 
 ## Termux
 
-在安卓手机上模拟Linux环境的app。
+hexo需要node.js环境，还要用到ssh和git。根据笔者已有的知识，这些软件在linux或Windows命令行下运行成功过。所以如何在手机上运行这些软件？容易想到的是在手机上找一个命令行环境。
 
-hexo需要node.js环境，还要用到ssh和git。根据笔者已有的知识，这些软件在liunx或Windows命令行下运行成功过。所以如何在手机上运行这些软件？最容易想到的是在手机上找一个命令行环境。
+termux模拟的命令行环境在/data/data/com.termux/files，在没有root权限的前提下无法通过文件管理器访问它，这使得修改笔记源文件变得很不方便。有三条路，获取root权限；使用命令行下的文本编辑器和命令来修改移动文件；在/sdcard下放一份副本，需要预览或生成的时候再复制到termux路径下。第三者是最省事的，这里使用一个[脚本](https://github.com/ruofancooh/blog-source/blob/main/hrf)实现。
 
-termux和linux的本质区别：
+可以直接运行在/sdcard里的node.js项目吗？如果你在termux里cd到storage并尝试在里面用npm安装node_modules，它会报错不支持符号链接，这是因为安卓手机的文件系统没有符号链接这一说。用另一种邪门的方法安装会很慢，且安装完之后，另外我们还没法给自定义sh脚本加上执行权限。
 
-安卓手机的文件系统是exfat，Linux的文件系统是ext4。前者没有权限、符号链接一说。所以如果在
+
 
