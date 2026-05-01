@@ -217,7 +217,7 @@ permalink: meme.html
 ### 天下大势
 
 <img src="/blog/images/meme/你最害怕什么.webp">
-<img src="/blog/images/meme/永远的家.webp">
+<img src="/blog/images/meme/有损压缩.webp">
 <img src="/blog/images/meme/我爱我家.webp">
 <img src="/blog/images/meme/身在福中不知福.webp">
 
