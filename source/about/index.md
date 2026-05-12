@@ -39,9 +39,7 @@ $$
 
 ## 他山
 
-[蓝或者绿](https://ismy.blue)
-| [老生常谈](https://Laosheng.top/)
-| [素问](https://sooon.ai/)
+[老生常谈](https://Laosheng.top/)
 | [WHO](https://www.who.int/zh/news-room/fact-sheets/detail/mental-disorders)
 | [SYMBL](https://symbl.cc/cn/)
 | [涟波词集](https://kevinz.cn/lyricbook/?a=Kevinz)
