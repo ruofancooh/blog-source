@@ -29,7 +29,7 @@ permalink: hexo.html
 
 Markdown：用标记符号给通常的文本做了扩展，如用##表示二级标题，用一个空行表示换行，这样撰写者可以不管排版只写内容。它和html都是文本文件，且写它比写html文件容易。它还可以内嵌html标签。
 
-Hexo：把Markdown文件转码成html文件，并生成有特定目录结构的文件夹，这个文件夹称为网站。它是Node.js环境下的一个软件。
+Hexo：把Markdown文件渲染成html文件，并生成有特定目录结构的文件夹，这个文件夹称为网站。它是Node.js环境下的一个软件。
 
 npm：Node.js环境的包管理器，即应用商店。用它来下载安装Hexo
 
