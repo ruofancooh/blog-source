@@ -6,14 +6,14 @@ permalink: meme.html
 
 小清一波库存。
 
+<!--more-->
+
 ## 自嘲篇
 
 ### 下好生活这盘棋
 
 <img src="/blog/images/meme/我不会下国际象棋.webp">
 <img src="/blog/images/meme/下大棋.webp">
-
-<!--more-->
 
 ### 我的未来
 
