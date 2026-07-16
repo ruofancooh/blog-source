@@ -1,6 +1,6 @@
 ---
 title: Meme图合订本（第二弹）
-date: 2026-7-13 09:00:00
+date: 2026-7-16 09:00:00
 permalink: meme2.html
 ---
 
@@ -32,33 +32,48 @@ permalink: meme2.html
 <img src="/blog/images/meme/正宗精神分析-弗洛伊德.jpg">
 <img src="/blog/images/meme/正宗人本主义-罗杰斯.jpg">
 <img src="/blog/images/meme/反移情.jpg">
-<img src="/blog/images/meme/我先回家了.jpg">
-
-### 空椅
-
-<img src="/blog/images/meme/OK.jpg">
-<img src="/blog/images/meme/没有电车.jpg">
-<img src="/blog/images/meme/格式塔.jpg">
-<img src="/blog/images/meme/正宗精神分析-拉康.jpg">
-<img src="/blog/images/meme/与子同袍.jpg">
 
 ## 视野篇
 
-### 柳暗
+### 空椅
 
+<img src="/blog/images/meme/没有电车.jpg">
+<img src="/blog/images/meme/OK.jpg">
+<img src="/blog/images/meme/格式塔.jpg">
+<img src="/blog/images/meme/与子同袍.jpg">
+<img src="/blog/images/meme/正宗精神分析-拉康.jpg">
+<img src="/blog/images/meme/我先回家了.jpg">
+
+### 柳暗花明
+
+<img src="/blog/images/meme/我大概不会.jpg">
 <img src="/blog/images/meme/我的生活组成.jpg">
 <img src="/blog/images/meme/warma.jpg">
 
-### 花明
+### <span id=cat>薛定谔的猫</span>
 
-<img src="/blog/images/meme/我大概不会.jpg">
+<style>
+#cat {
+    filter: blur(4px);
+    transition: filter 0.3s ease;
+}
+#cat.clear {
+    filter: blur(0);
+}
+</style>
 
-### 另辟
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('cat').addEventListener('click', function() {
+        this.classList.toggle('clear');
+    });
+});
+</script>
 
 <img src="/blog/images/meme/未见其喵.jpg">
+<img src="/blog/images/meme/坍缩.jpg">
 <img src="/blog/images/meme/真是了不得.jpg">
 <img src="/blog/images/meme/满电猫猫.jpg">
-<img src="/blog/images/meme/坍缩.jpg">
 
 ### 蹊径
 

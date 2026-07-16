@@ -39,6 +39,7 @@ case "$1" in
         chmod +x hrf
         cp hrf "$HOME/bin/"
         cd "$SOURCE_DIR"
+        # 注意执行之后，外面的未提交文件会被覆写
         echo "把里面的源同步到外面"
         rsync -av --delete --exclude '.git' --exclude 'node_modules' "$SOURCE_DIR" "$OUTSIDE_SOURCE_DIR/.."
         ;;
