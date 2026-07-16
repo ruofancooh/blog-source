@@ -3,8 +3,8 @@
 setlocal enabledelayedexpansion
 
 :: 配置路径与端口
-set "SOURCE_DIR=D:\repo\blog-source"
-set "BLOG_DIR=D:\repo\blog"
+set "SOURCE_DIR=C:\repo\blog-source"
+set "BLOG_DIR=C:\repo\blog"
 set "PORT=5432"
 
 :: 分发子命令
