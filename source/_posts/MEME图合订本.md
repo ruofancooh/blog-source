@@ -8,6 +8,14 @@ permalink: meme.html
 
 <!--more-->
 
+<style>
+@media (min-width: 768px) {
+    .post-block {
+        width: 50%;
+    }
+}
+</style>
+
 ## 自嘲篇
 
 ### 下好生活这盘棋
