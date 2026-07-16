@@ -24,7 +24,7 @@ permalink: meme2.html
 <img src="/blog/images/meme/比尔盖茨.jpg">
 <img src="/blog/images/meme/子弹在我U盘上了膛.jpg">
 <img src="/blog/images/meme/再去玩手机.jpg">
-<img src="/blog/images/meme/骷髅.jpg">
+<img src="/blog/images/meme/骷髅.jpeg">
 
 ### 狂野来访
 
@@ -47,7 +47,7 @@ permalink: meme2.html
 ### 柳暗花明
 
 <img src="/blog/images/meme/我大概不会.jpg">
-<img src="/blog/images/meme/我的生活组成.jpg">
+<img src="/blog/images/meme/炫彩柴郡猫.jpg">
 <img src="/blog/images/meme/warma.jpg">
 
 ### <span id=cat>薛定谔的猫</span>
