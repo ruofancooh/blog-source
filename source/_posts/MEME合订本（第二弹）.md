@@ -104,5 +104,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <img src="/blog/images/meme/如何学会悬浮.jpg">
 <img src="/blog/images/meme/鱼的世界地图.jpg">
-<img src="/blog/images/meme/火鸡主.gif">
 <img src="/blog/images/meme/输错手机号.jpg">
+<img src="/blog/images/meme/火鸡主.gif">
