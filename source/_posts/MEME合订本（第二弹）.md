@@ -40,6 +40,7 @@ permalink: meme2.html
 <img src="/blog/images/meme/你的感受是什么.jpg">
 <img src="/blog/images/meme/正宗精神分析-弗洛伊德.jpg">
 <img src="/blog/images/meme/正宗人本主义-罗杰斯.jpg">
+<img src="/blog/images/meme/正宗CBT-亚伦贝克.jpg">
 <img src="/blog/images/meme/反移情.jpg">
 
 ## 视野篇
